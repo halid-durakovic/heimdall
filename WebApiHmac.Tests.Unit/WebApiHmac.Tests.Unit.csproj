@@ -41,7 +41,8 @@
   <ItemGroup>
     <Compile Include="BuildMessageRepresentationTests.cs" />
     <Compile Include="CalculateSignatureTests.cs" />
-    <Compile Include="HttpActionContextBuilder.cs" />
+    <Compile Include="HttpActionContextBuilder.cs"/>
+    <Compile Include="HttpRequestMessageBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
