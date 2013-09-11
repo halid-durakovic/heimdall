@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BuildMessageRepresentationTests.cs" />
+    <Compile Include="CalculateSignatureTests.cs" />
     <Compile Include="HttpActionContextBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
