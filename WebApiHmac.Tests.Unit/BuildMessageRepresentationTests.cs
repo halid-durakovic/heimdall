@@ -1,0 +1,66 @@
+using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+
+namespace WebApiHmac.Tests.Unit
+{
+    [TestFixture]
+    public class BuildMessageRepresentationTests
+    {
+        [Test]
+        public void should_return_string_containing_uri()
+        {
+            var buildMessageString = new BuildMessageRepresentation();
+
+            var actionContext = HttpActionContextBuilder.Build();
+
+            var result = buildMessageString.Build(actionContext.Request);
+            Assert.That(result, Contains.Substring("/api"));
+        }
+
+        [Test]
+        public void should_return_string_containing_verb()
+        {
+            var buildMessageString = new BuildMessageRepresentation();
+
+            var actionContext = HttpActionContextBuilder.Build();
+            actionContext.Request.Method = new HttpMethod("GET");
+
+            var result = buildMessageString.Build(actionContext.Request);
+            Assert.That(result, Contains.Substring("GET"));
+        }
+
+        [Test]
+        public void should_return_string_containing_request_content_md5()
+        {
+            var buildMessageString = new BuildMessageRepresentation();
+
+            var actionContext = HttpActionContextBuilder.Build();
+            actionContext.Request.Content = new FormUrlEncodedContent(new[] { new KeyValuePair<string, string>("someKey", "someValue"), });
+
+            var md5 =
+                new System.Security.Cryptography.MD5CryptoServiceProvider().ComputeHash(
+                    actionContext.Request.Content.ReadAsByteArrayAsync().Result);
+
+            actionContext.Request.Content.Headers.ContentMD5 = md5;
+
+            var result = buildMessageString.Build(actionContext.Request);
+
+            Assert.That(result, Contains.Substring(Convert.ToBase64String(md5)));
+        }
+
+        [Test]
+        public void should_return_string_containing_timestamp()
+        {
+            var buildMessageString = new BuildMessageRepresentation();
+
+            var actionContext = HttpActionContextBuilder.Build();
+
+            var result = buildMessageString.Build(actionContext.Request);
+
+            var date = actionContext.Request.Headers.Date.Value.ToString();
+            Assert.That(result, Contains.Substring(date));
+        }
+    }
+}
