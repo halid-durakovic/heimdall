@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 using Moq;
 using NUnit.Framework;
@@ -33,10 +34,15 @@ namespace WebApiAuthentication.Client.Tests.Handlers
         [Test]
         public void gets_secret_from_repository()
         {
+            mockGetSecretFromKey.Setup(x => x.Secret(It.IsAny<string>()))
+                .Returns("secret");
+
             var request = new HttpRequestMessage(HttpMethod.Get, "http://www.test.com")
             {
                 Content = new StringContent("something")
             };
+
+            request.Headers.Date = new DateTimeOffset(DateTime.Now, DateTime.Now - DateTime.UtcNow);
 
             var result = client.SendAsync(request).Result;
 
