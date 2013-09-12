@@ -4,7 +4,12 @@ using System.Text;
 
 namespace WebApiAuthentication
 {
-    public class CalculateSignature
+    public interface ICalculateSignature
+    {
+        string Generate(string secretKey, string messageRepresentation);
+    }
+
+    public class CalculateSignature : ICalculateSignature
     {
         public string Generate(string secretKey, string messageRepresentation)
         {

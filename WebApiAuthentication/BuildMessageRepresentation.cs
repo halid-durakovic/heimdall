@@ -4,13 +4,18 @@ using System.Net.Http;
 
 namespace WebApiAuthentication
 {
+    public interface IBuildMessageRepresentation
+    {
+        string Build(HttpRequestMessage request);
+    }
+
     /// <summary>
     /// HTTP PATH
     /// HTTP METHOD\n +
     /// Content-MD5\n +  
     /// Timestamp\n +
     /// </summary>
-    public class BuildMessageRepresentation
+    public class BuildMessageRepresentation : IBuildMessageRepresentation
     {
         public string Build(HttpRequestMessage request)
         {
