@@ -7,15 +7,15 @@ using System.Text;
 namespace WebApiAuthentication.Client.Tests
 {
     [TestFixture]
-    public class RequestContendMd5HeaderGeneratingHandlerTests
+    public class RequestContendMD5HeaderGeneratingHandlerTests
     {
-        private RequestContendMd5HeaderGeneratingHandler handler;
+        private RequestContendMD5HeaderGeneratingHandler handler;
         private HttpClient client;
 
         [SetUp]
         public void SetUp()
         {
-            handler = new RequestContendMd5HeaderGeneratingHandler { InnerHandler = new TestHandler() };
+            handler = new RequestContendMD5HeaderGeneratingHandler { InnerHandler = new TestHandler() };
 
             client = new HttpClient(handler);
         }
@@ -23,13 +23,12 @@ namespace WebApiAuthentication.Client.Tests
         [Test]
         public void generates_md5_header_and_saves_to_request()
         {
-
             var request = new HttpRequestMessage(HttpMethod.Get, "http://www.test.com")
                                      {
                                          Content = new StringContent("something")
                                      };
 
-            var expectedMd5 = new System.Security.Cryptography.MD5CryptoServiceProvider()
+            var expectedMD5 = new System.Security.Cryptography.MD5CryptoServiceProvider()
                 .ComputeHash(Encoding.UTF8.GetBytes("something"));
 
             var result = client.SendAsync(request)
@@ -37,11 +36,11 @@ namespace WebApiAuthentication.Client.Tests
 
             Assert.That(result.StatusCode, Is.EqualTo(HttpStatusCode.OK));
 
-            var resultMd5 = request.Content
+            var resultMD5 = request.Content
                 .Headers
                 .ContentMD5;
 
-            Assert.IsTrue(resultMd5.SequenceEqual(expectedMd5));
+            Assert.IsTrue(resultMD5.SequenceEqual(expectedMD5));
         }
     }
 }

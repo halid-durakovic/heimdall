@@ -8,7 +8,7 @@ namespace WebApiAuthentication.Tests.Unit
         private HttpMethod httpMethod;
         private string url;
         private HttpContent content;
-        private string contentMd5;
+        private string contentMD5;
 
         public HttpRequestMessageBuilder()
         {
@@ -37,15 +37,15 @@ namespace WebApiAuthentication.Tests.Unit
         {
             var result = new HttpRequestMessage(httpMethod, url) { };
 
-            if (!string.IsNullOrEmpty(contentMd5))
-                result.Content.Headers.ContentMD5 = Convert.FromBase64String(contentMd5);
+            if (!string.IsNullOrEmpty(contentMD5))
+                result.Content.Headers.ContentMD5 = Convert.FromBase64String(contentMD5);
 
             return result;
         }
 
-        public HttpRequestMessageBuilder WithContentMd5(string md5)
+        public HttpRequestMessageBuilder WithContentMD5(string md5)
         {
-            this.contentMd5 = md5;
+            this.contentMD5 = md5;
             return this;
         }
 
