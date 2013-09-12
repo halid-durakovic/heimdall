@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="BuildMessageRepresentation.cs" />
     <Compile Include="CalculateSignature.cs" />
+    <Compile Include="HeaderNames.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
