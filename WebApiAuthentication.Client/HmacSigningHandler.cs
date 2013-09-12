@@ -31,10 +31,6 @@ namespace WebApiAuthentication.Client
             var representation = buildMessageRepresentation.Build(request);
             var signature = calculateSignature.Generate(secret, representation);
 
-            //todo: refactor into separate handler - more testable
-            if(!request.Headers.Contains(HeaderNames.UsernameHeader))
-                request.Headers.Add(HeaderNames.UsernameHeader, SigningKey);
-
             request.Headers.Authorization = new AuthenticationHeaderValue(HeaderNames.AuthenticationScheme, signature);
 
             return base.SendAsync(request, cancellationToken);

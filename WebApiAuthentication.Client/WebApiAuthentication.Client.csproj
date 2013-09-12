@@ -48,6 +48,8 @@
     <Compile Include="SigningHttpClientFactory.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="TimestampHandler.cs" />
+    <Compile Include="UsernameHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WebApiAuthentication\WebApiAuthentication.csproj">
