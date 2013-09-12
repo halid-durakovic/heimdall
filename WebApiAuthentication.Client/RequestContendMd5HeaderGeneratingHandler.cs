@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace WebApiHmac.Client
+namespace WebApiAuthentication.Client
 {
     public class RequestContendMd5HeaderGeneratingHandler : DelegatingHandler
     {

@@ -1,7 +1,7 @@
 using System;
 using System.Web.Http.Controllers;
 
-namespace WebApiHmac.Tests.Unit
+namespace WebApiAuthentication.Tests.Unit
 {
     public class HttpActionContextBuilder
     {

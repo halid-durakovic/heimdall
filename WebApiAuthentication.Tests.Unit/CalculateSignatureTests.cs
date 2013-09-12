@@ -1,6 +1,6 @@
 using NUnit.Framework;
 
-namespace WebApiHmac.Tests.Unit
+namespace WebApiAuthentication.Tests.Unit
 {
     [TestFixture]
     public class CalculateSignatureTests

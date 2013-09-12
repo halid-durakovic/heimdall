@@ -4,7 +4,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 
-namespace WebApiHmac.Client.Tests
+namespace WebApiAuthentication.Client.Tests
 {
     [TestFixture]
     public class RequestContendMd5HeaderGeneratingHandlerTests

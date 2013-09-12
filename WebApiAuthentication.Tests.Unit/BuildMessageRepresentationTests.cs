@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 
-namespace WebApiHmac.Tests.Unit
+namespace WebApiAuthentication.Tests.Unit
 {
     [TestFixture]
     public class BuildMessageRepresentationTests

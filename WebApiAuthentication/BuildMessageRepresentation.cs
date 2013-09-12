@@ -2,7 +2,7 @@ using System;
 using System.Globalization;
 using System.Net.Http;
 
-namespace WebApiHmac
+namespace WebApiAuthentication
 {
     /// <summary>
     /// HTTP PATH
