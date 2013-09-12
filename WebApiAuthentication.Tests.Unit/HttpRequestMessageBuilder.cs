@@ -48,7 +48,5 @@ namespace WebApiAuthentication.Tests.Unit
             this.contentMD5 = md5;
             return this;
         }
-
-
     }
 }
