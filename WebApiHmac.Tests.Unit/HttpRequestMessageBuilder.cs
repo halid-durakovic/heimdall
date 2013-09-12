@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 
 namespace WebApiHmac.Tests.Unit
@@ -37,7 +38,7 @@ namespace WebApiHmac.Tests.Unit
             var result = new HttpRequestMessage(httpMethod, url) { };
 
             if (!string.IsNullOrEmpty(contentMd5))
-                result.Content.Headers.ContentMD5 = GetBytes(contentMd5);
+                result.Content.Headers.ContentMD5 = Convert.FromBase64String(contentMd5);
 
             return result;
         }
@@ -48,12 +49,6 @@ namespace WebApiHmac.Tests.Unit
             return this;
         }
 
-        static byte[] GetBytes(string str)
-        {
-            byte[] bytes = new byte[str.Length * sizeof(char)];
-            System.Buffer.BlockCopy(str.ToCharArray(), 0, bytes, 0, bytes.Length);
-            return bytes;
-        }
 
     }
 }
