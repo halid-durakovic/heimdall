@@ -28,9 +28,6 @@ namespace WebApiAuthentication.Client
         {
             var secret = getSecretFromKey.Secret(SigningKey);
 
-            //todo: refactor into separate handler - more testable
-            request.Headers.Date = new DateTimeOffset(DateTime.Now, DateTime.Now - DateTime.UtcNow);
-
             var representation = buildMessageRepresentation.Build(request);
             var signature = calculateSignature.Generate(secret, representation);
 
