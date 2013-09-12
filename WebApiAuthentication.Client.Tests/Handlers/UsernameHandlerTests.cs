@@ -1,9 +1,9 @@
-using System;
 using System.Linq;
 using System.Net.Http;
 using NUnit.Framework;
+using WebApiAuthentication.Client.Handlers;
 
-namespace WebApiAuthentication.Client.Tests
+namespace WebApiAuthentication.Client.Tests.Handlers
 {
     [TestFixture]
     public class UsernameHandlerTests

@@ -1,8 +1,7 @@
-using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 
-namespace WebApiAuthentication.Client
+namespace WebApiAuthentication.Client.Handlers
 {
     public class HmacSigningHandler : DelegatingHandler
     {

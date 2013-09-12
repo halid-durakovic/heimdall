@@ -3,19 +3,20 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using WebApiAuthentication.Client.Handlers;
 
-namespace WebApiAuthentication.Client.Tests
+namespace WebApiAuthentication.Client.Tests.Handlers
 {
     [TestFixture]
-    public class RequestContentMD5HeaderGeneratingHandlerTests
+    public class ContentMD5HeaderHandlerTests
     {
-        private RequestContentMD5HeaderGeneratingHandler handler;
+        private ContentMD5HeaderHandler handler;
         private HttpClient client;
 
         [SetUp]
         public void SetUp()
         {
-            handler = new RequestContentMD5HeaderGeneratingHandler { InnerHandler = new TestHandler() };
+            handler = new ContentMD5HeaderHandler { InnerHandler = new TestHandler() };
 
             client = new HttpClient(handler);
         }

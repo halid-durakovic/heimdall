@@ -1,9 +1,9 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace WebApiAuthentication.Client
+namespace WebApiAuthentication.Client.Handlers
 {
-    public class RequestContentMD5HeaderGeneratingHandler : DelegatingHandler
+    public class ContentMD5HeaderHandler : DelegatingHandler
     {
         protected async override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
                                                                System.Threading.CancellationToken cancellationToken)

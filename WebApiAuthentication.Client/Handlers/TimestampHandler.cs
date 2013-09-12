@@ -1,7 +1,7 @@
 using System;
 using System.Net.Http;
 
-namespace WebApiAuthentication.Client
+namespace WebApiAuthentication.Client.Handlers
 {
     public class TimestampHandler : DelegatingHandler
     {

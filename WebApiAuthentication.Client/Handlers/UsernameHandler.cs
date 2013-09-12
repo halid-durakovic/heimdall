@@ -1,6 +1,6 @@
 using System.Net.Http;
 
-namespace WebApiAuthentication.Client
+namespace WebApiAuthentication.Client.Handlers
 {
     public class UsernameHandler : TimestampHandler
     {

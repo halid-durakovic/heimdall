@@ -1,9 +1,9 @@
 using System;
 using System.Net.Http;
-using Moq;
 using NUnit.Framework;
+using WebApiAuthentication.Client.Handlers;
 
-namespace WebApiAuthentication.Client.Tests
+namespace WebApiAuthentication.Client.Tests.Handlers
 {
     [TestFixture]
     public class RequestTimestampHandlerTests
