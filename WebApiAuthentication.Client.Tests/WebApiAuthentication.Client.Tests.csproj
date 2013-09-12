@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RequestContendMd5HeaderGeneratingHandlerTests.cs" />
+    <Compile Include="RequestContentMD5HeaderGeneratingHandlerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestHandler.cs" />
   </ItemGroup>

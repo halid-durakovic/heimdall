@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace WebApiAuthentication.Client
 {
-    public class RequestContendMD5HeaderGeneratingHandler : DelegatingHandler
+    public class RequestContentMD5HeaderGeneratingHandler : DelegatingHandler
     {
         protected async override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
                                                                System.Threading.CancellationToken cancellationToken)

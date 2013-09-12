@@ -7,15 +7,15 @@ using System.Text;
 namespace WebApiAuthentication.Client.Tests
 {
     [TestFixture]
-    public class RequestContendMD5HeaderGeneratingHandlerTests
+    public class RequestContentMD5HeaderGeneratingHandlerTests
     {
-        private RequestContendMD5HeaderGeneratingHandler handler;
+        private RequestContentMD5HeaderGeneratingHandler handler;
         private HttpClient client;
 
         [SetUp]
         public void SetUp()
         {
-            handler = new RequestContendMD5HeaderGeneratingHandler { InnerHandler = new TestHandler() };
+            handler = new RequestContentMD5HeaderGeneratingHandler { InnerHandler = new TestHandler() };
 
             client = new HttpClient(handler);
         }
