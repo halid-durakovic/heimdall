@@ -41,8 +41,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HmacSigningHandler.cs" />
+    <Compile Include="IGetSecretFromKey.cs" />
     <Compile Include="RequestContentMD5HeaderGeneratingHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SigningHttpClientFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WebApiAuthentication\WebApiAuthentication.csproj">
+      <Project>{BCFB9633-5881-4E5D-8D92-3709510AA81E}</Project>
+      <Name>WebApiAuthentication</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HmacSigningHandlerTests.cs" />
     <Compile Include="RequestContentMD5HeaderGeneratingHandlerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestHandler.cs" />
