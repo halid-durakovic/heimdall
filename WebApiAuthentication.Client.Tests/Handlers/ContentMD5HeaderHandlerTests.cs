@@ -24,7 +24,7 @@ namespace WebApiAuthentication.Client.Tests.Handlers
         [Test]
         public void generates_md5_header_and_saves_to_request()
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, "http://www.test.com")
+            var request = new HttpRequestMessage(HttpMethod.Post, "http://www.test.com")
                                      {
                                          Content = new StringContent("something")
                                      };
@@ -42,6 +42,21 @@ namespace WebApiAuthentication.Client.Tests.Handlers
                 .ContentMD5;
 
             Assert.IsTrue(resultMD5.SequenceEqual(expectedMD5));
+        }
+
+        [Test]
+        public void does_not_set_header_if_no_content()
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, "http://www.test.com")
+            {
+                Content = null
+            };
+
+            var result = client.SendAsync(request)
+                .Result;
+
+            Assert.That(result.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(request.Content, Is.Null);
         }
     }
 }

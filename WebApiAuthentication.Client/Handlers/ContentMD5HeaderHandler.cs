@@ -8,6 +8,9 @@ namespace WebApiAuthentication.Client.Handlers
         protected async override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
                                                                System.Threading.CancellationToken cancellationToken)
         {
+            if (request.Content == null)
+                return await base.SendAsync(request, cancellationToken);
+
             var contentBytes = request.Content
                 .ReadAsByteArrayAsync()
                 .Result;
