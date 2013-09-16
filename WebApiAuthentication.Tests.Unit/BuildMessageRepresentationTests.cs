@@ -1,3 +1,4 @@
+using System.Globalization;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -59,7 +60,8 @@ namespace WebApiAuthentication.Tests.Unit
 
             var result = buildMessageString.Build(actionContext.Request);
 
-            var date = actionContext.Request.Headers.Date.Value.ToString();
+            var date = actionContext.Request.Headers.Date.Value.UtcDateTime.ToString(CultureInfo.InvariantCulture);
+
             Assert.That(result, Contains.Substring(date));
         }
     }
