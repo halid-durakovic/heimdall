@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿using Moq;
 using NUnit.Framework;
 using System;
@@ -6,6 +7,15 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Text;
+=======
+﻿using System.Collections.Generic;
+using System.Text;
+using NUnit.Framework;
+using System;
+using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Formatting;
+>>>>>>> added a self hosted web api instance to test - allows us to properly test HttpClient
 using System.Web.Http;
 using System.Web.Http.SelfHost;
 
@@ -38,7 +48,11 @@ namespace WebApiAuthentication.Client.Tests
         [SetUp]
         public void SetUp()
         {
+<<<<<<< HEAD
             client = SigningHttpClientFactory.Create("anyusername", "secret");
+=======
+            client = SigningHttpClientFactory.Create("anyusername");
+>>>>>>> added a self hosted web api instance to test - allows us to properly test HttpClient
             client.BaseAddress = new Uri("http://localhost:8080");
         }
 
@@ -75,6 +89,7 @@ namespace WebApiAuthentication.Client.Tests
             Assert.That(request.Content.Headers.ContentMD5, Is.Not.Null.Or.Empty);
             Assert.IsTrue(request.Content.Headers.ContentMD5.SequenceEqual(expectedMD5));
         }
+<<<<<<< HEAD
 
         [Test]
         public void sets_signature_using_client_with_username_and_secret_passed_in()
@@ -110,5 +125,7 @@ namespace WebApiAuthentication.Client.Tests
             Assert.That(request.Headers.Authorization.Scheme, Is.EqualTo(HeaderNames.AuthenticationScheme));
             Assert.That(request.Headers.Authorization.Parameter, Is.Not.Null.Or.Empty);
         }
+=======
+>>>>>>> added a self hosted web api instance to test - allows us to properly test HttpClient
     }
 }
