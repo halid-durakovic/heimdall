@@ -16,7 +16,7 @@ namespace WebApiAuthentication.Tests
         [Test]
         public void calculates_signature_with_key()
         {
-            var result = calculateSignature.Generate("mykey", "this_is_a_test");
+            var result = calculateSignature.Calculate("mykey", "this_is_a_test");
 
             Assert.That(result, Is.EqualTo("yrSldFqLV03RdqzEkmYQuqE8ZqHyxNSMOckMqPRNMuo="));
         }

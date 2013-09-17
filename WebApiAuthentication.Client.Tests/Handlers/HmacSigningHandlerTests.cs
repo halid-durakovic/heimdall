@@ -12,19 +12,17 @@ namespace WebApiAuthentication.Client.Tests.Handlers
         private HttpClient client;
         private HttpRequestMessage request;
 
-        private Mock<IBuildMessageRepresentation> mockBuildMessageRepresentation;
-        private Mock<ICalculateSignature> mockCalculateSignature;
+        private Mock<IBuildRequestSignature> mockBuildRequestSignature;
 
         [SetUp]
         public void SetUp()
         {
-            mockBuildMessageRepresentation = new Mock<IBuildMessageRepresentation>();
-            mockCalculateSignature = new Mock<ICalculateSignature>();
+            mockBuildRequestSignature = new Mock<IBuildRequestSignature>();
 
-            mockBuildMessageRepresentation.Setup(x => x.Build(It.IsAny<HttpRequestMessage>()))
-                .Returns("message");
+            mockBuildRequestSignature.Setup(x => x.Build("secret", It.IsAny<HttpRequestMessage>()))
+                .Returns("signature");
 
-            var handler = new HmacSigningHandler("secret", mockBuildMessageRepresentation.Object, mockCalculateSignature.Object) { InnerHandler = new TestHandler() };
+            var handler = new HmacSigningHandler("secret", mockBuildRequestSignature.Object) { InnerHandler = new TestHandler() };
             client = new HttpClient(handler);
 
             request = new HttpRequestMessage(HttpMethod.Get, "http://www.test.com") { Content = new StringContent("something") };
@@ -36,18 +34,13 @@ namespace WebApiAuthentication.Client.Tests.Handlers
         {
             var result = client.SendAsync(request).Result;
 
-            mockBuildMessageRepresentation.Verify(x => x.Build(request));
+            mockBuildRequestSignature.Verify(x => x.Build("secret", request));
         }
 
         [Test]
         public void adds_calculated_signature_to_headers()
         {
-            mockCalculateSignature.Setup(x => x.Generate("secret", "message"))
-                .Returns("signature");
-
             var result = client.SendAsync(request).Result;
-
-            mockCalculateSignature.Verify(x => x.Generate("secret", "message"));
 
             var authHeader = request.Headers.Authorization;
 

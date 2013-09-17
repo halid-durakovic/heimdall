@@ -6,14 +6,14 @@ namespace WebApiAuthentication
 {
     public interface ICalculateSignature
     {
-        string Generate(string secretKey, string messageRepresentation);
+        string Calculate(string secret, string messageRepresentation);
     }
 
     public class CalculateSignature : ICalculateSignature
     {
-        public string Generate(string secretKey, string messageRepresentation)
+        public string Calculate(string secret, string messageRepresentation)
         {
-            var secretKeyBytes = Encoding.UTF8.GetBytes(secretKey);
+            var secretKeyBytes = Encoding.UTF8.GetBytes(secret);
             var messageRepresentationBytes = Encoding.UTF8.GetBytes(messageRepresentation);
 
             using (var hmac = new HMACSHA256(secretKeyBytes))
