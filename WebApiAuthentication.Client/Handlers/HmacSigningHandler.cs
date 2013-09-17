@@ -5,10 +5,9 @@ namespace WebApiAuthentication.Client.Handlers
 {
     public class HmacSigningHandler : DelegatingHandler
     {
-        private readonly IGetSecretFromKey getSecretFromKey;
         private readonly IBuildMessageRepresentation buildMessageRepresentation;
         private readonly ICalculateSignature calculateSignature;
-        private readonly string username;
+        private readonly string secret;
 
         public HmacSigningHandler(string username, IGetSecretFromKey getSecretFromKey)
             : this(username, getSecretFromKey, new BuildMessageRepresentation(), new CalculateSignature())
@@ -16,16 +15,14 @@ namespace WebApiAuthentication.Client.Handlers
 
         public HmacSigningHandler(string username, IGetSecretFromKey getSecretFromKey, IBuildMessageRepresentation buildMessageRepresentation, ICalculateSignature calculateSignature)
         {
-            this.getSecretFromKey = getSecretFromKey;
             this.buildMessageRepresentation = buildMessageRepresentation;
             this.calculateSignature = calculateSignature;
-            this.username = username;
+
+            secret = getSecretFromKey.Secret(username);
         }
 
         protected override System.Threading.Tasks.Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, System.Threading.CancellationToken cancellationToken)
         {
-            var secret = getSecretFromKey.Secret(username);
-
             var representation = buildMessageRepresentation.Build(request);
             
             var signature = calculateSignature.Generate(secret, representation);
