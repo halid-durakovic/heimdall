@@ -1,23 +1,16 @@
-﻿using System.Collections.Generic;
-using System.Text;
+﻿using Moq;
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Formatting;
+using System.Text;
 using System.Web.Http;
 using System.Web.Http.SelfHost;
 
 namespace WebApiAuthentication.Client.Tests
 {
-    public class DummySecret : IGetSecretFromKey
-    {
-        public string Secret(string key)
-        {
-            return "secret";
-        }
-    }
-
     public class SigningHttpClientIntegrationTests
     {
         private HttpSelfHostServer server;
@@ -45,7 +38,7 @@ namespace WebApiAuthentication.Client.Tests
         [SetUp]
         public void SetUp()
         {
-            client = SigningHttpClientFactory.Create("anyusername", new DummySecret());
+            client = SigningHttpClientFactory.Create("anyusername", "secret");
             client.BaseAddress = new Uri("http://localhost:8080");
         }
 
@@ -84,7 +77,25 @@ namespace WebApiAuthentication.Client.Tests
         }
 
         [Test]
-        public void sets_signature()
+        public void sets_signature_using_client_with_username_and_secret_passed_in()
+        {
+            testSignature();
+        }
+
+        [Test]
+        public void can_use_client_created_with_getsecretfromkey_implementation_to_set_signature()
+        {
+            var mockGetSecretFromKey = new Mock<IGetSecretFromUsername>();
+            mockGetSecretFromKey.Setup(x => x.Secret("anyusername"))
+                .Returns("secret");
+
+            client = SigningHttpClientFactory.Create("anyusername", mockGetSecretFromKey.Object);
+            client.BaseAddress = new Uri("http://localhost:8080");
+
+            testSignature();
+        }
+
+        private void testSignature()
         {
             var field1 = new KeyValuePair<string, string>("firstName", "Alex");
             var field2 = new KeyValuePair<string, string>("lastName", "Brown");

@@ -9,22 +9,22 @@ namespace WebApiAuthentication.Client.Handlers
         private readonly ICalculateSignature calculateSignature;
         private readonly string secret;
 
-        public HmacSigningHandler(string username, IGetSecretFromKey getSecretFromKey)
-            : this(username, getSecretFromKey, new BuildMessageRepresentation(), new CalculateSignature())
+        public HmacSigningHandler(string secret)
+            : this(secret, new BuildMessageRepresentation(), new CalculateSignature())
         { }
 
-        public HmacSigningHandler(string username, IGetSecretFromKey getSecretFromKey, IBuildMessageRepresentation buildMessageRepresentation, ICalculateSignature calculateSignature)
+        public HmacSigningHandler(string secret, IBuildMessageRepresentation buildMessageRepresentation, ICalculateSignature calculateSignature)
         {
             this.buildMessageRepresentation = buildMessageRepresentation;
             this.calculateSignature = calculateSignature;
 
-            secret = getSecretFromKey.Secret(username);
+            this.secret = secret;
         }
 
         protected override System.Threading.Tasks.Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, System.Threading.CancellationToken cancellationToken)
         {
             var representation = buildMessageRepresentation.Build(request);
-            
+
             var signature = calculateSignature.Generate(secret, representation);
 
             request.Headers.Authorization = new AuthenticationHeaderValue(HeaderNames.AuthenticationScheme, signature);
