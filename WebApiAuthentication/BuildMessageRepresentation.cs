@@ -20,16 +20,20 @@ namespace WebApiAuthentication
         public string Build(HttpRequestMessage request)
         {
             var md5 = (request.Content == null || request.Content.Headers.ContentMD5 == null)
-            ? ""
-            : Convert.ToBase64String(request.Content.Headers.ContentMD5);
+                ? "" : Convert.ToBase64String(request.Content.Headers.ContentMD5);
 
-            var date = request.Headers.Date.Value.UtcDateTime;
+            var contentType = (request.Content == null || request.Content.Headers.ContentType == null)
+                ? "" : request.Content.Headers.ContentType.MediaType;
+
+            var date = request.Headers.Date == null
+                ? "" : request.Headers.Date.Value.UtcDateTime.ToString(CultureInfo.InvariantCulture);
 
             return string.Join("\n",
-                request.RequestUri.AbsolutePath.ToLower(),
                 request.Method,
+                request.RequestUri.AbsolutePath.ToLower(),
+                contentType,
                 md5,
-                date.ToString(CultureInfo.InvariantCulture)
+                date
                 );
         }
     }

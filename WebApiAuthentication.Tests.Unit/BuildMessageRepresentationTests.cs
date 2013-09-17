@@ -1,4 +1,5 @@
 using System.Globalization;
+using System.Net.Http.Headers;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -63,6 +64,22 @@ namespace WebApiAuthentication.Tests.Unit
             var date = actionContext.Request.Headers.Date.Value.UtcDateTime.ToString(CultureInfo.InvariantCulture);
 
             Assert.That(result, Contains.Substring(date));
+        }
+
+        [Test]
+        public void should_return_string_containing_contenttype()
+        {
+            var buildMessageString = new BuildMessageRepresentation();
+
+            var actionContext = HttpActionContextBuilder.Build();
+            actionContext.Request.Content=new FormUrlEncodedContent(new[]{new KeyValuePair<string, string>("a", "b"), });
+            actionContext.Request.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
+
+            var result = buildMessageString.Build(actionContext.Request);
+
+            var date = actionContext.Request.Headers.Date.Value.UtcDateTime.ToString(CultureInfo.InvariantCulture);
+
+            Assert.That(result, Contains.Substring("text/html"));
         }
     }
 }
