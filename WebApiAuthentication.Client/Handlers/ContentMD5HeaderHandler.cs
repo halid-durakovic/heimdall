@@ -1,12 +1,12 @@
 ﻿using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace WebApiAuthentication.Client.Handlers
 {
     public class ContentMD5HeaderHandler : DelegatingHandler
     {
-        protected async override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
-                                                               System.Threading.CancellationToken cancellationToken)
+        protected async override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
             if (request.Content == null)
                 return await base.SendAsync(request, cancellationToken);
