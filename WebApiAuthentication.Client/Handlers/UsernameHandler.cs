@@ -2,7 +2,7 @@ using System.Net.Http;
 
 namespace WebApiAuthentication.Client.Handlers
 {
-    public class UsernameHandler : TimestampHandler
+    public class UsernameHandler : DelegatingHandler
     {
         private readonly string username;
 
