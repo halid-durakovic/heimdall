@@ -10,6 +10,14 @@ using System.Web.Http.SelfHost;
 
 namespace WebApiAuthentication.Client.Tests
 {
+    public class DummySecret : IGetSecretFromKey
+    {
+        public string Secret(string key)
+        {
+            return "secret";
+        }
+    }
+
     public class SigningHttpClientIntegrationTests
     {
         private HttpSelfHostServer server;
@@ -37,7 +45,7 @@ namespace WebApiAuthentication.Client.Tests
         [SetUp]
         public void SetUp()
         {
-            client = SigningHttpClientFactory.Create("anyusername");
+            client = SigningHttpClientFactory.Create("anyusername", new DummySecret());
             client.BaseAddress = new Uri("http://localhost:8080");
         }
 
@@ -73,6 +81,23 @@ namespace WebApiAuthentication.Client.Tests
 
             Assert.That(request.Content.Headers.ContentMD5, Is.Not.Null.Or.Empty);
             Assert.IsTrue(request.Content.Headers.ContentMD5.SequenceEqual(expectedMD5));
+        }
+
+        [Test]
+        public void sets_signature()
+        {
+            var field1 = new KeyValuePair<string, string>("firstName", "Alex");
+            var field2 = new KeyValuePair<string, string>("lastName", "Brown");
+
+            var content = new FormUrlEncodedContent(new[] { field1, field2 });
+
+            var response = client.PostAsync("api/Test", content)
+                .Result;
+
+            var request = response.RequestMessage;
+
+            Assert.That(request.Headers.Authorization.Scheme, Is.EqualTo(HeaderNames.AuthenticationScheme));
+            Assert.That(request.Headers.Authorization.Parameter, Is.Not.Null.Or.Empty);
         }
     }
 }
