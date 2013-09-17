@@ -1,4 +1,4 @@
-namespace WebApiAuthentication.Client
+namespace WebApiAuthentication
 {
     public interface IGetSecretFromUsername
     {
