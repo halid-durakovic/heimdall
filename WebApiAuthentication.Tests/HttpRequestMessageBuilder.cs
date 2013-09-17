@@ -1,7 +1,7 @@
 using System;
 using System.Net.Http;
 
-namespace WebApiAuthentication.Tests.Unit
+namespace WebApiAuthentication.Tests
 {
     public class HttpRequestMessageBuilder
     {

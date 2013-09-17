@@ -1,17 +1,17 @@
-using System.Globalization;
-using System.Net.Http.Headers;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Net.Http;
+using System.Net.Http.Headers;
 
-namespace WebApiAuthentication.Tests.Unit
+namespace WebApiAuthentication.Tests
 {
     [TestFixture]
     public class BuildMessageRepresentationTests
     {
         [Test]
-        public void should_return_string_containing_uri()
+        public void returns_string_containing_uri()
         {
             var buildMessageString = new BuildMessageRepresentation();
 
@@ -22,7 +22,7 @@ namespace WebApiAuthentication.Tests.Unit
         }
 
         [Test]
-        public void should_return_string_containing_verb()
+        public void returns_string_containing_verb()
         {
             var buildMessageString = new BuildMessageRepresentation();
 
@@ -34,7 +34,7 @@ namespace WebApiAuthentication.Tests.Unit
         }
 
         [Test]
-        public void should_return_string_containing_request_content_md5()
+        public void returns_string_containing_request_content_md5()
         {
             var buildMessageString = new BuildMessageRepresentation();
 
@@ -53,7 +53,7 @@ namespace WebApiAuthentication.Tests.Unit
         }
 
         [Test]
-        public void should_return_string_containing_timestamp()
+        public void returns_string_containing_timestamp()
         {
             var buildMessageString = new BuildMessageRepresentation();
 
@@ -67,12 +67,12 @@ namespace WebApiAuthentication.Tests.Unit
         }
 
         [Test]
-        public void should_return_string_containing_contenttype()
+        public void returns_string_containing_contenttype()
         {
             var buildMessageString = new BuildMessageRepresentation();
 
             var actionContext = HttpActionContextBuilder.Build();
-            actionContext.Request.Content=new FormUrlEncodedContent(new[]{new KeyValuePair<string, string>("a", "b"), });
+            actionContext.Request.Content = new FormUrlEncodedContent(new[] { new KeyValuePair<string, string>("a", "b"), });
             actionContext.Request.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
 
             var result = buildMessageString.Build(actionContext.Request);

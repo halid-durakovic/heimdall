@@ -1,9 +1,9 @@
 using System;
 using System.Web.Http.Controllers;
 
-namespace WebApiAuthentication.Tests.Unit
+namespace WebApiAuthentication.Tests
 {
-    public class HttpActionContextBuilder
+    internal class HttpActionContextBuilder
     {
         public static HttpActionContext Build()
         {

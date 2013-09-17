@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiAuthentication", "WebApiAuthentication\WebApiAuthentication.csproj", "{BCFB9633-5881-4E5D-8D92-3709510AA81E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiAuthentication.Tests.Unit", "WebApiAuthentication.Tests.Unit\WebApiAuthentication.Tests.Unit.csproj", "{6A70C48D-5C26-4216-A629-A5277C36ADB6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiAuthentication.Tests", "WebApiAuthentication.Tests\WebApiAuthentication.Tests.csproj", "{6A70C48D-5C26-4216-A629-A5277C36ADB6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiAuthentication.Client", "WebApiAuthentication.Client\WebApiAuthentication.Client.csproj", "{430A2D10-9EB3-44B0-AEA2-2A2FB7A12D21}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiAuthentication.Client.Tests", "WebApiAuthentication.Client.Tests\WebApiAuthentication.Client.Tests.csproj", "{38E3FE41-9B4F-4915-AAC6-882DFAF22CAD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BBFB9A34-3F9D-4995-A0BB-B3EC23E50827}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,5 +36,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6A70C48D-5C26-4216-A629-A5277C36ADB6} = {BBFB9A34-3F9D-4995-A0BB-B3EC23E50827}
+		{38E3FE41-9B4F-4915-AAC6-882DFAF22CAD} = {BBFB9A34-3F9D-4995-A0BB-B3EC23E50827}
 	EndGlobalSection
 EndGlobal
