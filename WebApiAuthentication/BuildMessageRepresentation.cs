@@ -30,7 +30,7 @@ namespace WebApiAuthentication
 
             return string.Join("\n",
                 request.Method,
-                request.RequestUri.AbsolutePath.ToLower(),
+                request.RequestUri.AbsolutePath,
                 contentType,
                 md5,
                 date
