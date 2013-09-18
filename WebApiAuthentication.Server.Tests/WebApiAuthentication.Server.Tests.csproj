@@ -62,6 +62,10 @@
       <Project>{6A70C48D-5C26-4216-A629-A5277C36ADB6}</Project>
       <Name>WebApiAuthentication.Tests</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WebApiAuthentication\WebApiAuthentication.csproj">
+      <Project>{BCFB9633-5881-4E5D-8D92-3709510AA81E}</Project>
+      <Name>WebApiAuthentication</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

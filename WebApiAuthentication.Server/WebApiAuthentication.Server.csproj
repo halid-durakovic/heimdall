@@ -44,6 +44,16 @@
     <Compile Include="AuthenticateAttiribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WebApiAuthentication.Client\WebApiAuthentication.Client.csproj">
+      <Project>{430A2D10-9EB3-44B0-AEA2-2A2FB7A12D21}</Project>
+      <Name>WebApiAuthentication.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebApiAuthentication\WebApiAuthentication.csproj">
+      <Project>{BCFB9633-5881-4E5D-8D92-3709510AA81E}</Project>
+      <Name>WebApiAuthentication</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
