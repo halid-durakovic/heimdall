@@ -18,36 +18,20 @@ namespace WebApiAuthentication.Server
 
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
-            if (!isAuthenticated(actionContext))
-            {
-                var response = new HttpResponseMessage(HttpStatusCode.Unauthorized);
-                actionContext.Response = response;
-            }
+            if (!IsAuthenticated(actionContext))
+                actionContext.Response = new HttpResponseMessage(HttpStatusCode.Unauthorized);
 
             base.OnActionExecuting(actionContext);
         }
 
-        private bool isAuthenticated(HttpActionContext actionContext)
+        private bool IsAuthenticated(HttpActionContext actionContext)
         {
-            if (actionContext.Request.Headers.Authorization == null)
+            if ((actionContext.Request.Headers.Authorization == null) || (!actionContext.Request.Headers.Contains(HeaderNames.UsernameHeader)))
                 return false;
 
-            if (!actionContext.Request.Headers.Contains(HeaderNames.UsernameHeader))
-                return false;
+            var secret = GetSecretFromUsername.Secret(actionContext.Request.Headers.GetValues(HeaderNames.UsernameHeader).FirstOrDefault());
 
-            var usernameHeader = actionContext.Request.Headers.GetValues(HeaderNames.UsernameHeader)
-                .FirstOrDefault();
-
-            var secret = GetSecretFromUsername.Secret(usernameHeader);
-
-            if (secret == null)
-                return false;
-
-            var headerSignature = actionContext.Request.Headers.Authorization.Parameter;
-
-            var signature = BuildRequestSignature.Build(secret, actionContext.Request);
-
-            if (signature != headerSignature)
+            if ((secret == null) || (actionContext.Request.Headers.Authorization.Parameter != BuildRequestSignature.Build(secret, actionContext.Request)))
                 return false;
 
             return true;

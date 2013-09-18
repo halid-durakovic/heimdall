@@ -1,4 +1,5 @@
 using System.Net;
+using System.Net.Http;
 using System.Net.Http.Headers;
 using Moq;
 using NUnit.Framework;
@@ -94,6 +95,33 @@ namespace WebApiAuthentication.Server.Tests
 
             Assert.That(actionContext.Response, Is.Not.Null);
             Assert.That(actionContext.Response.StatusCode, Is.EqualTo(HttpStatusCode.Unauthorized));
+        }
+
+        [Test]
+        public void if_secret_is_not_returned_does_not_build_request_signature()
+        {
+            var mockBuildMessageRepresentation = new Mock<IBuildRequestSignature>();
+            var mockGetSecretFromUsername = new Mock<IGetSecretFromUsername>();
+
+            mockBuildMessageRepresentation.Setup(x => x.Build(It.IsAny<string>(), It.IsAny<HttpRequestMessage>()));
+
+            mockGetSecretFromUsername.Setup(x => x.Secret(It.IsAny<string>()))
+                .Returns((string)null);
+
+            var request = HttpRequestMessageBuilder.Instance().Build();
+            request.Headers.Authorization = new AuthenticationHeaderValue(HeaderNames.AuthenticationScheme, "signature_hash");
+            request.Headers.Add(HeaderNames.UsernameHeader, "username");
+
+            var actionContext = HttpActionContextBuilder
+                .Instance()
+                .WithRequestMessage(request)
+                .Build();
+
+            attribute.GetSecretFromUsername = mockGetSecretFromUsername.Object;
+
+            attribute.OnActionExecuting(actionContext);
+
+            mockBuildMessageRepresentation.Verify(x => x.Build(It.IsAny<string>(), It.IsAny<HttpRequestMessage>()), Times.Never());
         }
 
         [Test]
