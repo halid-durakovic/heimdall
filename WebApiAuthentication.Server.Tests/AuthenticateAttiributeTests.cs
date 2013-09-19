@@ -1,6 +1,7 @@
+using System;
 using System.Net;
 using System.Net.Http;
-using System.Net.Http.Headers;
+using System.Web;
 using Moq;
 using NUnit.Framework;
 using WebApiAuthentication.Tests;
@@ -10,32 +11,34 @@ namespace WebApiAuthentication.Server.Tests
     [TestFixture]
     public class AuthenticateAttiributeTests
     {
+        private Mock<IAuthenticateRequest> mockAuthenticateRequest;
+
         private AuthenticateAttiribute attribute;
 
         [SetUp]
         public void SetUp()
         {
-            attribute = new AuthenticateAttiribute();
+            mockAuthenticateRequest = new Mock<IAuthenticateRequest>();
+
+            attribute = new AuthenticateAttiribute
+                        {
+                            AuthenticateRequest = mockAuthenticateRequest.Object
+                        };
         }
 
         [Test]
-        public void returns_not_authorised_for_requests_without_username_header()
+        public void throws_exception_if_authenticaterequest_not_set()
         {
-            var request = HttpRequestMessageBuilder.Instance().Build();
-
             var actionContext = HttpActionContextBuilder
                 .Instance()
-                .WithRequestMessage(request)
                 .Build();
 
-            attribute.OnActionExecuting(actionContext);
-
-            Assert.That(actionContext.Response, Is.Not.Null);
-            Assert.That(actionContext.Response.StatusCode, Is.EqualTo(HttpStatusCode.Unauthorized));
+            attribute.AuthenticateRequest = null;
+            Assert.Throws<NullReferenceException>(() => attribute.OnActionExecuting(actionContext));
         }
 
         [Test]
-        public void returns_not_authorised_for_requests_without_authentication_header()
+        public void returns_unauthorized_if_authenticaterequest_is_false()
         {
             var request = HttpRequestMessageBuilder.Instance().Build();
             request.Headers.Authorization = null;
@@ -45,111 +48,15 @@ namespace WebApiAuthentication.Server.Tests
                 .WithRequestMessage(request)
                 .Build();
 
-            attribute.OnActionExecuting(actionContext);
+            mockAuthenticateRequest.Setup(x => x.IsAuthenticated(It.IsAny<HttpRequestMessage>()))
+                .Returns(false);
 
-            Assert.That(actionContext.Response, Is.Not.Null);
-            Assert.That(actionContext.Response.StatusCode, Is.EqualTo(HttpStatusCode.Unauthorized));
-        }
-
-        [Test]
-        public void returns_not_authorised_if_retrieved_secret_is_null()
-        {
-            var mockGetSecretFromUsername = new Mock<IGetSecretFromUsername>();
-            mockGetSecretFromUsername.Setup(x => x.Secret(It.IsAny<string>()))
-                .Returns((string)null);
-
-            var request = HttpRequestMessageBuilder.Instance().Build();
-            request.Headers.Authorization = new AuthenticationHeaderValue(HeaderNames.AuthenticationScheme, "signature_hash");
-
-            var actionContext = HttpActionContextBuilder
-                .Instance()
-                .WithRequestMessage(request)
-                .Build();
-
-            attribute.GetSecretFromUsername = mockGetSecretFromUsername.Object;
-            attribute.OnActionExecuting(actionContext);
-
-            Assert.That(actionContext.Response, Is.Not.Null);
-            Assert.That(actionContext.Response.StatusCode, Is.EqualTo(HttpStatusCode.Unauthorized));
-        }
-
-        [Test]
-        public void returns_not_authorised_if_signatures_dont_match()
-        {
-            var mockGetSecretFromUsername = new Mock<IGetSecretFromUsername>();
-            mockGetSecretFromUsername.Setup(x => x.Secret(It.IsAny<string>()))
-                .Returns("secret");
-
-            var request = HttpRequestMessageBuilder.Instance().Build();
-            request.Headers.Authorization = new AuthenticationHeaderValue(HeaderNames.AuthenticationScheme, "signature_hash");
-            request.Headers.Add(HeaderNames.UsernameHeader, "username");
-
-            var actionContext = HttpActionContextBuilder
-                .Instance()
-                .WithRequestMessage(request)
-                .Build();
-
-            attribute.GetSecretFromUsername = mockGetSecretFromUsername.Object;
+            attribute.AuthenticateRequest = mockAuthenticateRequest.Object;
 
             attribute.OnActionExecuting(actionContext);
 
             Assert.That(actionContext.Response, Is.Not.Null);
             Assert.That(actionContext.Response.StatusCode, Is.EqualTo(HttpStatusCode.Unauthorized));
-        }
-
-        [Test]
-        public void if_secret_is_not_returned_does_not_build_request_signature()
-        {
-            var mockBuildMessageRepresentation = new Mock<IBuildRequestSignature>();
-            var mockGetSecretFromUsername = new Mock<IGetSecretFromUsername>();
-
-            mockBuildMessageRepresentation.Setup(x => x.Build(It.IsAny<string>(), It.IsAny<HttpRequestMessage>()));
-
-            mockGetSecretFromUsername.Setup(x => x.Secret(It.IsAny<string>()))
-                .Returns((string)null);
-
-            var request = HttpRequestMessageBuilder.Instance().Build();
-            request.Headers.Authorization = new AuthenticationHeaderValue(HeaderNames.AuthenticationScheme, "signature_hash");
-            request.Headers.Add(HeaderNames.UsernameHeader, "username");
-
-            var actionContext = HttpActionContextBuilder
-                .Instance()
-                .WithRequestMessage(request)
-                .Build();
-
-            attribute.GetSecretFromUsername = mockGetSecretFromUsername.Object;
-
-            attribute.OnActionExecuting(actionContext);
-
-            mockBuildMessageRepresentation.Verify(x => x.Build(It.IsAny<string>(), It.IsAny<HttpRequestMessage>()), Times.Never());
-        }
-
-        [Test]
-        public void passes_through_if_signatures_match()
-        {
-            var mockGetSecretFromUsername = new Mock<IGetSecretFromUsername>();
-            mockGetSecretFromUsername.Setup(x => x.Secret(It.IsAny<string>()))
-                .Returns("secret");
-
-            var request = HttpRequestMessageBuilder.Instance().Build();
-            request.Headers.Authorization = new AuthenticationHeaderValue(HeaderNames.AuthenticationScheme, "signature_hash");
-            request.Headers.Add(HeaderNames.UsernameHeader, "username");
-
-            var mockBuildRequestSignature = new Mock<IBuildRequestSignature>();
-            mockBuildRequestSignature.Setup(x => x.Build("secret", request))
-                .Returns("signature_hash");
-
-            var actionContext = HttpActionContextBuilder
-                .Instance()
-                .WithRequestMessage(request)
-                .Build();
-
-            attribute.GetSecretFromUsername = mockGetSecretFromUsername.Object;
-            attribute.BuildRequestSignature = mockBuildRequestSignature.Object;
-
-            attribute.OnActionExecuting(actionContext);
-
-            Assert.That(actionContext.Response, Is.Null); //for purposes of this test, for now
         }
     }
 }
