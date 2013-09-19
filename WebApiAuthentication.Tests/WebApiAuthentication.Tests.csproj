@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.1.1309.1617\lib\net40\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -43,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BuildMessageRepresentationTests.cs" />
+    <Compile Include="BuildRequestSignatureTests.cs" />
     <Compile Include="CalculateSignatureTests.cs" />
     <Compile Include="Framework\TestHandler.cs" />
     <Compile Include="HttpActionContextBuilder.cs" />
