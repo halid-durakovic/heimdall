@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace WebApiAuthentication.Client.Tests.Handlers
+namespace WebApiAuthentication.Tests.Framework
 {
     public class TestHandler : DelegatingHandler
     {

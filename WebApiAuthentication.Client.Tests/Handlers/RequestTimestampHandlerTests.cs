@@ -1,7 +1,8 @@
+using NUnit.Framework;
 using System;
 using System.Net.Http;
-using NUnit.Framework;
 using WebApiAuthentication.Client.Handlers;
+using WebApiAuthentication.Tests.Framework;
 
 namespace WebApiAuthentication.Client.Tests.Handlers
 {

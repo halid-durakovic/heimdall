@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using WebApiAuthentication.Client.Handlers;
+using WebApiAuthentication.Tests.Framework;
 
 namespace WebApiAuthentication.Client.Tests.Handlers
 {
