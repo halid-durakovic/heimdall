@@ -12,15 +12,24 @@ namespace WebApiAuthentication.Examples.Client
     {
         static void Main()
         {
+            Console.WriteLine("Send signed request to requestbin...");
+            Console.WriteLine("Request:");
+            Console.WriteLine(SendSignedPostRequest().RequestMessage);
+
+            Console.Read();
+        }
+
+        private static HttpResponseMessage SendSignedPostRequest()
+        {
             var client = SigningHttpClientFactory.Create("myusername", "mysecret");
 
             var content = new FormUrlEncodedContent(new[]
-                                          {
-                                              new KeyValuePair<string, string>("firstName", "Alex"),
-                                              new KeyValuePair<string, string>("lastName", "Brown") 
-                                          });
+                                                    {
+                                                        new KeyValuePair<string, string>("firstName", "Alex"),
+                                                        new KeyValuePair<string, string>("lastName", "Brown")
+                                                    });
 
-            var result = client.PostAsync("http://requestb.in/14nmm871", content)
+            return client.PostAsync("http://requestb.in/14nmm871", content)
                 .Result;
         }
     }

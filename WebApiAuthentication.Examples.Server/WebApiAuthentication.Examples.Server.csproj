@@ -68,6 +68,10 @@
       <Project>{430A2D10-9EB3-44B0-AEA2-2A2FB7A12D21}</Project>
       <Name>WebApiAuthentication.Client</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WebApiAuthentication.Server\WebApiAuthentication.Server.csproj">
+      <Project>{B94154FE-B295-4224-A44D-03D200BACEC5}</Project>
+      <Name>WebApiAuthentication.Server</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WebApiAuthentication\WebApiAuthentication.csproj">
       <Project>{bcfb9633-5881-4e5d-8d92-3709510aa81e}</Project>
       <Name>WebApiAuthentication</Name>
