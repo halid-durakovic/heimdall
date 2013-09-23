@@ -57,26 +57,6 @@ namespace WebApiAuthentication.Client.Tests
         }
 
         [Test]
-        public void sets_content_md5_header()
-        {
-            var field1 = new KeyValuePair<string, string>("firstName", "Alex");
-            var field2 = new KeyValuePair<string, string>("lastName", "Brown");
-
-            var content = new FormUrlEncodedContent(new[] { field1, field2 });
-
-            var response = client.PostAsync("api/Test", content)
-                .Result;
-
-            var request = response.RequestMessage;
-
-            var expectedMD5 = new System.Security.Cryptography.MD5CryptoServiceProvider()
-                .ComputeHash(Encoding.UTF8.GetBytes("firstName=Alex&lastName=Brown"));
-
-            Assert.That(request.Content.Headers.ContentMD5, Is.Not.Null.Or.Empty);
-            Assert.IsTrue(request.Content.Headers.ContentMD5.SequenceEqual(expectedMD5));
-        }
-
-        [Test]
         public void sets_signature_using_client_with_username_and_secret_passed_in()
         {
             testSignature();

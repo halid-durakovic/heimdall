@@ -19,8 +19,8 @@ namespace WebApiAuthentication
     {
         public string Build(HttpRequestMessage request)
         {
-            var md5 = (request.Content == null || request.Content.Headers.ContentMD5 == null)
-                ? "" : Convert.ToBase64String(request.Content.Headers.ContentMD5);
+            var md5 = (request.Content == null)
+                ? "" : generateContentMD5(request);
 
             var contentType = (request.Content == null || request.Content.Headers.ContentType == null)
                 ? "" : request.Content.Headers.ContentType.MediaType;
@@ -35,6 +35,18 @@ namespace WebApiAuthentication
                 md5,
                 date
                 );
+        }
+
+        private string generateContentMD5(HttpRequestMessage request)
+        {
+            var contentBytes = request.Content
+                .ReadAsByteArrayAsync()
+                .Result;
+
+            var contentMD5 = new System.Security.Cryptography.MD5CryptoServiceProvider()
+                .ComputeHash(contentBytes);
+
+            return Convert.ToBase64String(contentMD5);
         }
     }
 }
