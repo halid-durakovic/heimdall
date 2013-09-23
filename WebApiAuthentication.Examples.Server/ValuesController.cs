@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 
 namespace WebApiAuthentication.Examples.Server
@@ -18,8 +20,9 @@ namespace WebApiAuthentication.Examples.Server
         }
 
         // POST api/<controller>
-        public void Post([FromBody]string value)
+        public HttpResponseMessage Post([FromBody]string value)
         {
+            return new HttpResponseMessage(HttpStatusCode.OK);
         }
 
         // PUT api/<controller>/5
