@@ -1,5 +1,6 @@
 using System.Net;
 using System.Net.Http;
+using System.Web.Http;
 using Moq;
 using NUnit.Framework;
 using WebApiAuthentication.Tests;
@@ -18,7 +19,10 @@ namespace WebApiAuthentication.Server.Tests
         public void SetUp()
         {
             mockAuthenticateRequest = new Mock<IAuthenticateRequest>();
-            handler = new HmacAuthenticationHandler(mockAuthenticateRequest.Object) { InnerHandler = new TestHandler() };
+            handler = new HmacAuthenticationHandler(mockAuthenticateRequest.Object, new HttpConfiguration())
+                      {
+                          InnerHandler = new TestHandler()
+                      };
             client = new HttpClient(handler);
         }
 
