@@ -25,9 +25,7 @@ namespace WebApiAuthentication.Examples.Server
         {
             var config = new HttpSelfHostConfiguration("http://localhost:8080");
 
-            
             var authenticateRequest = new AuthenticateRequest(new DummyGetSecretForUsername());
-
 
             var qqq = GlobalConfiguration.Configuration;
 
@@ -35,8 +33,9 @@ namespace WebApiAuthentication.Examples.Server
                 name: "API Default",
                 routeTemplate: "api/{controller}/{id}",
                 constraints: null,
-                handler: new HmacAuthenticationHandler(authenticateRequest, config),
                 defaults: new { id = RouteParameter.Optional });
+
+            config.MessageHandlers.Add(new HmacAuthenticationHandler(authenticateRequest));
 
             var server = new HttpSelfHostServer(config);
             server.OpenAsync().Wait();
