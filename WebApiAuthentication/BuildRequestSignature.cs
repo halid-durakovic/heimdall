@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 
 namespace WebApiAuthentication
 {
@@ -24,6 +25,9 @@ namespace WebApiAuthentication
 
         public string Build(string secret, HttpRequestMessage request)
         {
+            if (string.IsNullOrEmpty(secret))
+                throw new ArgumentNullException("secret");
+
             var messageRepresentation = buildMessageRepresentation.Build(request);
 
             return calculateSignature.Calculate(secret, messageRepresentation);
