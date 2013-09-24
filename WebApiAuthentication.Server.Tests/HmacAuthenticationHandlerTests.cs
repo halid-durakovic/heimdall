@@ -19,7 +19,7 @@ namespace WebApiAuthentication.Server.Tests
         public void SetUp()
         {
             mockAuthenticateRequest = new Mock<IAuthenticateRequest>();
-            handler = new HmacAuthenticationHandler(mockAuthenticateRequest.Object, new HttpConfiguration())
+            handler = new HmacAuthenticationHandler(mockAuthenticateRequest.Object)
                       {
                           InnerHandler = new TestHandler()
                       };
