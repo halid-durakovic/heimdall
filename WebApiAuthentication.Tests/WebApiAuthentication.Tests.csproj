@@ -49,6 +49,7 @@
     <Compile Include="BuildRequestSignatureTests.cs" />
     <Compile Include="CalculateSignatureTests.cs" />
     <Compile Include="Framework\TestHandler.cs" />
+    <Compile Include="Handlers\ContentMd5HandlerTests.cs" />
     <Compile Include="HttpActionContextBuilder.cs" />
     <Compile Include="HttpRequestMessageBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

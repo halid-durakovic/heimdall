@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\build\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="BuildMessageRepresentation.cs" />
     <Compile Include="CalculateSignature.cs" />
+    <Compile Include="Handlers\ContentMd5Handler.cs" />
     <Compile Include="HeaderNames.cs" />
     <Compile Include="IGetSecretFromUsername.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.SelfHost;
 using WebApiAuthentication.Client;
+using WebApiAuthentication.Client.Handlers;
+using WebApiAuthentication.Handlers;
 using WebApiAuthentication.Server;
 
 namespace WebApiAuthentication.Examples.Server
@@ -35,6 +34,7 @@ namespace WebApiAuthentication.Examples.Server
                 constraints: null,
                 defaults: new { id = RouteParameter.Optional });
 
+            config.MessageHandlers.Add(new ContentMd5Handler());
             config.MessageHandlers.Add(new HmacAuthenticationHandler(authenticateRequest));
 
             var server = new HttpSelfHostServer(config);
@@ -72,8 +72,7 @@ namespace WebApiAuthentication.Examples.Server
             var client = SigningHttpClientFactory.Create("username", "different_secret");
 
             var response = client.PostAsync("http://localhost:8080/api/values",
-                new FormUrlEncodedContent(new[] { new KeyValuePair<string, string>("a", "b"), }))
-                .Result;
+                new FormUrlEncodedContent(new[] {new KeyValuePair<string, string>("a", "b"),})).Result;
 
             Console.WriteLine("Request: ");
             Console.WriteLine(response.RequestMessage);

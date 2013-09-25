@@ -1,5 +1,6 @@
 ﻿using System.Net.Http;
 using WebApiAuthentication.Client.Handlers;
+using WebApiAuthentication.Handlers;
 
 namespace WebApiAuthentication.Client
 {
@@ -16,9 +17,9 @@ namespace WebApiAuthentication.Client
             return HttpClientFactory.Create(
                 new UsernameHandler(username),
                 new TimestampHandler(),
+                new ContentMd5Handler(),
                 new HmacSigningHandler(secret)
                 );
-
         }
     }
 }
