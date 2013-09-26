@@ -46,8 +46,11 @@ namespace WebApiAuthentication.Tests
 
             actionContext.Request.Content = new FormUrlEncodedContent(new[] { new KeyValuePair<string, string>("someKey", "someValue"), });
 
-            var md5 = new System.Security.Cryptography.MD5CryptoServiceProvider().ComputeHash(
+            var md5 =
+                new System.Security.Cryptography.MD5CryptoServiceProvider().ComputeHash(
                     actionContext.Request.Content.ReadAsByteArrayAsync().Result);
+
+            actionContext.Request.Content.Headers.ContentMD5 = md5;
 
             var result = buildMessageString.Build(actionContext.Request);
 
