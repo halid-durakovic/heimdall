@@ -52,6 +52,7 @@
     <Compile Include="Handlers\ContentMd5HandlerTests.cs" />
     <Compile Include="HttpActionContextBuilder.cs" />
     <Compile Include="HttpRequestMessageBuilder.cs" />
+    <Compile Include="MD5HelperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

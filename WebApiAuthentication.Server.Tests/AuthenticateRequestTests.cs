@@ -1,3 +1,4 @@
+using System.Text;
 using Moq;
 using NUnit.Framework;
 using System.Net.Http;
@@ -16,6 +17,9 @@ namespace WebApiAuthentication.Server.Tests
         public void SetUp()
         {
             mockGetSecretFromUsername = new Mock<IGetSecretFromUsername>();
+
+            mockGetSecretFromUsername.Setup(x => x.Secret(It.IsAny<string>()))
+                .Returns("secret");
 
             authenticateRequest = new AuthenticateRequest(mockGetSecretFromUsername.Object);
         }
@@ -97,10 +101,6 @@ namespace WebApiAuthentication.Server.Tests
         [Test]
         public void returns_true_if_signatures_match()
         {
-            var mockGetSecretFromUsername = new Mock<IGetSecretFromUsername>();
-            mockGetSecretFromUsername.Setup(x => x.Secret(It.IsAny<string>()))
-                .Returns("secret");
-
             var request = HttpRequestMessageBuilder.Instance().Build();
             request.Headers.Authorization = new AuthenticationHeaderValue(HeaderNames.AuthenticationScheme, "signature_hash");
             request.Headers.Add(HeaderNames.UsernameHeader, "username");
@@ -115,5 +115,24 @@ namespace WebApiAuthentication.Server.Tests
 
             Assert.That(result, Is.True);
         }
+
+        [Test]
+        public void returns_false_if_request_md5_header_does_not_match_()
+        {
+            var wrongMd5 = Encoding.Default.GetBytes("wrong");
+
+            var request = HttpRequestMessageBuilder.Instance()
+                .WithContent(new StringContent("test"))
+                .WithContentMD5(wrongMd5)
+                .Build();
+
+            request.Headers.Authorization = new AuthenticationHeaderValue(HeaderNames.AuthenticationScheme, "signature_hash");
+            request.Headers.Add(HeaderNames.UsernameHeader, "username");
+
+            var result = authenticateRequest.IsAuthenticated(request);
+
+            Assert.That(result, Is.False);
+        }
+
     }
 }

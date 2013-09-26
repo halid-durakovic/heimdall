@@ -1,5 +1,6 @@
 using System;
 using System.Net.Http;
+using System.Text;
 
 namespace WebApiAuthentication.Tests
 {
@@ -8,7 +9,7 @@ namespace WebApiAuthentication.Tests
         private HttpMethod httpMethod;
         private string url;
         private HttpContent content;
-        private string contentMD5;
+        private byte[] contentMD5;
 
         public HttpRequestMessageBuilder()
         {
@@ -30,23 +31,25 @@ namespace WebApiAuthentication.Tests
         public HttpRequestMessageBuilder WithContent(HttpContent content)
         {
             this.content = content;
+            contentMD5 = MD5Helper.ComputeHash(content).Result;
+
+            return this;
+        }
+
+        public HttpRequestMessageBuilder WithContentMD5(byte[] bytes)
+        {
+            contentMD5 = bytes;
             return this;
         }
 
         public HttpRequestMessage Build()
         {
-            var result = new HttpRequestMessage(httpMethod, url) { };
+            var result = new HttpRequestMessage(httpMethod, url) { Content = content };
 
-            if (!string.IsNullOrEmpty(contentMD5))
-                result.Content.Headers.ContentMD5 = Convert.FromBase64String(contentMD5);
+            if (content != null)
+                result.Content.Headers.ContentMD5 = contentMD5;
 
             return result;
-        }
-
-        public HttpRequestMessageBuilder WithContentMD5(string md5)
-        {
-            this.contentMD5 = md5;
-            return this;
         }
     }
 }
