@@ -1,13 +1,13 @@
 ﻿using NUnit.Framework;
 using System;
 using System.Net.Http;
-using WebApiAuthentication.Handlers;
+using WebApiAuthentication.Client.Handlers;
 using WebApiAuthentication.Tests.Framework;
 
 namespace WebApiAuthentication.Tests.Handlers
 {
     [TestFixture]
-    public class ContentMd5HandlerTests
+    public class RequestContentMD5HeaderHandlerTests
     {
         private HttpClient client;
         private HttpRequestMessage request;
@@ -15,7 +15,7 @@ namespace WebApiAuthentication.Tests.Handlers
         [SetUp]
         public void SetUp()
         {
-            var handler = new ContentMd5Handler() { InnerHandler = new TestHandler() };
+            var handler = new RequestContentMD5HeaderHandler() { InnerHandler = new TestHandler() };
             client = new HttpClient(handler);
 
             request = new HttpRequestMessage(HttpMethod.Get, "http://www.test.com") { Content = new StringContent("something") };

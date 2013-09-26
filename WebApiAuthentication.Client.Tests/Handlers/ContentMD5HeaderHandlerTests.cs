@@ -11,13 +11,13 @@ namespace WebApiAuthentication.Client.Tests.Handlers
     [TestFixture]
     public class ContentMD5HeaderHandlerTests
     {
-        private RequestMD5HeaderHandler handler;
+        private RequestContentMD5HeaderHandler handler;
         private HttpClient client;
 
         [SetUp]
         public void SetUp()
         {
-            handler = new RequestMD5HeaderHandler { InnerHandler = new TestHandler() };
+            handler = new RequestContentMD5HeaderHandler { InnerHandler = new TestHandler() };
 
             client = new HttpClient(handler);
         }

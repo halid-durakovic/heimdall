@@ -19,10 +19,8 @@ namespace WebApiAuthentication
     {
         public string Build(HttpRequestMessage request)
         {
-
-
-                request.Content.Headers.ContentMD5 == null ? ""
-                : Convert.ToBase64String(request.Content.Headers.ContentMD5);
+            var md5 = (request.Content == null || request.Content.Headers.ContentMD5 == null)
+                ? "" : Convert.ToBase64String(request.Content.Headers.ContentMD5);
 
             var contentType = (request.Content == null || request.Content.Headers.ContentType == null)
                 ? "" : request.Content.Headers.ContentType.MediaType;

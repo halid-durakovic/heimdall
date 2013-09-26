@@ -5,7 +5,6 @@ using System.Web.Http;
 using System.Web.Http.SelfHost;
 using WebApiAuthentication.Client;
 using WebApiAuthentication.Client.Handlers;
-using WebApiAuthentication.Handlers;
 using WebApiAuthentication.Server;
 
 namespace WebApiAuthentication.Examples.Server
@@ -34,7 +33,7 @@ namespace WebApiAuthentication.Examples.Server
                 constraints: null,
                 defaults: new { id = RouteParameter.Optional });
 
-            config.MessageHandlers.Add(new ContentMd5Handler());
+            config.MessageHandlers.Add(new RequestContentMD5HeaderHandler());
             config.MessageHandlers.Add(new HmacAuthenticationHandler(authenticateRequest));
 
             var server = new HttpSelfHostServer(config);
