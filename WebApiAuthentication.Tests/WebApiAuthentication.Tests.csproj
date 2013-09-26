@@ -49,7 +49,6 @@
     <Compile Include="BuildRequestSignatureTests.cs" />
     <Compile Include="CalculateSignatureTests.cs" />
     <Compile Include="Framework\TestHandler.cs" />
-    <Compile Include="Handlers\RequestContentMD5HeaderHandlerTests.cs" />
     <Compile Include="HttpActionContextBuilder.cs" />
     <Compile Include="HttpRequestMessageBuilder.cs" />
     <Compile Include="MD5HelperTests.cs" />

@@ -1,34 +1,37 @@
-﻿using NUnit.Framework;
+using System;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using NUnit.Framework;
 using WebApiAuthentication.Client.Handlers;
 using WebApiAuthentication.Tests.Framework;
 
 namespace WebApiAuthentication.Client.Tests.Handlers
 {
     [TestFixture]
-    public class ContentMD5HeaderHandlerTests
+    public class RequestContentMD5HeaderHandlerTests
     {
-        private RequestContentMD5HeaderHandler handler;
         private HttpClient client;
+        private HttpRequestMessage request;
 
         [SetUp]
         public void SetUp()
         {
-            handler = new RequestContentMD5HeaderHandler { InnerHandler = new TestHandler() };
-
+            var handler = new RequestContentMD5HeaderHandler() { InnerHandler = new TestHandler() };
             client = new HttpClient(handler);
+
+            request = new HttpRequestMessage(HttpMethod.Get, "http://www.test.com") { Content = new StringContent("something") };
+            request.Headers.Date = new DateTimeOffset(DateTime.Now, DateTime.Now - DateTime.UtcNow);
         }
 
         [Test]
         public void generates_md5_header_and_saves_to_request()
         {
             var request = new HttpRequestMessage(HttpMethod.Post, "http://www.test.com")
-                                     {
-                                         Content = new StringContent("something")
-                                     };
+            {
+                Content = new StringContent("something")
+            };
 
             var expectedMD5 = new System.Security.Cryptography.MD5CryptoServiceProvider()
                 .ComputeHash(Encoding.UTF8.GetBytes("something"));

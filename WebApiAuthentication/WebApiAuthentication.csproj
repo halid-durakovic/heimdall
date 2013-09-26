@@ -37,7 +37,6 @@
   <ItemGroup>
     <Compile Include="BuildMessageRepresentation.cs" />
     <Compile Include="CalculateSignature.cs" />
-    <Compile Include="Handlers\ContentMd5Handler.cs" />
     <Compile Include="HeaderNames.cs" />
     <Compile Include="IGetSecretFromUsername.cs" />
     <Compile Include="MD5Helper.cs" />

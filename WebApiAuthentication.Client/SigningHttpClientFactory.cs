@@ -1,6 +1,5 @@
 ﻿using System.Net.Http;
 using WebApiAuthentication.Client.Handlers;
-using WebApiAuthentication.Handlers;
 
 namespace WebApiAuthentication.Client
 {
