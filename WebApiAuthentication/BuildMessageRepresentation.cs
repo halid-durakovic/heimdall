@@ -1,5 +1,6 @@
 using System;
 using System.Globalization;
+using System.Linq;
 using System.Net.Http;
 
 namespace WebApiAuthentication
@@ -25,8 +26,16 @@ namespace WebApiAuthentication
             var contentType = (request.Content == null || request.Content.Headers.ContentType == null)
                 ? "" : request.Content.Headers.ContentType.MediaType;
 
-            var date = request.Headers.Date == null
-                ? "" : request.Headers.Date.Value.UtcDateTime.ToString(CultureInfo.InvariantCulture);
+            string date;
+
+            if (request.Headers.Contains(HeaderNames.CustomDateHeader))
+            {
+                var customDateHeaderValue = request.Headers.GetValues(HeaderNames.CustomDateHeader).FirstOrDefault();
+                date = DateTime.Parse(customDateHeaderValue).ToString();
+            }
+            else
+                date = request.Headers.Date == null
+                   ? "" : request.Headers.Date.Value.UtcDateTime.ToString(CultureInfo.InvariantCulture);
 
             return string.Join("\n",
                 request.Method,

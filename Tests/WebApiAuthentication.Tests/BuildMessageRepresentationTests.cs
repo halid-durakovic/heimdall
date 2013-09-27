@@ -11,48 +11,54 @@ namespace WebApiAuthentication.Tests
     [TestFixture]
     public class BuildMessageRepresentationTests
     {
-        private HttpActionContext actionContext;
+        private HttpRequestMessage request;
+        private BuildMessageRepresentation buildMessageString;
 
         [SetUp]
         public void SetUp()
         {
-            actionContext = HttpActionContextBuilder.Instance().Build();
+            request = HttpRequestMessageBuilder.Instance().Build();
+            buildMessageString = new BuildMessageRepresentation();
         }
 
         [Test]
-        public void returns_string_containing_uri()
+        public void returns_string_containing_path()
         {
-            var buildMessageString = new BuildMessageRepresentation();
-
-            var result = buildMessageString.Build(actionContext.Request);
+            var result = buildMessageString.Build(request);
             Assert.That(result, Contains.Substring("/api"));
+        }
+
+        [Test]
+        public void returns_string_containing_path_without_double_slashes()
+        {
+            request.RequestUri = new Uri("http://www.me.com//api");
+
+            var result = buildMessageString.Build(request);
+            Assert.That(result, Contains.Substring("/api"));
+            Assert.That(result, Is.Not.ContainsSubstring("//api"));
         }
 
         [Test]
         public void returns_string_containing_verb()
         {
-            var buildMessageString = new BuildMessageRepresentation();
+            request.Method = new HttpMethod("GET");
 
-            actionContext.Request.Method = new HttpMethod("GET");
-
-            var result = buildMessageString.Build(actionContext.Request);
+            var result = buildMessageString.Build(request);
             Assert.That(result, Contains.Substring("GET"));
         }
 
         [Test]
         public void returns_string_containing_request_content_md5()
         {
-            var buildMessageString = new BuildMessageRepresentation();
-
-            actionContext.Request.Content = new FormUrlEncodedContent(new[] { new KeyValuePair<string, string>("someKey", "someValue"), });
+            request.Content = new FormUrlEncodedContent(new[] { new KeyValuePair<string, string>("someKey", "someValue"), });
 
             var md5 =
                 new System.Security.Cryptography.MD5CryptoServiceProvider().ComputeHash(
-                    actionContext.Request.Content.ReadAsByteArrayAsync().Result);
+                    request.Content.ReadAsByteArrayAsync().Result);
 
-            actionContext.Request.Content.Headers.ContentMD5 = md5;
+            request.Content.Headers.ContentMD5 = md5;
 
-            var result = buildMessageString.Build(actionContext.Request);
+            var result = buildMessageString.Build(request);
 
             Assert.That(result, Contains.Substring(Convert.ToBase64String(md5)));
         }
@@ -60,11 +66,34 @@ namespace WebApiAuthentication.Tests
         [Test]
         public void returns_string_containing_timestamp()
         {
-            var buildMessageString = new BuildMessageRepresentation();
+            request.Headers.Date = DateTime.UtcNow;
 
-            var result = buildMessageString.Build(actionContext.Request);
+            var result = buildMessageString.Build(request);
 
-            var date = actionContext.Request.Headers.Date.Value.UtcDateTime.ToString(CultureInfo.InvariantCulture);
+            var date = request.Headers.Date.Value.UtcDateTime.ToString(CultureInfo.InvariantCulture);
+
+            Assert.That(result, Contains.Substring(date));
+        }
+
+        [Test]
+        public void returns_string_containing_timestamp_of_custom_date_header_if_present()
+        {
+            var date = DateTime.Now.ToString();
+            request.Headers.Add(HeaderNames.CustomDateHeader, date);
+
+            var result = buildMessageString.Build(request);
+
+            Assert.That(result, Contains.Substring(date));
+        }
+
+        [Test]
+        public void returns_string_containing_timestamp_of_custom_date_header_if_present_even_if_request_date_header_is_present()
+        {
+            var date = DateTime.Now.AddDays(-12).AddMonths(-34).ToString();
+            request.Headers.Add(HeaderNames.CustomDateHeader, date);
+            request.Headers.Date = DateTime.Now;
+
+            var result = buildMessageString.Build(request);
 
             Assert.That(result, Contains.Substring(date));
         }
@@ -74,12 +103,10 @@ namespace WebApiAuthentication.Tests
         {
             var buildMessageString = new BuildMessageRepresentation();
 
-            actionContext.Request.Content = new FormUrlEncodedContent(new[] { new KeyValuePair<string, string>("a", "b"), });
-            actionContext.Request.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
+            request.Content = new FormUrlEncodedContent(new[] { new KeyValuePair<string, string>("a", "b"), });
+            request.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
 
-            var result = buildMessageString.Build(actionContext.Request);
-
-            var date = actionContext.Request.Headers.Date.Value.UtcDateTime.ToString(CultureInfo.InvariantCulture);
+            var result = buildMessageString.Build(request);
 
             Assert.That(result, Contains.Substring("text/html"));
         }
