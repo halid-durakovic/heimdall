@@ -75,7 +75,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WebApiAuthentication.Client\WebApiAuthentication.Client.csproj">
+    <ProjectReference Include="..\..\WebApiAuthentication.Client\WebApiAuthentication.Client.csproj">
       <Project>{430A2D10-9EB3-44B0-AEA2-2A2FB7A12D21}</Project>
       <Name>WebApiAuthentication.Client</Name>
     </ProjectReference>
@@ -83,7 +83,7 @@
       <Project>{6A70C48D-5C26-4216-A629-A5277C36ADB6}</Project>
       <Name>WebApiAuthentication.Tests</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WebApiAuthentication\WebApiAuthentication.csproj">
+    <ProjectReference Include="..\..\WebApiAuthentication\WebApiAuthentication.csproj">
       <Project>{BCFB9633-5881-4E5D-8D92-3709510AA81E}</Project>
       <Name>WebApiAuthentication</Name>
     </ProjectReference>

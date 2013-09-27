@@ -61,11 +61,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WebApiAuthentication.Client\WebApiAuthentication.Client.csproj">
+    <ProjectReference Include="..\..\WebApiAuthentication.Client\WebApiAuthentication.Client.csproj">
       <Project>{430A2D10-9EB3-44B0-AEA2-2A2FB7A12D21}</Project>
       <Name>WebApiAuthentication.Client</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WebApiAuthentication\WebApiAuthentication.csproj">
+    <ProjectReference Include="..\..\WebApiAuthentication\WebApiAuthentication.csproj">
       <Project>{bcfb9633-5881-4e5d-8d92-3709510aa81e}</Project>
       <Name>WebApiAuthentication</Name>
     </ProjectReference>
