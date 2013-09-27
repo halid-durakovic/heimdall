@@ -11,8 +11,9 @@ namespace WebApiAuthentication
     }
 
     /// <summary>
-    /// HTTP PATH
     /// HTTP METHOD\n +
+    /// HTTP PATH\n +
+    /// Content-Type\n +  
     /// Content-MD5\n +  
     /// Timestamp\n +
     /// </summary>
@@ -29,10 +30,7 @@ namespace WebApiAuthentication
             string date;
 
             if (request.Headers.Contains(HeaderNames.CustomDateHeader))
-            {
-                var customDateHeaderValue = request.Headers.GetValues(HeaderNames.CustomDateHeader).FirstOrDefault();
-                date = DateTime.Parse(customDateHeaderValue).ToString();
-            }
+                date = request.Headers.GetValues(HeaderNames.CustomDateHeader).FirstOrDefault();
             else
                 date = request.Headers.Date == null
                    ? "" : request.Headers.Date.Value.UtcDateTime.ToString(CultureInfo.InvariantCulture);
