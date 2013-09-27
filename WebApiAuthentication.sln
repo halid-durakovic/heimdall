@@ -3,23 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiAuthentication", "WebApiAuthentication\WebApiAuthentication.csproj", "{BCFB9633-5881-4E5D-8D92-3709510AA81E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiAuthentication.Tests", "WebApiAuthentication.Tests\WebApiAuthentication.Tests.csproj", "{6A70C48D-5C26-4216-A629-A5277C36ADB6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiAuthentication.Tests", "Tests\WebApiAuthentication.Tests\WebApiAuthentication.Tests.csproj", "{6A70C48D-5C26-4216-A629-A5277C36ADB6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiAuthentication.Client", "WebApiAuthentication.Client\WebApiAuthentication.Client.csproj", "{430A2D10-9EB3-44B0-AEA2-2A2FB7A12D21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiAuthentication.Client.Tests", "WebApiAuthentication.Client.Tests\WebApiAuthentication.Client.Tests.csproj", "{38E3FE41-9B4F-4915-AAC6-882DFAF22CAD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiAuthentication.Client.Tests", "Tests\WebApiAuthentication.Client.Tests\WebApiAuthentication.Client.Tests.csproj", "{38E3FE41-9B4F-4915-AAC6-882DFAF22CAD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BBFB9A34-3F9D-4995-A0BB-B3EC23E50827}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiAuthentication.Server.Tests", "WebApiAuthentication.Server.Tests\WebApiAuthentication.Server.Tests.csproj", "{9F6ADA16-1F40-4B2C-B3DA-FBBBFDFA307A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiAuthentication.Server.Tests", "Tests\WebApiAuthentication.Server.Tests\WebApiAuthentication.Server.Tests.csproj", "{9F6ADA16-1F40-4B2C-B3DA-FBBBFDFA307A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiAuthentication.Server", "WebApiAuthentication.Server\WebApiAuthentication.Server.csproj", "{B94154FE-B295-4224-A44D-03D200BACEC5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{606739E3-C4CA-496D-9A5A-8F59250FC9C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiAuthentication.Examples.Client", "WebApiAuthentication.Examples.Client\WebApiAuthentication.Examples.Client.csproj", "{C5922547-6141-4949-9B1A-C31C57DBAC3F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiAuthentication.Examples.Client", "Examples\WebApiAuthentication.Examples.Client\WebApiAuthentication.Examples.Client.csproj", "{C5922547-6141-4949-9B1A-C31C57DBAC3F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiAuthentication.Examples.Server", "WebApiAuthentication.Examples.Server\WebApiAuthentication.Examples.Server.csproj", "{3A8AD049-D198-47C6-99A5-EDE88BD118DD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiAuthentication.Examples.Server", "Examples\WebApiAuthentication.Examples.Server\WebApiAuthentication.Examples.Server.csproj", "{3A8AD049-D198-47C6-99A5-EDE88BD118DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
