@@ -12,7 +12,7 @@ Requests are signed with a signature composed as follows:
 
 - Verb
 - Path
-- Content-Type
+- Content-Type (or empty string if no content)
 - MD5 Hash of the content (or empty string if no content)
 - Timestamp
 
@@ -41,7 +41,31 @@ X-Apiauth-Username: myusername
 Authorization: ApiAuth pNxy+5vs0Zov5ENCXeoNieI+XvGrrg4+pQHxs9nBFjw=  
 Content-Length: 29  
 
+**Message Representation**  
+POST\n/api/values\napplication/x-www-form-urlencoded\NcUXHpFJj73ToZwuR7GVBQ==\n09/27/2013 16:24:08
+
+This then gets hashed, using a secret, and base64 encoded, to produce our signature:  
+pNxy+5vs0Zov5ENCXeoNieI+XvGrrg4+pQHxs9nBFjw=
+
+
 ##Server##
- 
- 
-### Authenticate attribute ###
+ In order to configure the WebApi to authenticate incoming requests, we need to create an implementation of `IGetSecretFromUsername`  
+This simple implementation should give you an idea of what is expected:
+
+    class DummyGetSecretFromUsername : IGetSecretFromUsername
+    {
+        public string Secret(string username)
+        {
+            if(username=="iclp")
+                return "password123";
+
+            return string.Empty;
+        }
+    }
+
+In a real-world scenario, this would likely talk to a repository to look up the secret from the username.
+
+To configure the Authentication Handler across the whole API, you could set it up like this (in `Application_Start`)
+
+            var authenticateRequest = new AuthenticateRequest(new DummyGetSecretFromUsername());
+            GlobalConfiguration.Configuration.MessageHandlers.Add(new HmacAuthenticationHandler(authenticateRequest));
