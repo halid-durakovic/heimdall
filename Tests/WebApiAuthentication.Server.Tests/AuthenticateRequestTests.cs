@@ -1,8 +1,8 @@
-using System.Text;
 using Moq;
 using NUnit.Framework;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using WebApiAuthentication.Tests;
 
 namespace WebApiAuthentication.Server.Tests

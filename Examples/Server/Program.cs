@@ -4,7 +4,6 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.SelfHost;
 using WebApiAuthentication.Client;
-using WebApiAuthentication.Client.Handlers;
 using WebApiAuthentication.Server;
 
 namespace WebApiAuthentication.Examples.Server

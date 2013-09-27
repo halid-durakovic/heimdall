@@ -1,8 +1,7 @@
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
 using Moq;
 using NUnit.Framework;
+using System.Net;
+using System.Net.Http;
 using WebApiAuthentication.Tests;
 using WebApiAuthentication.Tests.Framework;
 

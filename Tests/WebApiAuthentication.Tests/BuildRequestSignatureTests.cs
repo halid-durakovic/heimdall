@@ -1,7 +1,7 @@
-using System;
-using System.Net.Http;
 using Moq;
 using NUnit.Framework;
+using System;
+using System.Net.Http;
 
 namespace WebApiAuthentication.Tests
 {

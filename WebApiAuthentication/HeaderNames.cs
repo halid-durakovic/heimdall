@@ -1,5 +1,4 @@
-﻿
-namespace WebApiAuthentication
+﻿namespace WebApiAuthentication
 {
     public class HeaderNames
     {

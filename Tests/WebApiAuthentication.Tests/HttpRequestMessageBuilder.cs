@@ -1,12 +1,11 @@
-using System;
 using System.Net.Http;
-using System.Text;
 
 namespace WebApiAuthentication.Tests
 {
     public class HttpRequestMessageBuilder
     {
-        private HttpMethod httpMethod;
+        private readonly HttpMethod httpMethod;
+
         private string url;
         private HttpContent content;
         private byte[] contentMD5;
