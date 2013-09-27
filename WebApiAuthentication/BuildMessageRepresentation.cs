@@ -37,9 +37,11 @@ namespace WebApiAuthentication
                 date = request.Headers.Date == null
                    ? "" : request.Headers.Date.Value.UtcDateTime.ToString(CultureInfo.InvariantCulture);
 
+            var path = request.RequestUri.AbsolutePath.Replace("//", "/");
+
             return string.Join("\n",
                 request.Method,
-                request.RequestUri.AbsolutePath,
+                path,
                 contentType,
                 md5,
                 date
