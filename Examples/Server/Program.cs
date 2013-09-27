@@ -25,15 +25,12 @@ namespace WebApiAuthentication.Examples.Server
 
             var authenticateRequest = new AuthenticateRequest(new DummyGetSecretForUsername());
 
-            var qqq = GlobalConfiguration.Configuration;
-
             config.Routes.MapHttpRoute(
                 name: "API Default",
                 routeTemplate: "api/{controller}/{id}",
                 constraints: null,
                 defaults: new { id = RouteParameter.Optional });
 
-            config.MessageHandlers.Add(new RequestContentMD5HeaderHandler());
             config.MessageHandlers.Add(new HmacAuthenticationHandler(authenticateRequest));
 
             var server = new HttpSelfHostServer(config);
@@ -47,7 +44,7 @@ namespace WebApiAuthentication.Examples.Server
 
         private static void Succesful_Message_Signing_And_Authentication()
         {
-            Console.WriteLine("Showing a successfully signed message authenticated server side...");
+            Console.WriteLine("***** Showing a successfully signed message authenticated server side... *****");
 
             var client = SigningHttpClientFactory.Create("username", "secret");
 
@@ -66,7 +63,7 @@ namespace WebApiAuthentication.Examples.Server
 
         private static void Unsuccesful_Authentication()
         {
-            Console.WriteLine("Showing a message signed with a different key and not authenticated server side...");
+            Console.WriteLine("***** Showing a message signed with a different key and not authenticated server side... *****");
 
             var client = SigningHttpClientFactory.Create("username", "different_secret");
 
