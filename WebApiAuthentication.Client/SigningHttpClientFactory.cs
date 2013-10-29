@@ -16,7 +16,7 @@ namespace WebApiAuthentication.Client
             return HttpClientFactory.Create(
                 new UsernameHandler(username),
                 new TimestampHandler(),
-                new RequestContentMD5HeaderHandler(),
+                new RequestContentMd5HeaderHandler(),
                 new HmacSigningHandler(secret)
                 );
         }

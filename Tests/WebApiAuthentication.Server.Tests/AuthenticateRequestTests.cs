@@ -91,7 +91,7 @@ namespace WebApiAuthentication.Server.Tests
             request.Headers.Authorization = new AuthenticationHeaderValue(HeaderNames.AuthenticationScheme, "signature_hash");
             request.Headers.Add(HeaderNames.UsernameHeader, "username");
 
-            authenticateRequest = new AuthenticateRequest(mockBuildRequestSignature.Object, mockGetSecretFromUsername.Object);
+            authenticateRequest = new AuthenticateRequest(new HashCalculator(), mockBuildRequestSignature.Object, mockGetSecretFromUsername.Object);
 
             var result = authenticateRequest.IsAuthenticated(request);
 
@@ -109,7 +109,7 @@ namespace WebApiAuthentication.Server.Tests
             mockBuildRequestSignature.Setup(x => x.Build("secret", request))
                 .Returns("signature_hash");
 
-            authenticateRequest = new AuthenticateRequest(mockBuildRequestSignature.Object, mockGetSecretFromUsername.Object);
+            authenticateRequest = new AuthenticateRequest(new HashCalculator(), mockBuildRequestSignature.Object, mockGetSecretFromUsername.Object);
 
             var result = authenticateRequest.IsAuthenticated(request);
 

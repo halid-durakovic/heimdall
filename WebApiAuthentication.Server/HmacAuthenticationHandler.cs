@@ -14,16 +14,16 @@ namespace WebApiAuthentication.Server
             this.authenticateRequest = authenticateRequest;
         }
 
-        protected async override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, System.Threading.CancellationToken cancellationToken)
+        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, System.Threading.CancellationToken cancellationToken)
         {
             if (!authenticateRequest.IsAuthenticated(request))
             {
                 var response = request.CreateErrorResponse(HttpStatusCode.Unauthorized, "Unauthorized API call");
                 response.Headers.WwwAuthenticate.Add(new AuthenticationHeaderValue(HeaderNames.AuthenticationScheme));
-                return response;
+                return Task.Factory.StartNew(() => response);
             }
 
-            return await base.SendAsync(request, cancellationToken);
+            return base.SendAsync(request, cancellationToken);
         }
     }
 }

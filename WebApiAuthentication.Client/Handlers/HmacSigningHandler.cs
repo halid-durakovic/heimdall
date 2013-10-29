@@ -1,16 +1,19 @@
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace WebApiAuthentication.Client.Handlers
 {
     public class HmacSigningHandler : DelegatingHandler
     {
-        private readonly string secret;
         private readonly IBuildRequestSignature buildRequestSignature;
+        private readonly string secret;
 
         public HmacSigningHandler(string secret)
             : this(secret, new BuildRequestSignature())
-        { }
+        {
+        }
 
         public HmacSigningHandler(string secret, IBuildRequestSignature buildRequestSignature)
         {
@@ -18,9 +21,9 @@ namespace WebApiAuthentication.Client.Handlers
             this.buildRequestSignature = buildRequestSignature;
         }
 
-        protected override System.Threading.Tasks.Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, System.Threading.CancellationToken cancellationToken)
+        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            var signature = buildRequestSignature.Build(secret, request);
+            string signature = buildRequestSignature.Build(secret, request);
 
             request.Headers.Authorization = new AuthenticationHeaderValue(HeaderNames.AuthenticationScheme, signature);
 

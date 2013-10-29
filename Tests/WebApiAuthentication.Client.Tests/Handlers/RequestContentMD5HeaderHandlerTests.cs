@@ -18,7 +18,7 @@ namespace WebApiAuthentication.Client.Tests.Handlers
         [SetUp]
         public void SetUp()
         {
-            var handler = new RequestContentMD5HeaderHandler() { InnerHandler = new TestHandler() };
+            var handler = new RequestContentMd5HeaderHandler() { InnerHandler = new TestHandler() };
             client = new HttpClient(handler);
 
             request = new HttpRequestMessage(HttpMethod.Get, "http://www.test.com") { Content = new StringContent("something") };

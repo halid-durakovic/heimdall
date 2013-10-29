@@ -15,7 +15,6 @@ namespace WebApiAuthentication.Client.Handlers
         {
             if (!request.Headers.Contains(HeaderNames.UsernameHeader))
                 request.Headers.Add(HeaderNames.UsernameHeader, username);
-
             return base.SendAsync(request, cancellationToken);
         }
     }

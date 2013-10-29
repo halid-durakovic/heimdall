@@ -4,16 +4,17 @@ namespace WebApiAuthentication.Tests
 {
     public class HttpRequestMessageBuilder
     {
-        private readonly HttpMethod httpMethod;
-
         private string url;
+        private byte[] contentMd5;
         private HttpContent content;
-        private byte[] contentMD5;
+        private readonly HttpMethod httpMethod;
+        private readonly HashCalculator hashCalculator;
 
         public HttpRequestMessageBuilder()
         {
             httpMethod = HttpMethod.Post;
             url = "http://www.me.com/api";
+            hashCalculator = new HashCalculator();
         }
 
         public static HttpRequestMessageBuilder Instance()
@@ -30,14 +31,14 @@ namespace WebApiAuthentication.Tests
         public HttpRequestMessageBuilder WithContent(HttpContent content)
         {
             this.content = content;
-            contentMD5 = MD5Helper.ComputeHash(content).Result;
+            contentMd5 = hashCalculator.ComputeHash(content);
 
             return this;
         }
 
         public HttpRequestMessageBuilder WithContentMD5(byte[] bytes)
         {
-            contentMD5 = bytes;
+            contentMd5 = bytes;
             return this;
         }
 
@@ -46,7 +47,7 @@ namespace WebApiAuthentication.Tests
             var result = new HttpRequestMessage(httpMethod, url) { Content = content };
 
             if (content != null)
-                result.Content.Headers.ContentMD5 = contentMD5;
+                result.Content.Headers.ContentMD5 = contentMd5;
 
             return result;
         }

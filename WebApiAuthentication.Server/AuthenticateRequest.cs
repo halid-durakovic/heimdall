@@ -10,15 +10,17 @@ namespace WebApiAuthentication.Server
 
     public class AuthenticateRequest : IAuthenticateRequest
     {
+        private readonly ICalculateHashes hashCalculator;
         private readonly IBuildRequestSignature buildRequestSignature;
         private readonly IGetSecretFromUsername getSecretFromUsername;
 
         public AuthenticateRequest(IGetSecretFromUsername getSecretFromUsername)
-            : this(new BuildRequestSignature(), getSecretFromUsername)
+            : this(new HashCalculator(), new BuildRequestSignature(), getSecretFromUsername)
         { }
 
-        public AuthenticateRequest(IBuildRequestSignature buildRequestSignature, IGetSecretFromUsername getSecretFromUsername)
+        public AuthenticateRequest(ICalculateHashes hashCalculator, IBuildRequestSignature buildRequestSignature, IGetSecretFromUsername getSecretFromUsername)
         {
+            this.hashCalculator = hashCalculator;
             this.buildRequestSignature = buildRequestSignature;
             this.getSecretFromUsername = getSecretFromUsername;
         }
@@ -33,10 +35,8 @@ namespace WebApiAuthentication.Server
             if (secret == null)
                 return false;
 
-            //check MD5
-            //only if the content AND the header MD5 is not null
             if ((request.Content != null) && (request.Content.Headers.ContentMD5 != null))
-                if (!MD5Helper.IsMd5Valid(request).Result)
+                if (!hashCalculator.IsValidHash(request))
                     return false;
 
             var signature = buildRequestSignature.Build(secret, request);

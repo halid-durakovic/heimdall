@@ -7,6 +7,14 @@ namespace WebApiAuthentication.Tests
     [TestFixture]
     public class MD5HelperTests
     {
+        private HashCalculator hashCalculator;
+
+        [SetUp]
+        public void SetUp()
+        {
+            hashCalculator = new HashCalculator();
+        }
+
         [Test]
         public void returns_false_if_request_md5_header_does_not_match_content()
         {
@@ -17,7 +25,7 @@ namespace WebApiAuthentication.Tests
                 .WithContentMD5(wrongMd5)
                 .Build();
 
-            var result = MD5Helper.IsMd5Valid(request).Result;
+            var result = hashCalculator.IsValidHash(request);
 
             Assert.That(result, Is.False);
         }
@@ -29,7 +37,7 @@ namespace WebApiAuthentication.Tests
                 .WithContent(new StringContent("test"))
                 .Build();
 
-            var result = MD5Helper.IsMd5Valid(request).Result;
+            var result = hashCalculator.IsValidHash(request);
 
             Assert.That(result, Is.True);
         }

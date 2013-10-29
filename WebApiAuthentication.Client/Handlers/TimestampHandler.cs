@@ -7,7 +7,8 @@ namespace WebApiAuthentication.Client.Handlers
     {
         protected override System.Threading.Tasks.Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, System.Threading.CancellationToken cancellationToken)
         {
-            request.Headers.Date = new DateTimeOffset(DateTime.Now, DateTime.Now - DateTime.UtcNow);
+            var now = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Unspecified);
+            request.Headers.Date = new DateTimeOffset(now, TimeZoneInfo.Local.GetUtcOffset(now));
             return base.SendAsync(request, cancellationToken);
         }
     }
