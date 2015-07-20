@@ -7,8 +7,8 @@
     <ProjectGuid>{448B974D-2A61-4864-BDF4-D11537DA8063}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Cachely.Console</RootNamespace>
-    <AssemblyName>Cachely.Console</AssemblyName>
+    <RootNamespace>Heimdall.Console</RootNamespace>
+    <AssemblyName>Heimdall.Console</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

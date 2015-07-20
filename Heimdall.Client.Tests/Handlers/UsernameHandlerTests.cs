@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Net.Http;
-using Cachely.Tests.Framework;
 using Heimdall.Client.Handlers;
+using Heimdall.Tests.Framework;
 using NUnit.Framework;
 
 namespace Heimdall.Client.Tests.Handlers

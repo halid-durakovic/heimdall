@@ -1,6 +1,5 @@
 using System.Net;
 using System.Net.Http;
-using Cachely.Tests.Framework;
 using Heimdall.Server.Interfaces;
 using Heimdall.Tests.Framework;
 using Moq;

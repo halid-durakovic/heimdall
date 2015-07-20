@@ -1,4 +1,4 @@
-﻿namespace Cachely.Console
+﻿namespace Heimdall.Console
 {
     internal class Program
     {

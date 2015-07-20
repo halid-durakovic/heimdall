@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Cachely.Tests.Framework
+namespace Heimdall.Tests.Framework
 {
     public class TestHandler : DelegatingHandler
     {
