@@ -7,6 +7,6 @@ Easy to use HMAC WebAPI Delegating Handler and various clients (C#, NodeJs and B
 
 This project is still very much a work in progress...
 
-Originally forked from here:
+Shamelessly plagurised from here:
 
 https://github.com/alexjamesbrown/WebApi.HmacAuthentication
