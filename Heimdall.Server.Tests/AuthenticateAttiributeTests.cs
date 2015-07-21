@@ -1,11 +1,11 @@
-using Moq;
-using NUnit.Framework;
 using System;
 using System.Net;
 using System.Net.Http;
-using WebApiAuthentication.Tests;
+using Heimdall.Tests;
+using Moq;
+using NUnit.Framework;
 
-namespace WebApiAuthentication.Server.Tests
+namespace Heimdall.Server.Tests
 {
     [TestFixture]
     public class AuthenticateAttiributeTests

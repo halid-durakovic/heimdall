@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 
-namespace WebApiAuthentication.Server
+namespace Heimdall.Server
 {
     public class AuthenticateAttiribute : ActionFilterAttribute
     {

@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heimdall.Client", "Heimdall
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heimdall.Client.Tests", "Heimdall.Client.Tests\Heimdall.Client.Tests.csproj", "{38E3FE41-9B4F-4915-AAC6-882DFAF22CAD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heimdall.Server", "Heimdall.Server\Heimdall.Server.csproj", "{B94154FE-B295-4224-A44D-03D200BACEC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heimdall.Server.Tests", "Heimdall.Server.Tests\Heimdall.Server.Tests.csproj", "{9F6ADA16-1F40-4B2C-B3DA-FBBBFDFA307A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{38E3FE41-9B4F-4915-AAC6-882DFAF22CAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38E3FE41-9B4F-4915-AAC6-882DFAF22CAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38E3FE41-9B4F-4915-AAC6-882DFAF22CAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B94154FE-B295-4224-A44D-03D200BACEC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B94154FE-B295-4224-A44D-03D200BACEC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B94154FE-B295-4224-A44D-03D200BACEC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B94154FE-B295-4224-A44D-03D200BACEC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F6ADA16-1F40-4B2C-B3DA-FBBBFDFA307A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F6ADA16-1F40-4B2C-B3DA-FBBBFDFA307A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F6ADA16-1F40-4B2C-B3DA-FBBBFDFA307A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F6ADA16-1F40-4B2C-B3DA-FBBBFDFA307A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,11 +1,11 @@
-using Moq;
-using NUnit.Framework;
 using System.Net;
 using System.Net.Http;
-using WebApiAuthentication.Tests;
-using WebApiAuthentication.Tests.Framework;
+using Heimdall.Tests;
+using Heimdall.Tests.Framework;
+using Moq;
+using NUnit.Framework;
 
-namespace WebApiAuthentication.Server.Tests
+namespace Heimdall.Server.Tests
 {
     [TestFixture]
     public class HmacAuthenticationHandlerTests
