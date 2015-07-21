@@ -1,8 +1,7 @@
-﻿using System;
+using System;
 using System.Net;
 using System.Net.Http;
-using Heimdall.Server.Interfaces;
-using Heimdall.Tests.Framework;
+using Heimdall.Tests;
 using Moq;
 using NUnit.Framework;
 
@@ -21,9 +20,9 @@ namespace Heimdall.Server.Tests
             mockAuthenticateRequest = new Mock<IAuthenticateRequest>();
 
             attribute = new AuthenticateAttiribute
-            {
-                AuthenticateRequest = mockAuthenticateRequest.Object
-            };
+                        {
+                            AuthenticateRequest = mockAuthenticateRequest.Object
+                        };
         }
 
         [Test]

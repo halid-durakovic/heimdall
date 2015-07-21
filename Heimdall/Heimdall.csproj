@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{36C995AE-6649-43EF-A7AA-8B2ACA91D667}</ProjectGuid>
+    <ProjectGuid>{BCFB9633-5881-4E5D-8D92-3709510AA81E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Heimdall</RootNamespace>
@@ -30,8 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -45,29 +45,17 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BuildMessageRepresentation.cs" />
-    <Compile Include="BuildRequestSignature.cs" />
     <Compile Include="CalculateSignature.cs" />
-    <Compile Include="HashCalculator.cs" />
+    <None Include="app.config" />
+    <None Include="nuget.nuspec" />
     <Compile Include="HeaderNames.cs" />
-    <Compile Include="Interfaces\IBuildMessageRepresentation.cs" />
-    <Compile Include="Interfaces\IBuildRequestSignature.cs" />
-    <Compile Include="Interfaces\ICalculateHashes.cs" />
-    <Compile Include="Interfaces\ICalculateSignature.cs" />
-    <Compile Include="Interfaces\IGetSecretFromUsername.cs" />
+    <Compile Include="IGetSecretFromUsername.cs" />
+    <Compile Include="HashCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="nuget.nuspec">
-      <SubType>Designer</SubType>
-    </None>
+    <Compile Include="BuildRequestSignature.cs" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Heimdall.Client")]
+[assembly: AssemblyTitle("WebApiAuthentication.Client")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Heimdall.Client")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyProduct("WebApiAuthentication.Client")]
+[assembly: AssemblyCopyright("Copyright © Microsoft 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("92d5ddc4-4c79-4d2c-83f7-4b7798811a4b")]
+[assembly: Guid("175456a5-32aa-42fd-b52f-964ff7ba69b3")]
 
 // Version information for an assembly consists of the following four values:
 //

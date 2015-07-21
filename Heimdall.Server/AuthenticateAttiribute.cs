@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
 using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
-using Heimdall.Server.Interfaces;
 
 namespace Heimdall.Server
 {

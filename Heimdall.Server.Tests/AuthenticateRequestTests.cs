@@ -1,8 +1,7 @@
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
-using Heimdall.Interfaces;
-using Heimdall.Tests.Framework;
+using Heimdall.Tests;
 using Moq;
 using NUnit.Framework;
 

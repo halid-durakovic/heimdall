@@ -2,10 +2,14 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Net.Http;
-using Heimdall.Interfaces;
 
 namespace Heimdall
 {
+    public interface IBuildMessageRepresentation
+    {
+        string Build(HttpRequestMessage request);
+    }
+
     /// <summary>
     /// HTTP METHOD\n +
     /// HTTP PATH\n +
@@ -29,7 +33,7 @@ namespace Heimdall
                 date = request.Headers.GetValues(HeaderNames.CustomDateHeader).FirstOrDefault();
             else
                 date = request.Headers.Date == null
-                    ? "" : request.Headers.Date.Value.UtcDateTime.ToString(CultureInfo.InvariantCulture);
+                   ? "" : request.Headers.Date.Value.UtcDateTime.ToString(CultureInfo.InvariantCulture);
 
             var path = request.RequestUri.AbsolutePath.Replace("//", "/");
 

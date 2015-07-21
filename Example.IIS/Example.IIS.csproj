@@ -1,0 +1,396 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9209C984-96C1-466D-8B29-73E8FC5F38E5}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Example.IIS</RootNamespace>
+    <AssemblyName>Example.IIS</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <MvcProjectUpgradeChecked>true</MvcProjectUpgradeChecked>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Providers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.2.0.0\lib\net40\System.Web.Providers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Scripts\bower_components\crypto-js\aes.js" />
+    <Content Include="Scripts\bower_components\crypto-js\cipher-core.js" />
+    <Content Include="Scripts\bower_components\crypto-js\core.js" />
+    <Content Include="Scripts\bower_components\crypto-js\crypto-js.js" />
+    <Content Include="Scripts\bower_components\crypto-js\enc-base64.js" />
+    <Content Include="Scripts\bower_components\crypto-js\enc-hex.js" />
+    <Content Include="Scripts\bower_components\crypto-js\enc-latin1.js" />
+    <Content Include="Scripts\bower_components\crypto-js\enc-utf16.js" />
+    <Content Include="Scripts\bower_components\crypto-js\enc-utf8.js" />
+    <Content Include="Scripts\bower_components\crypto-js\evpkdf.js" />
+    <Content Include="Scripts\bower_components\crypto-js\format-hex.js" />
+    <Content Include="Scripts\bower_components\crypto-js\format-openssl.js" />
+    <Content Include="Scripts\bower_components\crypto-js\hmac-md5.js" />
+    <Content Include="Scripts\bower_components\crypto-js\hmac-ripemd160.js" />
+    <Content Include="Scripts\bower_components\crypto-js\hmac-sha1.js" />
+    <Content Include="Scripts\bower_components\crypto-js\hmac-sha224.js" />
+    <Content Include="Scripts\bower_components\crypto-js\hmac-sha256.js" />
+    <Content Include="Scripts\bower_components\crypto-js\hmac-sha3.js" />
+    <Content Include="Scripts\bower_components\crypto-js\hmac-sha384.js" />
+    <Content Include="Scripts\bower_components\crypto-js\hmac-sha512.js" />
+    <Content Include="Scripts\bower_components\crypto-js\hmac.js" />
+    <Content Include="Scripts\bower_components\crypto-js\index.js" />
+    <Content Include="Scripts\bower_components\crypto-js\lib-typedarrays.js" />
+    <Content Include="Scripts\bower_components\crypto-js\md5.js" />
+    <Content Include="Scripts\bower_components\crypto-js\mode-cfb.js" />
+    <Content Include="Scripts\bower_components\crypto-js\mode-ctr-gladman.js" />
+    <Content Include="Scripts\bower_components\crypto-js\mode-ctr.js" />
+    <Content Include="Scripts\bower_components\crypto-js\mode-ecb.js" />
+    <Content Include="Scripts\bower_components\crypto-js\mode-ofb.js" />
+    <Content Include="Scripts\bower_components\crypto-js\pad-ansix923.js" />
+    <Content Include="Scripts\bower_components\crypto-js\pad-iso10126.js" />
+    <Content Include="Scripts\bower_components\crypto-js\pad-iso97971.js" />
+    <Content Include="Scripts\bower_components\crypto-js\pad-nopadding.js" />
+    <Content Include="Scripts\bower_components\crypto-js\pad-pkcs7.js" />
+    <Content Include="Scripts\bower_components\crypto-js\pad-zeropadding.js" />
+    <Content Include="Scripts\bower_components\crypto-js\pbkdf2.js" />
+    <Content Include="Scripts\bower_components\crypto-js\rabbit-legacy.js" />
+    <Content Include="Scripts\bower_components\crypto-js\rabbit.js" />
+    <Content Include="Scripts\bower_components\crypto-js\rc4.js" />
+    <Content Include="Scripts\bower_components\crypto-js\ripemd160.js" />
+    <Content Include="Scripts\bower_components\crypto-js\sha1.js" />
+    <Content Include="Scripts\bower_components\crypto-js\sha224.js" />
+    <Content Include="Scripts\bower_components\crypto-js\sha256.js" />
+    <Content Include="Scripts\bower_components\crypto-js\sha3.js" />
+    <Content Include="Scripts\bower_components\crypto-js\sha384.js" />
+    <Content Include="Scripts\bower_components\crypto-js\sha512.js" />
+    <Content Include="Scripts\bower_components\crypto-js\tripledes.js" />
+    <Content Include="Scripts\bower_components\crypto-js\x64-core.js" />
+    <Content Include="Scripts\bower_components\jquery\dist\jquery.js" />
+    <Content Include="Scripts\bower_components\jquery\dist\jquery.min.js" />
+    <Content Include="Scripts\bower_components\jquery\MIT-LICENSE.txt" />
+    <Content Include="Scripts\bower_components\jquery\src\ajax.js" />
+    <Content Include="Scripts\bower_components\jquery\src\ajax\jsonp.js" />
+    <Content Include="Scripts\bower_components\jquery\src\ajax\load.js" />
+    <Content Include="Scripts\bower_components\jquery\src\ajax\parseJSON.js" />
+    <Content Include="Scripts\bower_components\jquery\src\ajax\parseXML.js" />
+    <Content Include="Scripts\bower_components\jquery\src\ajax\script.js" />
+    <Content Include="Scripts\bower_components\jquery\src\ajax\var\nonce.js" />
+    <Content Include="Scripts\bower_components\jquery\src\ajax\var\rquery.js" />
+    <Content Include="Scripts\bower_components\jquery\src\ajax\xhr.js" />
+    <Content Include="Scripts\bower_components\jquery\src\attributes.js" />
+    <Content Include="Scripts\bower_components\jquery\src\attributes\attr.js" />
+    <Content Include="Scripts\bower_components\jquery\src\attributes\classes.js" />
+    <Content Include="Scripts\bower_components\jquery\src\attributes\prop.js" />
+    <Content Include="Scripts\bower_components\jquery\src\attributes\support.js" />
+    <Content Include="Scripts\bower_components\jquery\src\attributes\val.js" />
+    <Content Include="Scripts\bower_components\jquery\src\callbacks.js" />
+    <Content Include="Scripts\bower_components\jquery\src\core.js" />
+    <Content Include="Scripts\bower_components\jquery\src\core\access.js" />
+    <Content Include="Scripts\bower_components\jquery\src\core\init.js" />
+    <Content Include="Scripts\bower_components\jquery\src\core\parseHTML.js" />
+    <Content Include="Scripts\bower_components\jquery\src\core\ready.js" />
+    <Content Include="Scripts\bower_components\jquery\src\core\var\rsingleTag.js" />
+    <Content Include="Scripts\bower_components\jquery\src\css.js" />
+    <Content Include="Scripts\bower_components\jquery\src\css\addGetHookIf.js" />
+    <Content Include="Scripts\bower_components\jquery\src\css\curCSS.js" />
+    <Content Include="Scripts\bower_components\jquery\src\css\defaultDisplay.js" />
+    <Content Include="Scripts\bower_components\jquery\src\css\hiddenVisibleSelectors.js" />
+    <Content Include="Scripts\bower_components\jquery\src\css\support.js" />
+    <Content Include="Scripts\bower_components\jquery\src\css\swap.js" />
+    <Content Include="Scripts\bower_components\jquery\src\css\var\cssExpand.js" />
+    <Content Include="Scripts\bower_components\jquery\src\css\var\getStyles.js" />
+    <Content Include="Scripts\bower_components\jquery\src\css\var\isHidden.js" />
+    <Content Include="Scripts\bower_components\jquery\src\css\var\rmargin.js" />
+    <Content Include="Scripts\bower_components\jquery\src\css\var\rnumnonpx.js" />
+    <Content Include="Scripts\bower_components\jquery\src\data.js" />
+    <Content Include="Scripts\bower_components\jquery\src\data\accepts.js" />
+    <Content Include="Scripts\bower_components\jquery\src\data\Data.js" />
+    <Content Include="Scripts\bower_components\jquery\src\data\var\data_priv.js" />
+    <Content Include="Scripts\bower_components\jquery\src\data\var\data_user.js" />
+    <Content Include="Scripts\bower_components\jquery\src\deferred.js" />
+    <Content Include="Scripts\bower_components\jquery\src\deprecated.js" />
+    <Content Include="Scripts\bower_components\jquery\src\dimensions.js" />
+    <Content Include="Scripts\bower_components\jquery\src\effects.js" />
+    <Content Include="Scripts\bower_components\jquery\src\effects\animatedSelector.js" />
+    <Content Include="Scripts\bower_components\jquery\src\effects\Tween.js" />
+    <Content Include="Scripts\bower_components\jquery\src\event.js" />
+    <Content Include="Scripts\bower_components\jquery\src\event\ajax.js" />
+    <Content Include="Scripts\bower_components\jquery\src\event\alias.js" />
+    <Content Include="Scripts\bower_components\jquery\src\event\support.js" />
+    <Content Include="Scripts\bower_components\jquery\src\exports\amd.js" />
+    <Content Include="Scripts\bower_components\jquery\src\exports\global.js" />
+    <Content Include="Scripts\bower_components\jquery\src\intro.js" />
+    <Content Include="Scripts\bower_components\jquery\src\jquery.js" />
+    <Content Include="Scripts\bower_components\jquery\src\manipulation.js" />
+    <Content Include="Scripts\bower_components\jquery\src\manipulation\support.js" />
+    <Content Include="Scripts\bower_components\jquery\src\manipulation\var\rcheckableType.js" />
+    <Content Include="Scripts\bower_components\jquery\src\manipulation\_evalUrl.js" />
+    <Content Include="Scripts\bower_components\jquery\src\offset.js" />
+    <Content Include="Scripts\bower_components\jquery\src\outro.js" />
+    <Content Include="Scripts\bower_components\jquery\src\queue.js" />
+    <Content Include="Scripts\bower_components\jquery\src\queue\delay.js" />
+    <Content Include="Scripts\bower_components\jquery\src\selector-native.js" />
+    <Content Include="Scripts\bower_components\jquery\src\selector-sizzle.js" />
+    <Content Include="Scripts\bower_components\jquery\src\selector.js" />
+    <Content Include="Scripts\bower_components\jquery\src\serialize.js" />
+    <Content Include="Scripts\bower_components\jquery\src\sizzle\dist\sizzle.js" />
+    <Content Include="Scripts\bower_components\jquery\src\sizzle\dist\sizzle.min.js" />
+    <Content Include="Scripts\bower_components\jquery\src\traversing.js" />
+    <Content Include="Scripts\bower_components\jquery\src\traversing\findFilter.js" />
+    <Content Include="Scripts\bower_components\jquery\src\traversing\var\rneedsContext.js" />
+    <Content Include="Scripts\bower_components\jquery\src\var\arr.js" />
+    <Content Include="Scripts\bower_components\jquery\src\var\class2type.js" />
+    <Content Include="Scripts\bower_components\jquery\src\var\concat.js" />
+    <Content Include="Scripts\bower_components\jquery\src\var\hasOwn.js" />
+    <Content Include="Scripts\bower_components\jquery\src\var\indexOf.js" />
+    <Content Include="Scripts\bower_components\jquery\src\var\pnum.js" />
+    <Content Include="Scripts\bower_components\jquery\src\var\push.js" />
+    <Content Include="Scripts\bower_components\jquery\src\var\rnotwhite.js" />
+    <Content Include="Scripts\bower_components\jquery\src\var\slice.js" />
+    <Content Include="Scripts\bower_components\jquery\src\var\strundefined.js" />
+    <Content Include="Scripts\bower_components\jquery\src\var\support.js" />
+    <Content Include="Scripts\bower_components\jquery\src\var\toString.js" />
+    <Content Include="Scripts\bower_components\jquery\src\wrap.js" />
+    <Content Include="Scripts\package.json" />
+    <Content Include="Scripts\bower_components\jquery\.bower.json" />
+    <Content Include="Scripts\bower_components\jquery\bower.json" />
+    <Content Include="Scripts\bower_components\jquery\dist\jquery.min.map" />
+    <Content Include="Scripts\bower_components\jquery\src\sizzle\dist\sizzle.min.map" />
+    <Content Include="Scripts\bower_components\crypto-js\.bower.json" />
+    <Content Include="Scripts\bower_components\crypto-js\bower.json" />
+    <Content Include="Scripts\bower_components\crypto-js\CONTRIBUTING.md" />
+    <Content Include="Scripts\bower_components\crypto-js\docs\QuickStartGuide.wiki" />
+    <Content Include="Scripts\bower_components\crypto-js\package.json" />
+    <Content Include="Scripts\bower_components\crypto-js\README.md" />
+    <None Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Heimdall.Server\Heimdall.Server.csproj">
+      <Project>{b94154fe-b295-4224-a44d-03d200bacec5}</Project>
+      <Name>Heimdall.Server</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Heimdall\Heimdall.csproj">
+      <Project>{bcfb9633-5881-4e5d-8d92-3709510aa81e}</Project>
+      <Name>Heimdall</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>False</AutoAssignPort>
+          <DevelopmentServerPort>12345</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:49415/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{13C17C5E-F736-4122-A34C-6D083F362C01}</ProjectGuid>
+    <ProjectGuid>{B94154FE-B295-4224-A44D-03D200BACEC5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Heimdall.Server</RootNamespace>
@@ -30,8 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -45,27 +45,29 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuthenticateRequest.cs" />
     <Compile Include="AuthenticateAttiribute.cs" />
-    <Compile Include="HmacAuthenticationHandler.cs" />
-    <Compile Include="Interfaces\IAuthenticateRequest.cs" />
+    <Compile Include="AuthenticateRequest.cs" />
+    <Compile Include="HmacAuthenticationHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Heimdall\Heimdall.csproj">
-      <Project>{36c995ae-6649-43ef-a7aa-8b2aca91d667}</Project>
-      <Name>Heimdall</Name>
-    </ProjectReference>
+    <None Include="app.config" />
+    <None Include="nuget.nuspec">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\Heimdall\Heimdall.csproj">
+      <Project>{bcfb9633-5881-4e5d-8d92-3709510aa81e}</Project>
+      <Name>Heimdall</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

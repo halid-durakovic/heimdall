@@ -1,10 +1,14 @@
-﻿using System;
+using System;
 using System.Security.Cryptography;
 using System.Text;
-using Heimdall.Interfaces;
 
 namespace Heimdall
 {
+    public interface ICalculateSignature
+    {
+        string Calculate(string secret, string messageRepresentation);
+    }
+
     public class CalculateSignature : ICalculateSignature
     {
         public string Calculate(string secret, string messageRepresentation)

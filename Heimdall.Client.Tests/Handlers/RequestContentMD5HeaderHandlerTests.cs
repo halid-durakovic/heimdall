@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Cryptography;
 using System.Text;
 using Heimdall.Client.Handlers;
 using Heimdall.Tests.Framework;
@@ -33,7 +34,7 @@ namespace Heimdall.Client.Tests.Handlers
                 Content = new StringContent("something")
             };
 
-            var expectedMD5 = new System.Security.Cryptography.MD5CryptoServiceProvider()
+            var expectedMD5 = new MD5CryptoServiceProvider()
                 .ComputeHash(Encoding.UTF8.GetBytes("something"));
 
             var result = client.SendAsync(request)

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E6F4B0E6-4C6E-446F-A607-BE6E521F0B4B}</ProjectGuid>
+    <ProjectGuid>{38E3FE41-9B4F-4915-AAC6-882DFAF22CAD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Heimdall.Client.Tests</RootNamespace>
@@ -34,8 +34,8 @@
       <HintPath>..\packages\Moq.4.2.1507.0118\lib\net40\Moq.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
@@ -57,37 +57,33 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.SelfHost.5.2.3\lib\net45\System.Web.Http.SelfHost.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Handlers\UsernameHandlerTests.cs" />
     <Compile Include="Handlers\HmacSigningHandlerTests.cs" />
     <Compile Include="Handlers\RequestContentMD5HeaderHandlerTests.cs" />
-    <Compile Include="Handlers\RequestTimestampHandlerTests.cs" />
-    <Compile Include="SigningHttpClientIntegrationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Framework\TestController.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <Compile Include="Handlers\RequestTimestampHandlerTests.cs" />
+    <Compile Include="Handlers\UsernameHandlerTests.cs" />
+    <Compile Include="SigningHttpClientTests.cs" />
+    <Compile Include="TestController.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Heimdall.Client\Heimdall.Client.csproj">
-      <Project>{21dfa465-1233-4eb3-8c6a-ab367f0c3fd7}</Project>
+      <Project>{430a2d10-9eb3-44b0-aea2-2a2fb7a12d21}</Project>
       <Name>Heimdall.Client</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Heimdall\Heimdall.csproj">
-      <Project>{36c995ae-6649-43ef-a7aa-8b2aca91d667}</Project>
-      <Name>Heimdall</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Tests\Heimdall.Tests.csproj">
-      <Project>{805e8ff2-80d9-429b-a6b5-a846a2da8be9}</Project>
+    <ProjectReference Include="..\Heimdall.Tests\Heimdall.Tests.csproj">
+      <Project>{6a70c48d-5c26-4216-a629-a5277c36adb6}</Project>
       <Name>Heimdall.Tests</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Heimdall\Heimdall.csproj">
+      <Project>{bcfb9633-5881-4e5d-8d92-3709510aa81e}</Project>
+      <Name>Heimdall</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

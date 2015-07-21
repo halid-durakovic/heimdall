@@ -1,10 +1,15 @@
 ﻿using System.Linq;
 using System.Net.Http;
 using System.Security.Cryptography;
-using Heimdall.Interfaces;
 
 namespace Heimdall
 {
+    public interface ICalculateHashes
+    {
+        byte[] ComputeHash(HttpContent httpContent);
+        bool IsValidHash(HttpRequestMessage request);
+    }
+
     public class HashCalculator : ICalculateHashes
     {
         private static readonly object ComputeHashSyncronise = new object();

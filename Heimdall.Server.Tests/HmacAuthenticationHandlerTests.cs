@@ -1,6 +1,6 @@
 using System.Net;
 using System.Net.Http;
-using Heimdall.Server.Interfaces;
+using Heimdall.Tests;
 using Heimdall.Tests.Framework;
 using Moq;
 using NUnit.Framework;
@@ -19,9 +19,9 @@ namespace Heimdall.Server.Tests
         {
             mockAuthenticateRequest = new Mock<IAuthenticateRequest>();
             handler = new HmacAuthenticationHandler(mockAuthenticateRequest.Object)
-            {
-                InnerHandler = new TestHandler()
-            };
+                      {
+                          InnerHandler = new TestHandler()
+                      };
             client = new HttpClient(handler);
         }
 

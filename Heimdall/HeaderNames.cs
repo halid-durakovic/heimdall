@@ -1,4 +1,4 @@
-namespace Heimdall
+﻿namespace Heimdall
 {
     public class HeaderNames
     {

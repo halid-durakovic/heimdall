@@ -21,13 +21,14 @@
 	</Target>
 
 	<Target Name="tasks\Build">
-		<MSBuild Projects="$(ThisDirectory)..\heimdall.sln" Properties="Configuration=$(Configuration);TargetFrameworkVersion=$(TargetFramework);Platform=$(Platform)"/>
+		<MSBuild Projects="..\heimdall.sln" Properties="Configuration=$(Configuration);TargetFrameworkVersion=$(TargetFramework);Platform=$(Platform)"/>
 	</Target>
 
 	<Target Name="tasks\Pack">
+    <Message Text="Testing 123 -> $(ThisDirectory)" />
 		<BumpVersion FilePath="../Heimdall/nuget.nuspec" XPathToVersionNumber="/package/metadata/version" />
 		<Exec Command="nuget pack ../Heimdall/nuget.nuspec" />
-		<BumpVersion FilePath="../Heimdall.Client/nuget.nuspec" XPathToVersionNumber="/package/metadata/version" />
+    <BumpVersion FilePath="../Heimdall.Client/nuget.nuspec" XPathToVersionNumber="/package/metadata/version" />
 		<Exec Command="nuget pack ../Heimdall.Client/nuget.nuspec" />
 		<BumpVersion FilePath="../Heimdall.Server/nuget.nuspec" XPathToVersionNumber="/package/metadata/version" />
 		<Exec Command="nuget pack ../Heimdall.Server/nuget.nuspec" />
@@ -40,11 +41,11 @@
 	</Target>
 
 	<Target Name="Deploy">
-		<CallTarget Targets="tasks\Clean" />
+    <CallTarget Targets="tasks\Clean" />
 		<CallTarget Targets="tasks\Build" />
-		<CallTarget Targets="tasks\Pack" />
-		<CallTarget Targets="tasks\Push" />
-		<!--<CallTarget Targets="tasks\Clean" />-->
+    <CallTarget Targets="tasks\Pack" />
+    <!--CallTarget Targets="tasks\Push" /-->
+    <CallTarget Targets="tasks\Clean" />
 	</Target>
   
 </Project>

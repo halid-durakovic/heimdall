@@ -1,6 +1,5 @@
-using System.Net.Http;
+﻿using System.Net.Http;
 using Heimdall.Client.Handlers;
-using Heimdall.Interfaces;
 
 namespace Heimdall.Client
 {

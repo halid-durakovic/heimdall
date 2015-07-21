@@ -1,0 +1,56 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <script src="~/Scripts/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="http://crypto-js.googlecode.com/svn/tags/3.0.2/build/rollups/hmac-sha256.js"></script>
+    <script src="http://crypto-js.googlecode.com/svn/tags/3.0.2/build/components/enc-base64-min.js"></script>
+</head>
+<body>
+    <div>
+
+        <h1>Heimdall - WebApi Security</h1>
+
+        <textarea id="content" style="width: 500px; height: 200px">
+        </textarea>
+
+        <script>
+            /// Http METHOD\n +
+            /// Http PATH\n +
+            /// Content-Type\n +  
+            /// Content-MD5\n +  
+            /// Timestamp\n +
+            var currentDate = new Date().toUTCString();
+            var messageRepresentation = ['GET', '/api/values', '', '', currentDate].join('\n');
+
+            $('#content').append('message representation -> \r\n' + messageRepresentation + '\r\n');
+
+            var hash = CryptoJS.HmacSHA256(messageRepresentation, "secret");
+            var hashInBase64 = CryptoJS.enc.Base64.stringify(hash);
+            var apiKey = hashInBase64;
+
+            $('#content').append('message hash -> \r\n' + apiKey + '<br/>');
+
+
+            $.ajax({
+                url: "/api/values",
+                headers: {
+                    'X-ApiAuth-Date': currentDate,
+                    'X-ApiAuth-Username': 'username',
+                    'Authorization': 'ApiAuth ' + apiKey
+                },
+                type: "GET",
+                success: function () { alert('Success!'); }
+            });
+
+        </script>
+
+    </div>
+</body>
+</html>

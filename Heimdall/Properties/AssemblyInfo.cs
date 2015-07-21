@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Cachely")]
+[assembly: AssemblyTitle("WebApiAuthentication")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Cachely")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyProduct("WebApiAuthentication")]
+[assembly: AssemblyCopyright("Copyright © Microsoft 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("a6ca68eb-a690-41da-a23a-1fb8a58276ca")]
+[assembly: Guid("3910db23-b16f-4ac8-9d97-194c7d300b1e")]
 
 // Version information for an assembly consists of the following four values:
 //

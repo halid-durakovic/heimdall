@@ -1,10 +1,15 @@
+﻿using System;
 using System.Linq;
 using System.Net.Http;
-using Heimdall.Interfaces;
-using Heimdall.Server.Interfaces;
+using System.Text;
 
 namespace Heimdall.Server
 {
+    public interface IAuthenticateRequest
+    {
+        bool IsAuthenticated(HttpRequestMessage request);
+    }
+
     public class AuthenticateRequest : IAuthenticateRequest
     {
         private readonly ICalculateHashes hashCalculator;
