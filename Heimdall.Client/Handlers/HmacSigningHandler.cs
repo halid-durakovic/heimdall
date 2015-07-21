@@ -3,7 +3,7 @@ using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace WebApiAuthentication.Client.Handlers
+namespace Heimdall.Client.Handlers
 {
     public class HmacSigningHandler : DelegatingHandler
     {

@@ -1,10 +1,10 @@
-using NUnit.Framework;
 using System;
 using System.Net.Http;
-using WebApiAuthentication.Client.Handlers;
-using WebApiAuthentication.Tests.Framework;
+using Heimdall.Client.Handlers;
+using Heimdall.Tests.Framework;
+using NUnit.Framework;
 
-namespace WebApiAuthentication.Client.Tests.Handlers
+namespace Heimdall.Client.Tests.Handlers
 {
     [TestFixture]
     public class RequestTimestampHandlerTests

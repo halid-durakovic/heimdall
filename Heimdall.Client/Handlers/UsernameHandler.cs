@@ -1,6 +1,6 @@
 using System.Net.Http;
 
-namespace WebApiAuthentication.Client.Handlers
+namespace Heimdall.Client.Handlers
 {
     public class UsernameHandler : DelegatingHandler
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
 
-namespace WebApiAuthentication.Client.Tests
+namespace Heimdall.Client.Tests
 {
     public class TestController : ApiController
     {

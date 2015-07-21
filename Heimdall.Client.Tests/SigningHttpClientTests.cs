@@ -1,15 +1,15 @@
-﻿using Moq;
-using NUnit.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Text;
-﻿using System.Web.Http;
+using System.Web.Http;
 using System.Web.Http.SelfHost;
+using Moq;
+using NUnit.Framework;
 
-namespace WebApiAuthentication.Client.Tests
+namespace Heimdall.Client.Tests
 {
     public class SigningHttpClientIntegrationTests
     {

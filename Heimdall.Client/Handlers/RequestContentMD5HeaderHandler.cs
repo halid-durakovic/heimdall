@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace WebApiAuthentication.Client.Handlers
+namespace Heimdall.Client.Handlers
 {
     public class RequestContentMd5HeaderHandler : DelegatingHandler
     {

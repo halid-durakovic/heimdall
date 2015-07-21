@@ -1,7 +1,7 @@
 ﻿using System.Net.Http;
-using WebApiAuthentication.Client.Handlers;
+using Heimdall.Client.Handlers;
 
-namespace WebApiAuthentication.Client
+namespace Heimdall.Client
 {
     public class SigningHttpClientFactory
     {

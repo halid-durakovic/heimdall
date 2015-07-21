@@ -1,13 +1,14 @@
-using NUnit.Framework;
 using System;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Cryptography;
 using System.Text;
-using WebApiAuthentication.Client.Handlers;
-using WebApiAuthentication.Tests.Framework;
+using Heimdall.Client.Handlers;
+using Heimdall.Tests.Framework;
+using NUnit.Framework;
 
-namespace WebApiAuthentication.Client.Tests.Handlers
+namespace Heimdall.Client.Tests.Handlers
 {
     [TestFixture]
     public class RequestContentMD5HeaderHandlerTests
@@ -33,7 +34,7 @@ namespace WebApiAuthentication.Client.Tests.Handlers
                 Content = new StringContent("something")
             };
 
-            var expectedMD5 = new System.Security.Cryptography.MD5CryptoServiceProvider()
+            var expectedMD5 = new MD5CryptoServiceProvider()
                 .ComputeHash(Encoding.UTF8.GetBytes("something"));
 
             var result = client.SendAsync(request)
