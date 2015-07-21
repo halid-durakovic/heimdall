@@ -17,8 +17,7 @@
 
         <h1>Heimdall - WebApi Security</h1>
 
-        <textarea id="content" style="width: 500px; height: 200px">
-        </textarea>
+        <textarea id="content" style="width: 500px; height: 200px"></textarea>
 
         <script>
             /// Http METHOD\n +
@@ -35,8 +34,7 @@
             var hashInBase64 = CryptoJS.enc.Base64.stringify(hash);
             var apiKey = hashInBase64;
 
-            $('#content').append('message hash -> \r\n' + apiKey + '<br/>');
-
+            $('#content').append('\r\nmessage hash -> \r\n' + apiKey + '<br/>');
 
             $.ajax({
                 url: "/api/values",
