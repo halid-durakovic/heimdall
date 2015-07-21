@@ -28,6 +28,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{1C958560
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildTasks", "BuildTasks\BuildTasks.csproj", "{6C9072FE-B0ED-4A93-8083-C692FA250CEE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{D62F2148-4741-4909-BDC9-10F020A7D73B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Client", "Example.Client\Example.Client.csproj", "{BD2D031F-DF9F-4D45-B86D-9CBCB140ABEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Server", "Example.Server\Example.Server.csproj", "{1B3F0D2D-C372-4F0D-89E6-3BD6A82FCFC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.IIS", "Example.IIS\Example.IIS.csproj", "{9209C984-96C1-466D-8B29-73E8FC5F38E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Client.NodeJs", "Example.Client.NodeJs\Example.Client.NodeJs.csproj", "{C71563D8-59C7-46FA-88BF-74D8F0430BF7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,8 +72,30 @@ Global
 		{6C9072FE-B0ED-4A93-8083-C692FA250CEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C9072FE-B0ED-4A93-8083-C692FA250CEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C9072FE-B0ED-4A93-8083-C692FA250CEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD2D031F-DF9F-4D45-B86D-9CBCB140ABEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD2D031F-DF9F-4D45-B86D-9CBCB140ABEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD2D031F-DF9F-4D45-B86D-9CBCB140ABEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD2D031F-DF9F-4D45-B86D-9CBCB140ABEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B3F0D2D-C372-4F0D-89E6-3BD6A82FCFC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B3F0D2D-C372-4F0D-89E6-3BD6A82FCFC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B3F0D2D-C372-4F0D-89E6-3BD6A82FCFC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B3F0D2D-C372-4F0D-89E6-3BD6A82FCFC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9209C984-96C1-466D-8B29-73E8FC5F38E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9209C984-96C1-466D-8B29-73E8FC5F38E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9209C984-96C1-466D-8B29-73E8FC5F38E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9209C984-96C1-466D-8B29-73E8FC5F38E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C71563D8-59C7-46FA-88BF-74D8F0430BF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C71563D8-59C7-46FA-88BF-74D8F0430BF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C71563D8-59C7-46FA-88BF-74D8F0430BF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C71563D8-59C7-46FA-88BF-74D8F0430BF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BD2D031F-DF9F-4D45-B86D-9CBCB140ABEB} = {D62F2148-4741-4909-BDC9-10F020A7D73B}
+		{1B3F0D2D-C372-4F0D-89E6-3BD6A82FCFC8} = {D62F2148-4741-4909-BDC9-10F020A7D73B}
+		{9209C984-96C1-466D-8B29-73E8FC5F38E5} = {D62F2148-4741-4909-BDC9-10F020A7D73B}
+		{C71563D8-59C7-46FA-88BF-74D8F0430BF7} = {D62F2148-4741-4909-BDC9-10F020A7D73B}
 	EndGlobalSection
 EndGlobal
