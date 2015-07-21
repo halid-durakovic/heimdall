@@ -1,6 +1,9 @@
-#WebApi Authentication#
+<img align="left" src="https://avatars0.githubusercontent.com/u/7360948?v=3" />
 
-WebApiAuthentication is a library that can be used by 
+&nbsp;Heimdall<br /><br />
+=============
+
+Heimdall is a library that can be used by 
 
  - Client applications wanting to sign outgoing messages
  - Server applications (ASP.net WebApi) wishing to verify signed messages
