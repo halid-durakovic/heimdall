@@ -27,7 +27,7 @@
             /// Content-MD5\n +  
             /// Timestamp\n +
             var currentDate = new Date().toUTCString();
-            var messageRepresentation = ['GET', '/api/values', '', '', currentDate].join('\n');
+            var messageRepresentation = ['GET', '/api/values', 'application/json', '', currentDate].join('\n');
 
             $('#content').append('message representation -> \r\n' + messageRepresentation + '\r\n');
 
@@ -43,7 +43,8 @@
                 headers: {
                     'X-ApiAuth-Date': currentDate,
                     'X-ApiAuth-Username': 'username',
-                    'Authorization': 'ApiAuth ' + apiKey
+                    'Authorization': 'ApiAuth ' + apiKey,
+                    'Content-Type': 'application/json'
                 },
                 type: "GET",
                 success: function () { alert('Success!'); }
