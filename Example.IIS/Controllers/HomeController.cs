@@ -6,7 +6,7 @@ namespace Example.IIS.Controllers
     {
         public ActionResult Index()
         {
-            return Content("Waiting for request....");
+            return View();
         }
     }
 }

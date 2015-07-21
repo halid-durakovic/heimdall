@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Net.Http;
 
 namespace Heimdall
@@ -29,8 +30,10 @@ namespace Heimdall
                 throw new ArgumentNullException("secret");
 
             var messageRepresentation = buildMessageRepresentation.Build(request);
-
-            return calculateSignature.Calculate(secret, messageRepresentation);
+            Debug.WriteLine("Message Representation -> " + messageRepresentation);
+            var hash = calculateSignature.Calculate(secret, messageRepresentation);
+            Debug.WriteLine("Message Hash -> " + hash);
+            return hash;
         }
     }
 }
