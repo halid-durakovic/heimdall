@@ -280,6 +280,7 @@
     <Content Include="Scripts\bower_components\jquery\src\var\support.js" />
     <Content Include="Scripts\bower_components\jquery\src\var\toString.js" />
     <Content Include="Scripts\bower_components\jquery\src\wrap.js" />
+    <Content Include="Scripts\heimdall.js" />
     <Content Include="Scripts\package.json" />
     <Content Include="Scripts\bower_components\jquery\.bower.json" />
     <Content Include="Scripts\bower_components\jquery\bower.json" />

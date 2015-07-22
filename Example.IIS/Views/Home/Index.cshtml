@@ -10,6 +10,7 @@
     <title></title>
     <script src="~/Scripts/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="~/Scripts/bower_components/crypto-js/crypto-js.js"></script>
+    <script src="~/Scripts/heimdall.js"></script>
 </head>
 <body>
     <div>
@@ -19,72 +20,53 @@
         <textarea id="content" style="width: 500px; height: 500px"></textarea>
 
         <script>
-            
+
             function log(entry) {
                 $('#content').append('\r\n');
-                $('#content').append(entry);
+                $('#content').append(JSON.stringify(entry));
+                $('#content').append('\r\n');
             }
 
-            function encrypt(data, secret) {
-                var hash = CryptoJS.HmacSHA256(data, secret || '');
-                var hashInBase64 = CryptoJS.enc.Base64.stringify(hash);
-                return hashInBase64;
-            }
+            var _h = new Heimdall('', 'username', 'secret');
 
-            /// Http METHOD\n +
-            /// Http PATH\n +
-            /// Content-Type\n +  
-            /// Content-MD5\n +  
-            /// Timestamp\n +
-
-            // Example GET
-
-            var currentDate = new Date().toUTCString();
-            var messageRepresentation = ['GET', '/api/values', 'application/json', '', currentDate].join('\n');
-
-            log('GET /api/values -> ' + messageRepresentation);
-
-            var apiKey = encrypt(messageRepresentation, 'secret');
-
-            log('HMAC Key -> ' + apiKey);
-
-            $.ajax({
-                url: "/api/values",
-                headers: {
-                    'X-ApiAuth-Date': currentDate,
-                    'X-ApiAuth-Username': 'username',
-                    'Authorization': 'ApiAuth ' + apiKey,
-                    'Content-Type': 'application/json'
-                },
-                type: "GET",
-                success: function () { alert('Success!'); }
+            _h.get('/api/values', function (err, res) {
+                if (!err) {
+                    log('GET Success!');
+                    log(res);
+                } else {
+                    log('GET Error!');
+                    log(err);
+                }
             });
 
-            // Example POST
+            _h.post('/api/values', 'hello world', function(err, res) {
+                if (!err) {
+                    log('POST Success!');
+                    log(res);
+                } else {
+                    log('POST Error!');
+                    log(err);
+                }
+            });
 
-            var contentMD5 = encrypt('hello world');
-            log('Content MD5 -> ' + contentMD5);
+            _h.put('/api/values/1', 'hello world', function(err, res) {
+                if (!err) {
+                    log('PUT Success!');
+                    log(res);
+                } else {
+                    log('PUT Error!');
+                    log(err);
+                }
+            });
 
-            messageRepresentation = ['POST', '/api/values', 'application/json', contentMD5, currentDate].join('\n');
-
-            log('POST /api/values -> ' + messageRepresentation);
-
-            apiKey = encrypt(messageRepresentation, 'secret');
-
-            log('HMAC Key -> ' + apiKey);
-
-            $.ajax({
-                url: "/api/values",
-                headers: {
-                    'X-ApiAuth-Date': currentDate,
-                    'X-ApiAuth-Username': 'username',
-                    'Authorization': 'ApiAuth ' + apiKey,
-                    'Content-Type': 'application/json',
-                    'Content-MD5': contentMD5
-                },
-                type: "POST",
-                data: 'hello world',
-                success: function () { alert('Success!'); }
+            _h.delete('/api/values/1', function (err, res) {
+                if (!err) {
+                    log('DELETE Success!');
+                    log(res);
+                } else {
+                    log('DELETE Error!');
+                    log(err);
+                }
             });
 
         </script>
