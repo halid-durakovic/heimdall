@@ -58,7 +58,6 @@
     <Compile Include="BuildMessageRepresentationTests.cs" />
     <Compile Include="BuildRequestSignatureTests.cs" />
     <Compile Include="CalculateSignatureTests.cs" />
-    <Compile Include="Framework\AsyncAssertExtensions.cs" />
     <Compile Include="Framework\TestHandler.cs" />
     <Compile Include="HttpActionContextBuilder.cs" />
     <Compile Include="HttpRequestMessageBuilder.cs" />
