@@ -1,6 +1,7 @@
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Threading.Tasks;
 using Heimdall.Tests;
 using Moq;
 using NUnit.Framework;
@@ -25,27 +26,27 @@ namespace Heimdall.Server.Tests
         }
 
         [Test]
-        public void returns_not_authorised_for_requests_without_username_header()
+        public async Task returns_not_authorised_for_requests_without_username_header()
         {
             var request = HttpRequestMessageBuilder.Instance().Build();
 
-            var result = authenticateRequest.IsAuthenticated(request);
+            var result = await authenticateRequest.IsAuthenticated(request);
 
             Assert.That(result, Is.False);
         }
 
         [Test]
-        public void returns_not_authorised_for_requests_without_authentication_header()
+        public async Task returns_not_authorised_for_requests_without_authentication_header()
         {
             var request = HttpRequestMessageBuilder.Instance().Build();
             request.Headers.Authorization = null;
 
-            var result = authenticateRequest.IsAuthenticated(request);
+            var result = await authenticateRequest.IsAuthenticated(request);
             Assert.That(result, Is.False);
         }
 
         [Test]
-        public void returns_false_if_retrieved_secret_is_null()
+        public async Task returns_false_if_retrieved_secret_is_null()
         {
             var mockGetSecretFromUsername = new Mock<IGetSecretFromUsername>();
             mockGetSecretFromUsername.Setup(x => x.Secret(It.IsAny<string>()))
@@ -56,12 +57,12 @@ namespace Heimdall.Server.Tests
 
             authenticateRequest = new AuthenticateRequest(mockGetSecretFromUsername.Object);
 
-            var result = authenticateRequest.IsAuthenticated(request);
+            var result = await authenticateRequest.IsAuthenticated(request);
             Assert.That(result, Is.False);
         }
 
         [Test]
-        public void returns_false_if_signatures_dont_match()
+        public async Task returns_false_if_signatures_dont_match()
         {
             var mockGetSecretFromUsername = new Mock<IGetSecretFromUsername>();
             mockGetSecretFromUsername.Setup(x => x.Secret(It.IsAny<string>()))
@@ -73,7 +74,7 @@ namespace Heimdall.Server.Tests
 
             authenticateRequest = new AuthenticateRequest(mockGetSecretFromUsername.Object);
 
-            var result = authenticateRequest.IsAuthenticated(request);
+            var result = await authenticateRequest.IsAuthenticated(request);
             Assert.That(result, Is.False);
         }
 
@@ -99,7 +100,7 @@ namespace Heimdall.Server.Tests
         }
 
         [Test]
-        public void returns_true_if_signatures_match()
+        public async Task returns_true_if_signatures_match()
         {
             var request = HttpRequestMessageBuilder.Instance().Build();
             request.Headers.Authorization = new AuthenticationHeaderValue(HeaderNames.AuthenticationScheme, "signature_hash");
@@ -111,13 +112,13 @@ namespace Heimdall.Server.Tests
 
             authenticateRequest = new AuthenticateRequest(new HashCalculator(), mockBuildRequestSignature.Object, mockGetSecretFromUsername.Object);
 
-            var result = authenticateRequest.IsAuthenticated(request);
+            var result = await authenticateRequest.IsAuthenticated(request);
 
             Assert.That(result, Is.True);
         }
 
         [Test]
-        public void returns_false_if_request_md5_header_does_not_match_()
+        public async Task returns_false_if_request_md5_header_does_not_match_()
         {
             var wrongMd5 = Encoding.Default.GetBytes("wrong");
 
@@ -129,7 +130,7 @@ namespace Heimdall.Server.Tests
             request.Headers.Authorization = new AuthenticationHeaderValue(HeaderNames.AuthenticationScheme, "signature_hash");
             request.Headers.Add(HeaderNames.UsernameHeader, "username");
 
-            var result = authenticateRequest.IsAuthenticated(request);
+            var result = await authenticateRequest.IsAuthenticated(request);
 
             Assert.That(result, Is.False);
         }

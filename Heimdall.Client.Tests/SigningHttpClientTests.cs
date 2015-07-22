@@ -69,7 +69,7 @@ namespace Heimdall.Client.Tests
 
             var request = response.RequestMessage;
 
-            var expectedMD5 = new System.Security.Cryptography.MD5CryptoServiceProvider()
+            var expectedMD5 = new System.Security.Cryptography.HMACSHA256(Encoding.UTF8.GetBytes(string.Empty))
                 .ComputeHash(Encoding.UTF8.GetBytes("firstName=Alex&lastName=Brown"));
 
             Assert.That(request.Content.Headers.ContentMD5, Is.Not.Null.Or.Empty);

@@ -31,8 +31,7 @@ namespace Heimdall.Tests
         public HttpRequestMessageBuilder WithContent(HttpContent content)
         {
             this.content = content;
-            contentMd5 = hashCalculator.ComputeHash(content);
-
+            contentMd5 = hashCalculator.ComputeHash(new HttpRequestMessage(httpMethod, url) { Content = content }).Result;
             return this;
         }
 

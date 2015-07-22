@@ -14,16 +14,17 @@ namespace Heimdall.Server
             this.authenticateRequest = authenticateRequest;
         }
 
-        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, System.Threading.CancellationToken cancellationToken)
+        protected async override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, System.Threading.CancellationToken cancellationToken)
         {
-            if (!authenticateRequest.IsAuthenticated(request))
+            var isAuthenticated = await authenticateRequest.IsAuthenticated(request);
+            if (!isAuthenticated)
             {
                 var response = request.CreateErrorResponse(HttpStatusCode.Unauthorized, "Unauthorized API call");
                 response.Headers.WwwAuthenticate.Add(new AuthenticationHeaderValue(HeaderNames.AuthenticationScheme));
-                return Task.Factory.StartNew(() => response);
+                return await Task.FromResult(response);
             }
 
-            return base.SendAsync(request, cancellationToken);
+            return await base.SendAsync(request, cancellationToken);
         }
     }
 }

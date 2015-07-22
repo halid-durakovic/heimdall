@@ -1,6 +1,7 @@
 using System;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using Heimdall.Tests;
 using Moq;
 using NUnit.Framework;
@@ -26,17 +27,6 @@ namespace Heimdall.Server.Tests
         }
 
         [Test]
-        public void throws_exception_if_authenticaterequest_not_set()
-        {
-            var actionContext = HttpActionContextBuilder
-                .Instance()
-                .Build();
-
-            attribute.AuthenticateRequest = null;
-            Assert.Throws<NullReferenceException>(() => attribute.OnActionExecuting(actionContext));
-        }
-
-        [Test]
         public void returns_unauthorized_if_authenticaterequest_is_false()
         {
             var request = HttpRequestMessageBuilder.Instance().Build();
@@ -48,7 +38,7 @@ namespace Heimdall.Server.Tests
                 .Build();
 
             mockAuthenticateRequest.Setup(x => x.IsAuthenticated(It.IsAny<HttpRequestMessage>()))
-                .Returns(false);
+                .Returns(Task.FromResult(false));
 
             attribute.AuthenticateRequest = mockAuthenticateRequest.Object;
 

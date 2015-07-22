@@ -1,41 +1,40 @@
 ﻿using System.Linq;
 using System.Net.Http;
 using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Heimdall
 {
     public interface ICalculateHashes
     {
-        byte[] ComputeHash(HttpContent httpContent);
-        bool IsValidHash(HttpRequestMessage request);
+        Task<byte[]> ComputeHash(HttpRequestMessage request);
+        Task<bool> IsValidHash(HttpRequestMessage request);
     }
 
     public class HashCalculator : ICalculateHashes
     {
-        private static readonly object ComputeHashSyncronise = new object();
-        private static readonly object IsValidHashHashSyncronise = new object();
-
-        public byte[] ComputeHash(HttpContent httpContent)
+        public async Task<byte[]> ComputeHash(HttpRequestMessage request)
         {
-            lock (ComputeHashSyncronise)
-            {
-                var contentPayload = httpContent.ReadAsByteArrayAsync();
-                var bytePayload = contentPayload.Result;
-                using (var md5 = MD5.Create())
-                    return md5.ComputeHash(bytePayload);
-            }
+            var content = await request.Content.ReadAsStringAsync();
+            using (var hmacsha256 = new HMACSHA256(Encoding.UTF8.GetBytes(string.Empty)))
+                return hmacsha256.ComputeHash(Encoding.Default.GetBytes(content));
         }
 
-        public bool IsValidHash(HttpRequestMessage request)
+        public async Task<bool> IsValidHash(HttpRequestMessage request)
         {
-            lock (IsValidHashHashSyncronise)
-            {
-                var hashHeader = request.Content.Headers.ContentMD5;
-                if (request.Content == null)
-                    return hashHeader == null || hashHeader.Length == 0;
-                var hash = ComputeHash(request.Content);
-                return hash.SequenceEqual(hashHeader);
-            }
+            var hashHeader = request.Content.Headers.ContentMD5;
+
+            if (request.Content == null)
+                return hashHeader == null || hashHeader.Length == 0;
+
+            var content = await request.Content.ReadAsStringAsync();
+
+            byte[] hash;
+            using (var hmacsha256 = new HMACSHA256(Encoding.UTF8.GetBytes(string.Empty)))
+                hash = hmacsha256.ComputeHash(Encoding.Default.GetBytes(content));
+
+            return hash.SequenceEqual(hashHeader);
         }
     }
 }

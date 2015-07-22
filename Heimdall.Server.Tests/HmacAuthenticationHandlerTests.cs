@@ -1,5 +1,6 @@
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using Heimdall.Tests;
 using Heimdall.Tests.Framework;
 using Moq;
@@ -29,7 +30,7 @@ namespace Heimdall.Server.Tests
         public void returns_not_authorised_if_request_is_not_authorised()
         {
             mockAuthenticateRequest.Setup(x => x.IsAuthenticated(It.IsAny<HttpRequestMessage>()))
-                .Returns(false);
+                .Returns(Task.FromResult(false));
 
             var request = HttpRequestMessageBuilder.Instance().Build();
 

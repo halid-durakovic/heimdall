@@ -69,7 +69,7 @@ namespace Example.Server
                                            stopwatch.Stop();
                                            Task.Factory.StartNew(() =>
                                            {
-                                               Thread.Sleep(500);
+                                               Thread.Sleep(250);
                                                Console.WriteLine(string.Format("Executed in {0} millisecond(s)", stopwatch.Elapsed.TotalMilliseconds));
                                            });
                                        }

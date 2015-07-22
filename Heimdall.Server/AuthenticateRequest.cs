@@ -1,52 +1,55 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Net.Http;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace Heimdall.Server
 {
     public interface IAuthenticateRequest
     {
-        bool IsAuthenticated(HttpRequestMessage request);
+        Task<bool> IsAuthenticated(HttpRequestMessage request);
     }
 
     public class AuthenticateRequest : IAuthenticateRequest
     {
-        private readonly ICalculateHashes hashCalculator;
         private readonly IBuildRequestSignature buildRequestSignature;
         private readonly IGetSecretFromUsername getSecretFromUsername;
+        private readonly ICalculateHashes hashCalculator;
 
         public AuthenticateRequest(IGetSecretFromUsername getSecretFromUsername)
             : this(new HashCalculator(), new BuildRequestSignature(), getSecretFromUsername)
-        { }
+        {
+        }
 
-        public AuthenticateRequest(ICalculateHashes hashCalculator, IBuildRequestSignature buildRequestSignature, IGetSecretFromUsername getSecretFromUsername)
+        public AuthenticateRequest(ICalculateHashes hashCalculator, IBuildRequestSignature buildRequestSignature,
+            IGetSecretFromUsername getSecretFromUsername)
         {
             this.hashCalculator = hashCalculator;
             this.buildRequestSignature = buildRequestSignature;
             this.getSecretFromUsername = getSecretFromUsername;
         }
 
-        public bool IsAuthenticated(HttpRequestMessage request)
+        public async Task<bool> IsAuthenticated(HttpRequestMessage request)
         {
             if ((request.Headers.Authorization == null) || (!request.Headers.Contains(HeaderNames.UsernameHeader)))
-                return false;
+                return await Task.FromResult(false);
 
             var secret = getSecretFromUsername.Secret(request.Headers.GetValues(HeaderNames.UsernameHeader).FirstOrDefault());
 
             if (secret == null)
-                return false;
+                return await Task.FromResult(false);
 
             if ((request.Content != null) && (request.Content.Headers.ContentMD5 != null))
-                if (!hashCalculator.IsValidHash(request))
-                    return false;
+            {
+                var isValidHash = await hashCalculator.IsValidHash(request);
+                if (!isValidHash)
+                    return await Task.FromResult(false);
+            }
 
             var signature = buildRequestSignature.Build(secret, request);
-
             if (signature != request.Headers.Authorization.Parameter)
-                return false;
+                return await Task.FromResult(false);
 
-            return true;
+            return await Task.FromResult(true);
         }
     }
 }

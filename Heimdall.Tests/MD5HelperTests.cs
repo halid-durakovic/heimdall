@@ -1,5 +1,6 @@
 ﻿using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using NUnit.Framework;
 
 namespace Heimdall.Tests
@@ -16,7 +17,7 @@ namespace Heimdall.Tests
         }
 
         [Test]
-        public void returns_false_if_request_md5_header_does_not_match_content()
+        public async Task returns_false_if_request_md5_header_does_not_match_content()
         {
             var wrongMd5 = Encoding.Default.GetBytes("wrong");
 
@@ -25,19 +26,19 @@ namespace Heimdall.Tests
                 .WithContentMD5(wrongMd5)
                 .Build();
 
-            var result = hashCalculator.IsValidHash(request);
+            var result = await hashCalculator.IsValidHash(request);
 
             Assert.That(result, Is.False);
         }
 
         [Test]
-        public void returns_true_if_request_md5_header_matches_content_md5()
+        public async Task returns_true_if_request_md5_header_matches_content_md5()
         {
             var request = HttpRequestMessageBuilder.Instance()
                 .WithContent(new StringContent("test"))
                 .Build();
 
-            var result = hashCalculator.IsValidHash(request);
+            var result = await hashCalculator.IsValidHash(request);
 
             Assert.That(result, Is.True);
         }

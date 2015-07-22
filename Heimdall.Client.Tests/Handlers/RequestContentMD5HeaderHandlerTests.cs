@@ -34,7 +34,7 @@ namespace Heimdall.Client.Tests.Handlers
                 Content = new StringContent("something")
             };
 
-            var expectedMD5 = new MD5CryptoServiceProvider()
+            var expectedMD5 = new HMACSHA256(Encoding.UTF8.GetBytes(string.Empty))
                 .ComputeHash(Encoding.UTF8.GetBytes("something"));
 
             var result = client.SendAsync(request)
