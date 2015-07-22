@@ -53,7 +53,7 @@
     <CallTarget Targets="tasks\Clean" />
 		<CallTarget Targets="tasks\Build" />
     <CallTarget Targets="tasks\Pack" />
-    <!--CallTarget Targets="tasks\Push" /-->
+    <CallTarget Targets="tasks\Push" />
     <CallTarget Targets="tasks\Clean" />
 	</Target>
   
