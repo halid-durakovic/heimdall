@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package>
   <metadata>
-    <id>Heimdall</id>
-    <version>1.0.0.4</version>
+    <id>Heimdall.Client.Windsor</id>
+    <version>1.0.0.1</version>
     <authors>fir3pho3nixx@gmail.com</authors>
-    <description>A library for making webapi security super easy</description>
-    <tags>FluentWindsor WebApi Security HMAC</tags>
+    <description>A client library for making webapi security super easy</description>
+    <tags>FluentWindsor WebApi Security HMAC Client</tags>
     <language>en-GB</language>
     <projectUrl>https://github.com/cryosharp/heimdall</projectUrl>
     <iconUrl>https://avatars0.githubusercontent.com/u/7360948?v=3</iconUrl>
@@ -14,14 +14,14 @@
       <frameworkAssembly assemblyName="System.Web" targetFramework="net45" />
     </frameworkAssemblies>
     <references>
-      <reference file="Heimdall.dll" />
+      <reference file="Heimdall.Client.Windsor.dll" />
     </references>
     <dependencies>
-      <dependency id="Microsoft.AspNet.WebApi.Client" version="5.2.3" />
-      <dependency id="Microsoft.AspNet.WebApi.Core" version="5.2.3" />
+      <dependency id="Heimdall" version="1.0.0" />
+      <dependency id="Heimdall.Client" version="1.0.0" />
     </dependencies>
   </metadata>
   <files>
-    <file src="bin\**\Heimdall.dll" target="lib\4.5" />
+    <file src="bin\**\Heimdall.Client.Windsor.dll" target="lib\4.5" />
   </files>
 </package>

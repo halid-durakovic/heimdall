@@ -27,7 +27,7 @@ namespace Example.Server
     {
         private static HttpClient CreateClient()
         {
-            var client = SigningHttpClientFactory.Create("username", "secret");
+            var client = HeimdallClientFactory.Create("username", "secret");
             return client;
         }
 
@@ -76,7 +76,7 @@ namespace Example.Server
                                    });
             }
 
-            //Unsuccesful_Authentication();
+            Unsuccesful_Authentication();
 
             Console.Read();
         }
@@ -101,7 +101,7 @@ namespace Example.Server
         {
             Console.WriteLine("***** Showing a message signed with a different key and not authenticated server side... *****");
 
-            var client = SigningHttpClientFactory.Create("username", "different_secret");
+            var client = HeimdallClientFactory.Create("username", "different_secret");
 
             var response = client.PostAsync("http://localhost:8080/api/values",
                                             new FormUrlEncodedContent(new[] { new KeyValuePair<string, string>("a", "b"), })).Result;

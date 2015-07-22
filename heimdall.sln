@@ -38,6 +38,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.IIS", "Example.IIS\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Client.NodeJs", "Example.Client.NodeJs\Example.Client.NodeJs.csproj", "{C71563D8-59C7-46FA-88BF-74D8F0430BF7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heimdall.Client.Windsor", "Heimdall.Client.Windsor\Heimdall.Client.Windsor.csproj", "{CB609080-DA17-40FC-9862-5042204B136E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heimdall.Client.Windsor.Tests", "Heimdall.Client.Windsor.Tests\Heimdall.Client.Windsor.Tests.csproj", "{74A15F96-B1CC-4050-9534-4BCC3F46F674}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heimdall.Server.Windsor", "Heimdall.Server.Windsor\Heimdall.Server.Windsor.csproj", "{E01AA9BE-D5CE-4DC8-86C6-1918237F0DE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heimdall.Server.Windsor.Tests", "Heimdall.Server.Windsor.Tests\Heimdall.Server.Windsor.Tests.csproj", "{B2DA1494-1C4D-48C5-835C-397ADCC2B5DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -88,6 +96,22 @@ Global
 		{C71563D8-59C7-46FA-88BF-74D8F0430BF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C71563D8-59C7-46FA-88BF-74D8F0430BF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C71563D8-59C7-46FA-88BF-74D8F0430BF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB609080-DA17-40FC-9862-5042204B136E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB609080-DA17-40FC-9862-5042204B136E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB609080-DA17-40FC-9862-5042204B136E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB609080-DA17-40FC-9862-5042204B136E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74A15F96-B1CC-4050-9534-4BCC3F46F674}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74A15F96-B1CC-4050-9534-4BCC3F46F674}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74A15F96-B1CC-4050-9534-4BCC3F46F674}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74A15F96-B1CC-4050-9534-4BCC3F46F674}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E01AA9BE-D5CE-4DC8-86C6-1918237F0DE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E01AA9BE-D5CE-4DC8-86C6-1918237F0DE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E01AA9BE-D5CE-4DC8-86C6-1918237F0DE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E01AA9BE-D5CE-4DC8-86C6-1918237F0DE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2DA1494-1C4D-48C5-835C-397ADCC2B5DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2DA1494-1C4D-48C5-835C-397ADCC2B5DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2DA1494-1C4D-48C5-835C-397ADCC2B5DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2DA1494-1C4D-48C5-835C-397ADCC2B5DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

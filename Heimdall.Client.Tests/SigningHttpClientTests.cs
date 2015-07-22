@@ -38,7 +38,7 @@ namespace Heimdall.Client.Tests
         [SetUp]
         public void SetUp()
         {
-            client = SigningHttpClientFactory.Create("anyusername", "secret");
+            client = HeimdallClientFactory.Create("anyusername", "secret");
             client.BaseAddress = new Uri("http://localhost:8080");
         }
 
@@ -89,7 +89,7 @@ namespace Heimdall.Client.Tests
             mockGetSecretFromKey.Setup(x => x.Secret("anyusername"))
                 .Returns("secret");
 
-            client = SigningHttpClientFactory.Create("anyusername", mockGetSecretFromKey.Object);
+            client = HeimdallClientFactory.Create("anyusername", mockGetSecretFromKey.Object);
             client.BaseAddress = new Uri("http://localhost:8080");
 
             testSignature();

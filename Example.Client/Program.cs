@@ -17,7 +17,7 @@ namespace Example.Client
 
         private static HttpResponseMessage SendSignedPostRequest()
         {
-            HttpClient client = SigningHttpClientFactory.Create("myusername", "mysecret");
+            HttpClient client = HeimdallClientFactory.Create("myusername", "mysecret");
 
             var content = new FormUrlEncodedContent(
                 new[]
@@ -26,8 +26,7 @@ namespace Example.Client
                         new KeyValuePair<string, string>("lastName", "Brown")
                     });
 
-            return client.PostAsync("http://requestb.in/14nmm871", content)
-                         .Result;
+            return client.PostAsync("http://requestb.in/14nmm871", content).Result;
         }
     }
 }
