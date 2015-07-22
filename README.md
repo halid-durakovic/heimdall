@@ -5,5 +5,5 @@
 
 Easy to use HMAC WebAPI Delegating Handler and various clients (C#, NodeJs and Browser)
 
-This project is still very much a work in progress...
+This project is a work in progress... we are nearly there though :)
 
