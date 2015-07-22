@@ -2,10 +2,10 @@
 <package>
   <metadata>
     <id>Heimdall</id>
-    <version>1.0.0.0</version>
+    <version>1.0.0.2</version>
     <authors>fir3pho3nixx@gmail.com</authors>
     <description>A library for making webapi security super easy</description>
-    <tags>FluentWindsor WebApi Security HMAC</tags>
+    <tags>FluentWindsor Heimdall WebApi Security HMAC</tags>
     <language>en-GB</language>
     <projectUrl>https://github.com/cryosharp/heimdall</projectUrl>
     <iconUrl>https://avatars0.githubusercontent.com/u/7360948?v=3</iconUrl>
