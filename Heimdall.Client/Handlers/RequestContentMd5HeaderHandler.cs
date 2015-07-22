@@ -8,12 +8,12 @@ namespace Heimdall.Client.Handlers
     {
         private readonly HashCalculator hashCalculator = new HashCalculator();
 
-        protected async override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
             if (request.Content == null)
-                return await base.SendAsync(request, cancellationToken);
-            request.Content.Headers.ContentMD5 = await hashCalculator.ComputeHash(request);
-            return await base.SendAsync(request, cancellationToken);
+                return base.SendAsync(request, cancellationToken);
+            request.Content.Headers.ContentMD5 = hashCalculator.ComputeHash(request.Content);
+            return base.SendAsync(request, cancellationToken);
         }
     }
 }
