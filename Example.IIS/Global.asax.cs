@@ -26,7 +26,9 @@ namespace Example.IIS
     {
         public string Secret(string username)
         {
-            return "secret";
+            if (username.ToLower().Equals("username"))
+                return "secret";
+            return string.Empty;
         }
     }
 }

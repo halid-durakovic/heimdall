@@ -56,13 +56,27 @@ the request is allowed through, if not then a http response code 401 will be ret
 ##Server
 
 To install the Heimdall delegating handler in your WebAPI project you have two options. As always there is a Castle Windsor version
-that can be automatically picked up by FluentWindsor or if you are not using proper IoC then there is a vanilla version.
+that can be automatically picked up by FluentWindsor or if you are not using proper IoC then there is a vanilla version. Let's take 
+a look at both. 
 
-###Implementing IGetSecretFromUsername
+###IGetSecretFromUsername
 
 You will need to supply an implementation of IGetSecretFromUsername, without this you wont be able to instantiate your delegating
 handler. This is important because it does a server side lookup of the users secret and uses that to create the comparison 
-cryptographic hash in the `Authorisation` header. 
+cryptographic hash and ultimately compares that to what is in the `Authorisation` header. Below is a contrived example of what this 
+looks like, typically you would use a persistence medium. 
+
+```csharp
+public class DummyGetSecretFromUsername : IGetSecretFromUsername
+{
+    public string Secret(string username)
+    {
+        if (username.ToLower().Equals("username"))
+            return "secret";
+        return string.Empty;
+    }
+}
+```
 
 ####Heimdall.Server
 
