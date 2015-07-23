@@ -105,4 +105,7 @@ var content = new FormUrlEncodedContent(new[]
 var result = client.PostAsync("http://requestb.in/14nmm871", content).Result;
 ```
 
+If you would like to see a working example of this, please see the console application .\examples\Example.Client.FluentWindsor 
+after opening the solution in Visual Studio. 
+
 
