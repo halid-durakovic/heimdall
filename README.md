@@ -63,5 +63,23 @@ each one starting with the C# client first.
 This client comes in two flavours. One that is Castle Windsor ready(for use with FluentWindsor) or one without. Use the latter if 
 you are not using Castle Windsor as your IoC container. 
 
-*... to be continued ...*
+####Heimdall.Client
+
+This is the non windsor version. Start by installing the `Heimdall.Client` NuGet. Once this is done let's look at how
+you would make a simple signed get request using a HttpClient. 
+
+    HttpClient client = HeimdallClientFactory.Create("myusername", "mysecret");
+    var content = new FormUrlEncodedContent(new[]
+    {
+        new KeyValuePair<string, string>("firstName", "Alex"),
+        new KeyValuePair<string, string>("lastName", "Brown")
+    });
+    return client.PostAsync("http://requestb.in/14nmm871", content).Result;
+
+####Heimdal.Client.Windsor
+
+Let's look at how we initialise a client using FluentWindsor. First start by installing the `Heimdall.Client.Windsor` NuGet. 
+First you would need to bootstrap Castle Windsor using FluentWindsor like so: 
+
+
 
