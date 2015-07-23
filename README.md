@@ -17,12 +17,14 @@ So for example if we were to make a get request like the one below:
 
 **Example GET Request**
 
-**Headers**
+Headers
+-------
     
     Accept: */*
     Content-Type: application/json
     
-**Path**
+Path
+----
     
     GET /api/mysecureresource/1
   
