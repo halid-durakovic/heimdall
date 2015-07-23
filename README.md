@@ -18,13 +18,11 @@ So for example if we were to make a get request like the one below:
 **Example GET Request**
 
 Headers
--------
     
     Accept: */*
     Content-Type: application/json
     
 Path
-----
     
     GET /api/mysecureresource/1
   
