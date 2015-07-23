@@ -199,4 +199,19 @@ Download the source and start up the Example.IIS project followed by running the
       
 ###The Pure Js Client
 
-Here is another example of a Heimdall client that runs in a browser. Very useful if you are doing web development. 
+Here is another example of a Heimdall client that runs in a browser. Very useful if you are doing web development. You will need a few
+helper libraries to achieve this namely `crypto-js` and `jquery`. You can get both using bower, not sure if crypto-js is available
+on NuGet. If you have NodeJs installed then run the following commands: 
+
+    npm install bower -g
+    bower install jquery
+    bower install crypto-js
+    
+The bower packages should be installed in a folder called `bower_components` in the directory from which you ran the console commands 
+above. Once this is complete place the following script references somewhere in your document: 
+
+```html
+<script src="~/Scripts/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="~/Scripts/bower_components/crypto-js/crypto-js.js"></script>
+```
+
