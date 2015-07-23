@@ -75,13 +75,34 @@ var content = new FormUrlEncodedContent(new[]
     new KeyValuePair<string, string>("firstName", "Alex"),
     new KeyValuePair<string, string>("lastName", "Brown")
 });
-return client.PostAsync("http://requestb.in/14nmm871", content).Result;
+var result = client.PostAsync("http://requestb.in/14nmm871", content).Result;
 ```
+
+If you would like to see a working example of this, please see the console application .\examples\Example.Client after
+opening the solution in Visual Studio. 
 
 ####Heimdal.Client.Windsor
 
 Let's look at how we initialise a client using FluentWindsor. First start by installing the `Heimdall.Client.Windsor` NuGet. 
-First you would need to bootstrap Castle Windsor using FluentWindsor like so: 
+Next you would have to make sure that FluentWindsor is initialised(this should only be called once on startup).
 
+```csharp
+FluentWindsor.NewContainer(typeof(Program).Assembly).WithArrayResolver().WithInstallers().Create();
+```
+
+This will automatically pick up the `IWindsorInstaller` and install an instance of the `IHeimdallClientFactory` which can 
+then be injected for consumption via any constructor known to Castle Windsor. For demonstration purposes we are going to use
+the ServiceLocator of FluentWindsor.
+
+```csharp
+var client = FluentWindsor.ServiceLocator.Resolve<IHeimdallClientFactory>().Create("username", "secret");
+var content = new FormUrlEncodedContent(new[]
+{
+    new KeyValuePair<string, string>("firstName", "Alex"),
+    new KeyValuePair<string, string>("lastName", "Brown")
+});
+
+var result = client.PostAsync("http://requestb.in/14nmm871", content).Result;
+```
 
 
