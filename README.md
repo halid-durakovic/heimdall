@@ -78,6 +78,29 @@ public class DummyGetSecretFromUsername : IGetSecretFromUsername
 }
 ```
 
+If you are using FluentWindsor you have two options, you can either install it via the service locator(least preferred) or create
+a new `IWindsorInstaller` for it. Let's take a look at both:
+
+```csharp
+FluentWindsor.ServiceLocator.Register(Component.For<IGetSecretFromUsername>().ImplementedBy<DummyGetSecretFromUsername>());
+```
+
+OR
+
+```csharp
+public class ProvidersInstaller : IWindsorInstaller
+{
+    public void Install(IWindsorContainer container, IConfigurationStore store)
+    {
+        container.Register(Component.For<IGetSecretFromUsername>().ImplementedBy<DummyGetSecretFromUsername>());
+    }
+}
+```
+
+###Installing
+
+Now lets take a look at the packages you will need below. Pick only one. 
+
 ####Heimdall.Server
 
 This is the non Castle Windsor version. First start by installing the NuGet `Heimdall.Server`. Once this is complete you have to
@@ -88,6 +111,12 @@ add the delegating handler to your WebAPI configuration on application startup i
 var authenticateRequest = new AuthenticateRequest(new DummyGetSecretFromUsername());
 GlobalConfiguration.Configuration.MessageHandlers.Add(new HmacAuthenticationHandler(authenticateRequest));
 ```
+
+####Heimdall.Server.Windsor
+
+This is the Windsor ready version that will be automatically picked up and installed if you using FluentWindsor. If you are 
+using FluentWindsor already then you dont have to do anything. By merely installing the NuGet your WebAPI will be secured
+providing you have supplied a implementation for `IGetSecretFromUsername`. 
 
 ##Clients
 

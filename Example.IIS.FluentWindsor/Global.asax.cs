@@ -6,6 +6,7 @@ using System.Web.Routing;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
+using Example.IIS.Providers;
 using FluentlyWindsor;
 using FluentlyWindsor.Mvc;
 using FluentlyWindsor.WebApi;
@@ -31,6 +32,7 @@ namespace Example.IIS
                 .RegisterApiControllers(GlobalConfiguration.Configuration)
                 .RegisterMvcControllers(ControllerBuilder.Current, "Example.IIS.Controllers")
                 .Create();
+
         }
     }
 }
