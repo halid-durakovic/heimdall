@@ -61,7 +61,7 @@ a look at both.
 
 ###IGetSecretFromUsername
 
-You will need to supply an implementation of IGetSecretFromUsername, without this you wont be able to instantiate your delegating
+You will need to supply an implementation of `IGetSecretFromUsername`, without this you wont be able to instantiate your delegating
 handler. This is important because it does a server side lookup of the users secret and uses that to create the comparison 
 cryptographic hash and ultimately compares that to what is in the `Authorisation` header. Below is a contrived example of what this 
 looks like, typically you would use a persistence medium. 
