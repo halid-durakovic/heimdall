@@ -215,3 +215,16 @@ above. Once this is complete place the following script references somewhere in 
 <script src="~/Scripts/bower_components/crypto-js/crypto-js.js"></script>
 ```
 
+Make sure that the relative path matches to the location from where you installed the bower packages. Next you will need to manually
+embed the browser based Heimdall JS client. You can do this by copying the file from the link below: 
+
+[https://github.com/cryosharp/heimdall/blob/master/Example.IIS/Scripts/heimdall.js](https://github.com/cryosharp/heimdall/blob/master/Example.IIS/Scripts/heimdall.js)
+
+You can also embed this using a script tag like the following: 
+
+```html
+<script src="~/Scripts/heimdall.js"></script>
+```
+
+Make sure this script reference is placed after the jquery and crypto script reference or else it wont work.
+ 
