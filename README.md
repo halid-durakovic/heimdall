@@ -226,5 +226,34 @@ You can also embed this using a script tag like the following:
 <script src="~/Scripts/heimdall.js"></script>
 ```
 
-Make sure this script reference is placed after the jquery and crypto script reference or else it wont work.
- 
+Make sure this script reference is placed after the jquery and crypto script reference or else it wont work. Once complete you are then 
+free to start rolling Heimdall browser based requests using the following javascript: 
+
+```javascript
+//Example GET
+var _h = new Heimdall('http://localhost:12345', 'username', 'secret');
+
+_h.get('/api/values', function (err, res) {
+    if (!err) {
+        alert('GET Success!');
+    } else {
+        alert('GET Error!');
+    }
+});
+```
+
+Similarly if you were doing a POST or PUT request where you have a body then you would do something like so:
+
+```javascript
+//Example GET
+var _h = new Heimdall('http://localhost:12345', 'username', 'secret');
+_h.post('/api/values', 'hello world', function(err, res) {
+    if (!err) {
+        alert('POST Success!');
+    } else {
+        alert('POST Error!');
+    }
+});
+```
+
+There are also plans to make this client available on bower in the near future.
