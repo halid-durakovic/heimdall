@@ -257,3 +257,8 @@ _h.post('/api/values', 'hello world', function(err, res) {
 ```
 
 There are also plans to make this client available on bower in the near future.
+
+##Problems?
+
+For any problems please sign into github and raise issues. 
+
