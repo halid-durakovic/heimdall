@@ -17,7 +17,7 @@ namespace Heimdall.Server
 
         public HmacAuthenticationHandler(IAuthenticateRequest authenticateRequest)
         {
-            if (authenticateRequest == null) throw new ArgumentNullException(nameof(authenticateRequest));
+            if (authenticateRequest == null) throw new ArgumentNullException("authenticateRequest");
             this.AuthenticateRequest = authenticateRequest;
         }
 

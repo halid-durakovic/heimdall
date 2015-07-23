@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Heimdall.Client.Windsor</id>
-    <version>1.0.0.2</version>
+    <version>1.0.0.3</version>
     <authors>fir3pho3nixx@gmail.com</authors>
     <description>A client library for making webapi security super easy</description>
     <tags>FluentWindsor Heimdall WebApi Security HMAC Client</tags>
