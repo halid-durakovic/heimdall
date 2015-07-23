@@ -2,8 +2,8 @@
 <package>
   <metadata>
     <id>Heimdall.Server.Windsor</id>
-    <version>1.0.0.4</version>
-    <authors>fir3pho3nixx@gmail.com</authors>
+    <version>1.0.0.6</version>
+    <authors>fir3pho3nixx@gmail.com,alex@alexjamesbrown.com</authors>
     <description>A server library for making webapi security super easy</description>
     <tags>FluentWindsor Heimdall WebApi Security HMAC Server IIS</tags>
     <language>en-GB</language>
