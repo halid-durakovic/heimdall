@@ -17,7 +17,7 @@ So for example if we were to make a get request like the one below:
 
 **Example GET Request**
 
-A simple vanilla request.
+A simple vanilla request with no authentication.
 
 Headers
     
