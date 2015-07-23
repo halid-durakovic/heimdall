@@ -195,5 +195,5 @@ request(req, function (error, response, body) {
 
 If you download the source and start up the Example.IIS project followed by running the NodeJs example at the following location:
 
-      ["https://github.com/cryosharp/heimdall/blob/master/Example.Client.NodeJs/app.js"](https://github.com/cryosharp/heimdall/blob/master/Example.Client.NodeJs/app.js)
+[https://github.com/cryosharp/heimdall/blob/master/Example.Client.NodeJs/app.js](https://github.com/cryosharp/heimdall/blob/master/Example.Client.NodeJs/app.js)
       
