@@ -111,7 +111,11 @@ after opening the solution in Visual Studio.
 ###The NodeJs Client
 
 A proper client has not yet been published to NPM but we have plans to do this in the near future. This is an example of how you would roll a 
-`Heimdall` request using NodeJs. First start by installing the REST client 'request' like so:
+`Heimdall` request using NodeJs. 
+
+####Dependencies
+
+First start by installing the REST client 'request' like so:
 
     npm install request
     
@@ -123,6 +127,8 @@ var request = require('request');
 var crypto = require('crypto');
 ```
 
+####Encryption
+
 Next you are going to need a little utility function that can do HMAC encryption using SHA256 with base64 encoding like so:
 
 ```javascript
@@ -132,6 +138,8 @@ function encrypt(data, secret) {
     return hmacSignature.digest("base64");
 }
 ```
+
+####Message Representation
 
 Next lets set about the task of building up a message representation. A message representation is logically comprised of the following elements: 
 
@@ -162,6 +170,8 @@ so:
 var body = { any:'value' };
 var contentMD5 = encrypt(JSON.stringify(body));
 ```
+
+####Wrapping it up
 
 Next let's build our request object and finally make the request to our Heimdall example server, pay special attention to what 
 is going on with the headers:
