@@ -126,9 +126,10 @@ var crypto = require('crypto');
 Next lets set about the task of building up a message representation. A message representation is logically comprised of the following elements: 
 
 ```
-HTTP Method [GET,POST,PUT,DELETE]
-HTTP Path [Example: /api/values]
-Content-Type Header [Example: application/json]
-Content-MD5 Header [Content Checksum]
+HTTP Method ['GET','POST','PUT','DELETE']
+HTTP Path [Example: '/api/values']
+Content-Type Header [Example: 'application/json']
+Content-MD5 Header [Content Checksum, applicable to 'POST','PUT']
 Timstamp: [Example: Thu, 23 Jul 2015 13:04:27 GMT]
 ```
+
