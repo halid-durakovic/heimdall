@@ -91,7 +91,7 @@ FluentWindsor.NewContainer(typeof(Program).Assembly).WithArrayResolver().WithIns
 ```
 
 This will automatically pick up the `IWindsorInstaller` and install an instance of the `IHeimdallClientFactory` which can 
-then be injected for consumption via any constructor known to Castle Windsor. For demonstration purposes we are going to use
+then be injected for consumption via any constructor known to the container. For demonstration purposes we are going to use
 the ServiceLocator of FluentWindsor.
 
 ```csharp
