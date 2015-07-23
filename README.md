@@ -108,7 +108,7 @@ var result = client.PostAsync("http://requestb.in/14nmm871", content).Result;
 If you would like to see a working example of this, please see the console application .\examples\Example.Client.FluentWindsor 
 after opening the solution in Visual Studio. 
 
-###A NodeJs Client Example
+###The NodeJs Client
 
 A proper client has not yet been published to NPM but we have plans to do this in the near future. This is an example of how you would roll a 
 `Heimdall` request using NodeJs. First start by installing the REST client 'request' like so:
@@ -193,7 +193,10 @@ request(req, function (error, response, body) {
 });
 ```
 
-If you download the source and start up the Example.IIS project followed by running the NodeJs example at the following location:
+Download the source and start up the Example.IIS project followed by running the NodeJs example at the following location:
 
 [https://github.com/cryosharp/heimdall/blob/master/Example.Client.NodeJs/app.js](https://github.com/cryosharp/heimdall/blob/master/Example.Client.NodeJs/app.js)
       
+###The Pure Js Client
+
+Here is another example of a Heimdall client that runs in a browser. Very useful if you are doing web development. 
