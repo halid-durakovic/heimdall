@@ -1,5 +1,5 @@
-var request = require('request'),
-    crypto = require('crypto');
+var request = require('request');
+var crypto = require('crypto');
 
 var req = {
     url: 'http://localhost:12345/api/values',
@@ -29,14 +29,13 @@ function sendRequest(r) {
     console.log(req);
     console.log();
 
-    request(req, function (error, response, body) {
+    request(req, function(error, response, body) {
         if (!error) {
             console.log("Response:");
             console.log(response.statusCode);
             console.log(response.body);
-        }
-        else {
+        } else {
             console.log(error);
         }
-    })
+    });
 }

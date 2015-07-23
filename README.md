@@ -108,4 +108,18 @@ var result = client.PostAsync("http://requestb.in/14nmm871", content).Result;
 If you would like to see a working example of this, please see the console application .\examples\Example.Client.FluentWindsor 
 after opening the solution in Visual Studio. 
 
+###The NodeJs Client
+
+A proper client has not yet been published to NPM but we have plans to do this in the near future. This is an example of how you would roll a 
+`Heimdall` request using NodeJs. First start by installing the REST client 'request' like so:
+
+    npm install request
+    
+Once this is done, create a file called `app.js` and place the following code at the top of the file. 
+
+```javascript
+var request = require('request');
+var crypto = require('crypto');
+```
+    
 
