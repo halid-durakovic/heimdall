@@ -15,11 +15,11 @@ Let's first take a look at the component parts. Heimdall is broken up into two d
 Both create compatible signed messages using the the individual message representation for each request using certain key dimensions. 
 So for example if we were to make a get request like the one below:
 
-  *Headers*
-  Accept: */*
-  Content-Type: application/json
-  *Path*
-  GET /api/mysecureresource/1
+    *Headers*
+    Accept: */*
+    Content-Type: application/json
+    *Path*
+    GET /api/mysecureresource/1
   
 You would require a `username` and a `secret` to sign the message, this is already implemented for you in a Heimdall C# and JavaScript
 client which we will cover in more detail later on. Once the message is sent to the server a delegating handler will then verify the 
