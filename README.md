@@ -153,3 +153,42 @@ var contentMD5 = '';
 var timestamp = new Date().toUTCString();
 var messageRepresentation = [httpMethod, httpPath, contentType, contentMD5, timestamp].join('\n');
 ```
+
+You will notice that the contentMD5 portion is empty. This is intentional as GET requests do not have content in their body. A 
+POST or PUT however does generally have a body. You can easily setup a hash using the encrypt function without a secret like
+so:
+
+```javascript
+var body = { any:'value' };
+var contentMD5 = encrypt(JSON.stringify(body));
+```
+
+Next let's build our request object and finally make the request to our Heimdall example server, pay special attention to what 
+is going on with the headers:
+
+```javascript
+var req = {
+    url: 'http://localhost:12345/api/values',
+    headers: {
+        'X-ApiAuth-Date': timestamp,
+        'X-ApiAuth-Username': 'username',
+        'Content-MD5': contentMD5,
+        'Content-Type': 'application/json',
+        'Authorization': 'ApiAuth ' + encrypt(messageRepresentation, 'secret')
+    }
+};
+
+console.log('Request: ');
+console.log(req);
+console.log();
+
+request(req, function (error, response, body) {
+    if (!error) {
+        console.log("Response:");
+        console.log(response.statusCode);
+        console.log(response.body);
+    } else {
+        console.log(error);
+    }
+});
+```

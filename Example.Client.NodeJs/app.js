@@ -19,6 +19,7 @@ var req = {
     headers: {
         'X-ApiAuth-Date': timestamp,
         'X-ApiAuth-Username': 'username',
+        'Content-MD5': contentMD5,
         'Content-Type': 'application/json',
         'Authorization': 'ApiAuth ' + encrypt(messageRepresentation, 'secret')
     }
