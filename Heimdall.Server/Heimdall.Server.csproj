@@ -53,8 +53,8 @@
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuthenticateAttiribute.cs" />
     <Compile Include="AuthenticateRequest.cs" />
+    <Compile Include="HeimdallConfig.cs" />
     <Compile Include="HmacAuthenticationHandler.cs">
       <SubType>Code</SubType>
     </Compile>

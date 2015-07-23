@@ -1,9 +1,8 @@
 using System.Net;
-using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
-using Heimdall.Tests;
-using Heimdall.Tests.Framework;
-using Moq;
+using System.Web.Http.SelfHost;
+using Heimdall.Server.Tests.Framework.Factories;
 using NUnit.Framework;
 
 namespace Heimdall.Server.Tests
@@ -11,32 +10,43 @@ namespace Heimdall.Server.Tests
     [TestFixture]
     public class HmacAuthenticationHandlerTests
     {
-        private HttpClient client;
-        private HmacAuthenticationHandler handler;
-        private Mock<IAuthenticateRequest> mockAuthenticateRequest;
+        private HttpSelfHostServer server;
 
-        [SetUp]
+        [TestFixtureSetUp]
         public void SetUp()
         {
-            mockAuthenticateRequest = new Mock<IAuthenticateRequest>();
-            handler = new HmacAuthenticationHandler(mockAuthenticateRequest.Object)
-                      {
-                          InnerHandler = new TestHandler()
-                      };
-            client = new HttpClient(handler);
+            this.server = ServerFactory.CreateServer("http://localhost:8080");
+        }
+
+        [TestFixtureTearDown]
+        public void TearDown()
+        {
+            this.server.Dispose();
         }
 
         [Test]
-        public void returns_not_authorised_if_request_is_not_authorised()
+        public async Task should_return_401_for_unsigned_client()
         {
-            mockAuthenticateRequest.Setup(x => x.IsAuthenticated(It.IsAny<HttpRequestMessage>()))
-                .Returns(Task.FromResult(false));
-
-            var request = HttpRequestMessageBuilder.Instance().Build();
-
-            var result = client.SendAsync(request).Result;
-
+            var unsignedClient = ClientFactory.CreateUnsignedClient();
+            var result = await unsignedClient.GetAsync("http://localhost:8080/api/values");
             Assert.That(result.StatusCode, Is.EqualTo(HttpStatusCode.Unauthorized));
+        }
+
+        [Test]
+        public async Task should_return_200_for_signed_client()
+        {
+            var signedClient = ClientFactory.CreateSignedClient();
+            var result = await signedClient.GetAsync("http://localhost:8080/api/values");
+            Assert.That(result.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+        }
+
+        [Test]
+        public async Task should_return_200_for_unsigned_client_with_allowany_attribute()
+        {
+            HeimdallConfig.AllowPath("/api/any");
+            var unsignedClient = ClientFactory.CreateUnsignedClient();
+            var result = await unsignedClient.GetAsync("http://localhost:8080/api/any");
+            Assert.That(result.StatusCode, Is.EqualTo(HttpStatusCode.OK));
         }
     }
 }

@@ -1,22 +1,32 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Heimdall.Server
 {
     public class HmacAuthenticationHandler : DelegatingHandler
     {
-        private readonly IAuthenticateRequest authenticateRequest;
+        protected IAuthenticateRequest AuthenticateRequest;
+
+        protected HmacAuthenticationHandler()
+        {
+        }
 
         public HmacAuthenticationHandler(IAuthenticateRequest authenticateRequest)
         {
-            this.authenticateRequest = authenticateRequest;
+            if (authenticateRequest == null) throw new ArgumentNullException(nameof(authenticateRequest));
+            this.AuthenticateRequest = authenticateRequest;
         }
 
-        protected async override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, System.Threading.CancellationToken cancellationToken)
+        protected async override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            var isAuthenticated = await authenticateRequest.IsAuthenticated(request);
+            if (HeimdallConfig.IgnorePath(request))
+                return await base.SendAsync(request, cancellationToken);
+
+            var isAuthenticated = await AuthenticateRequest.IsAuthenticated(request);
             if (!isAuthenticated)
             {
                 var response = request.CreateErrorResponse(HttpStatusCode.Unauthorized, "Unauthorized API call");

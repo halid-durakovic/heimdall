@@ -46,6 +46,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heimdall.Server.Windsor", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heimdall.Server.Windsor.Tests", "Heimdall.Server.Windsor.Tests\Heimdall.Server.Windsor.Tests.csproj", "{B2DA1494-1C4D-48C5-835C-397ADCC2B5DC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.IIS.FluentWindsor", "Example.IIS.FluentWindsor\Example.IIS.FluentWindsor.csproj", "{DDC17FEC-BD60-49F9-A9C1-047A2331DCDE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -112,6 +114,10 @@ Global
 		{B2DA1494-1C4D-48C5-835C-397ADCC2B5DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2DA1494-1C4D-48C5-835C-397ADCC2B5DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2DA1494-1C4D-48C5-835C-397ADCC2B5DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDC17FEC-BD60-49F9-A9C1-047A2331DCDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDC17FEC-BD60-49F9-A9C1-047A2331DCDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDC17FEC-BD60-49F9-A9C1-047A2331DCDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDC17FEC-BD60-49F9-A9C1-047A2331DCDE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -121,5 +127,6 @@ Global
 		{1B3F0D2D-C372-4F0D-89E6-3BD6A82FCFC8} = {D62F2148-4741-4909-BDC9-10F020A7D73B}
 		{9209C984-96C1-466D-8B29-73E8FC5F38E5} = {D62F2148-4741-4909-BDC9-10F020A7D73B}
 		{C71563D8-59C7-46FA-88BF-74D8F0430BF7} = {D62F2148-4741-4909-BDC9-10F020A7D73B}
+		{DDC17FEC-BD60-49F9-A9C1-047A2331DCDE} = {D62F2148-4741-4909-BDC9-10F020A7D73B}
 	EndGlobalSection
 EndGlobal

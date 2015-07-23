@@ -16,6 +16,7 @@ namespace Example.IIS
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
+            // Manually install heimdall
             var authenticateRequest = new AuthenticateRequest(new DummyGetSecretFromUsername());
             GlobalConfiguration.Configuration.MessageHandlers.Add(new HmacAuthenticationHandler(authenticateRequest));
         }

@@ -59,8 +59,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuthenticateAttiributeTests.cs" />
     <Compile Include="AuthenticateRequestTests.cs" />
+    <Compile Include="Framework\Controllers\AnyController.cs" />
+    <Compile Include="Framework\Controllers\ValuesController.cs" />
+    <Compile Include="Framework\Factories\ClientFactory.cs" />
+    <Compile Include="Framework\Factories\ServerFactory.cs" />
+    <Compile Include="Framework\Providers\GetSecretFromUsername.cs" />
     <Compile Include="HmacAuthenticationHandlerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -69,6 +73,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Heimdall.Client\Heimdall.Client.csproj">
+      <Project>{430A2D10-9EB3-44B0-AEA2-2A2FB7A12D21}</Project>
+      <Name>Heimdall.Client</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Heimdall.Server\Heimdall.Server.csproj">
       <Project>{b94154fe-b295-4224-a44d-03d200bacec5}</Project>
       <Name>Heimdall.Server</Name>
