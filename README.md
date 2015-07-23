@@ -80,7 +80,14 @@ public class DummyGetSecretFromUsername : IGetSecretFromUsername
 
 ####Heimdall.Server
 
-This is the non IoC version. First start by installing the NuGet `Heimdall.Server`. Once this is complete you have to
+This is the non Castle Windsor version. First start by installing the NuGet `Heimdall.Server`. Once this is complete you have to
+add the delegating handler to your WebAPI configuration on application startup in your `Global.asax` file like so:
+
+```csharp
+// Manually install heimdall
+var authenticateRequest = new AuthenticateRequest(new DummyGetSecretFromUsername());
+GlobalConfiguration.Configuration.MessageHandlers.Add(new HmacAuthenticationHandler(authenticateRequest));
+```
 
 ##Clients
 
