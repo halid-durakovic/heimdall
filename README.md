@@ -108,18 +108,27 @@ var result = client.PostAsync("http://requestb.in/14nmm871", content).Result;
 If you would like to see a working example of this, please see the console application .\examples\Example.Client.FluentWindsor 
 after opening the solution in Visual Studio. 
 
-###The NodeJs Client
+###A NodeJs Client Example
 
 A proper client has not yet been published to NPM but we have plans to do this in the near future. This is an example of how you would roll a 
 `Heimdall` request using NodeJs. First start by installing the REST client 'request' like so:
 
     npm install request
     
-Once this is done, create a file called `app.js` and place the following code at the top of the file. 
+Once this is done, create a file called `app.js` and place the following code at the top of the file. These are the two libraries we would require,
+one for doing requests and one for doing encryption so we can hash message representations.
 
 ```javascript
 var request = require('request');
 var crypto = require('crypto');
 ```
-    
 
+Next lets set about the task of building up a message representation. A message representation is logically comprised of the following elements: 
+
+```
+HTTP Method [GET,POST,PUT,DELETE]
+HTTP Path [Example: /api/values]
+Content-Type Header [Example: application/json]
+Content-MD5 Header [Content Checksum]
+Timstamp: [Example: Thu, 23 Jul 2015 13:04:27 GMT]
+```
