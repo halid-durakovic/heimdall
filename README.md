@@ -97,6 +97,15 @@ public class ProvidersInstaller : IWindsorInstaller
 }
 ```
 
+####Excluding Paths
+
+You can also exclude certain paths from Heimdall if you would not like any security applied to a particular end point or
+resource. This can be done like so in your application start up sequence: 
+
+```csharp
+HeimdallConfig.AllowPath("/api/values");
+```
+
 ###Installing
 
 Now lets take a look at the packages you will need below. Pick only one. 
@@ -117,6 +126,8 @@ GlobalConfiguration.Configuration.MessageHandlers.Add(new HmacAuthenticationHand
 This is the Windsor ready version that will be automatically picked up and installed if you using FluentWindsor. If you are 
 using FluentWindsor already then you dont have to do anything. By merely installing the NuGet your WebAPI will be secured
 providing you have supplied a implementation for `IGetSecretFromUsername`. 
+
+This exclude the entire path from Heimdall. Plans in the near future are to allow for specific verbs. 
 
 ##Clients
 
