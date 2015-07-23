@@ -16,9 +16,12 @@ Both create compatible signed messages using the the individual message represen
 So for example if we were to make a get request like the one below:
 
 **Headers**
+    
     Accept: */*
     Content-Type: application/json
+    
 **Path**
+    
     GET /api/mysecureresource/1
   
 You would require a `username` and a `secret` to sign the message, this is already implemented for you in a Heimdall C# and JavaScript
