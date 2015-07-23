@@ -108,7 +108,7 @@ namespace Example.Server
 
             Console.WriteLine("Request: ");
             Console.WriteLine(response.RequestMessage);
-            Console.WriteLine("Reeponse: ");
+            Console.WriteLine("Response: ");
             Console.WriteLine(response);
             Console.WriteLine();
         }
