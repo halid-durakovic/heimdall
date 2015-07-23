@@ -63,5 +63,5 @@ each one starting with the C# client first.
 This client comes in two flavours. One that is Castle Windsor ready(for use with FluentWindsor) or one without. Use the latter if 
 you are not using Castle Windsor as your IoC container. 
 
-... to be continued ...
+*... to be continued ...*
 
