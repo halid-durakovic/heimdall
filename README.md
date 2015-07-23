@@ -123,6 +123,16 @@ var request = require('request');
 var crypto = require('crypto');
 ```
 
+Next you are going to need a little utility function that can do HMAC encryption using SHA256 with base64 encoding like so:
+
+```javascript
+function encrypt(data, secret) {
+    var hmacSignature = crypto.createHmac("sha256", secret || '');
+    hmacSignature.update(messageRepresentation);
+    return hmacSignature.digest("base64");
+}
+```
+
 Next lets set about the task of building up a message representation. A message representation is logically comprised of the following elements: 
 
 ```
@@ -133,3 +143,13 @@ Content-MD5 Header [Content Checksum, applicable to 'POST','PUT']
 Timstamp: [Example: Thu, 23 Jul 2015 13:04:27 GMT]
 ```
 
+So now let's go ahead and create our message representation in JavaScript like so:
+
+```javascript
+var httpMethod = 'GET';
+var httpPath = '/api/values';
+var contentType = 'application/json';
+var contentMD5 = '';
+var timestamp = new Date().toUTCString();
+var messageRepresentation = [httpMethod, httpPath, contentType, contentMD5, timestamp].join('\n');
+```

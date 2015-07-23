@@ -1,41 +1,39 @@
 var request = require('request');
 var crypto = require('crypto');
 
+function encrypt(data, secret) {
+    var hmacSignature = crypto.createHmac("sha256", secret || '');
+    hmacSignature.update(messageRepresentation);
+    return hmacSignature.digest("base64");
+}
+
+var httpMethod = 'GET';
+var httpPath = '/api/values';
+var contentType = 'application/json';
+var contentMD5 = '';
+var timestamp = new Date().toUTCString();
+var messageRepresentation = [httpMethod, httpPath, contentType, contentMD5, timestamp].join('\n');
+
 var req = {
     url: 'http://localhost:12345/api/values',
-    headers: { 'X-ApiAuth-Date': new Date().toUTCString() }
+    headers: {
+        'X-ApiAuth-Date': timestamp,
+        'X-ApiAuth-Username': 'username',
+        'Content-Type': 'application/json',
+        'Authorization': 'ApiAuth ' + encrypt(messageRepresentation, 'secret')
+    }
 };
 
-/// Http METHOD\n +
-/// Http PATH\n +
-/// Content-Type\n +  
-/// Content-MD5\n +  
-/// Timestamp\n +
-var messageRepresentation = ['GET', '/api/values', '', '', req.headers['X-ApiAuth-Date']].join('\n');
+console.log('Request: ');
+console.log(req);
+console.log();
 
-var hmac_signature = crypto.createHmac("sha256", 'secret');
-hmac_signature.update(messageRepresentation);
-
-var hmac_signature_base64 = hmac_signature.digest("base64");
-
-//add auth header
-req.headers['X-ApiAuth-Username'] = 'username';
-req.headers['Authorization'] = "ApiAuth " + hmac_signature_base64;
-
-sendRequest(req);
-
-function sendRequest(r) {
-    console.log('Request: ');
-    console.log(req);
-    console.log();
-
-    request(req, function(error, response, body) {
-        if (!error) {
-            console.log("Response:");
-            console.log(response.statusCode);
-            console.log(response.body);
-        } else {
-            console.log(error);
-        }
-    });
-}
+request(req, function (error, response, body) {
+    if (!error) {
+        console.log("Response:");
+        console.log(response.statusCode);
+        console.log(response.body);
+    } else {
+        console.log(error);
+    }
+});
