@@ -139,7 +139,7 @@ function encrypt(data, secret) {
 }
 ```
 
-####Message Representation
+####Message representation
 
 Next lets set about the task of building up a message representation. A message representation is logically comprised of the following elements: 
 
