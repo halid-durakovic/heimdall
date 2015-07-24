@@ -9,6 +9,8 @@
 	<Import Project="$(Properties)" />
 
 	<UsingTask TaskName="BumpVersion" AssemblyFile="BuildTasks.dll" />
+  <UsingTask TaskName="MigratePackageDependenciesToNuSpec" AssemblyFile="BuildTasks.dll" />
+  <UsingTask TaskName="SetExplicitVersionsForDependencies" AssemblyFile="BuildTasks.dll" />
 
 	<Target Name="tasks\Clean">
 		<Exec Command="del /s /f /q *.nupkg" />
@@ -30,26 +32,28 @@
 
 	<Target Name="tasks\Pack">
 		<BumpVersion FilePath="../Heimdall/nuget.nuspec" XPathToVersionNumber="/package/metadata/version" />
-		<Exec Command="nuget pack ../Heimdall/nuget.nuspec" />
     <BumpVersion FilePath="../Heimdall.Client/nuget.nuspec" XPathToVersionNumber="/package/metadata/version" />
-    <Exec Command="nuget pack ../Heimdall.Client/nuget.nuspec" />
     <BumpVersion FilePath="../Heimdall.Client.Windsor/nuget.nuspec" XPathToVersionNumber="/package/metadata/version" />
-    <Exec Command="nuget pack ../Heimdall.Client.Windsor/nuget.nuspec" />
     <BumpVersion FilePath="../Heimdall.Server/nuget.nuspec" XPathToVersionNumber="/package/metadata/version" />
-    <Exec Command="nuget pack ../Heimdall.Server/nuget.nuspec" />
     <BumpVersion FilePath="../Heimdall.Server.Windsor/nuget.nuspec" XPathToVersionNumber="/package/metadata/version" />
+    <SetExplicitVersionsForDependencies RelativePath="..\" />
+    <Exec Command="nuget pack ../Heimdall/nuget.nuspec" />
+    <Exec Command="nuget pack ../Heimdall.Client/nuget.nuspec" />
+    <Exec Command="nuget pack ../Heimdall.Client.Windsor/nuget.nuspec" />
+    <Exec Command="nuget pack ../Heimdall.Server/nuget.nuspec" />
     <Exec Command="nuget pack ../Heimdall.Server.Windsor/nuget.nuspec" />
   </Target>
 
 	<Target Name="tasks\Push">
-		<Exec Command="nuget push $(ThisDirectory)Heimdall.1.0.0.*.nupkg" />
-    <Exec Command="nuget push $(ThisDirectory)Heimdall.Client.1.0.0.*.nupkg" />
-    <Exec Command="nuget push $(ThisDirectory)Heimdall.Client.Windsor.1.0.0.*.nupkg" />
-    <Exec Command="nuget push $(ThisDirectory)Heimdall.Server.1.0.0.*.nupkg" />
-    <Exec Command="nuget push $(ThisDirectory)Heimdall.Server.Windsor.1.0.0.*.nupkg" />
+		<Exec Command="nuget push $(ThisDirectory)Heimdall.1.0.*.nupkg" />
+    <Exec Command="nuget push $(ThisDirectory)Heimdall.Client.1.0.*.nupkg" />
+    <Exec Command="nuget push $(ThisDirectory)Heimdall.Client.Windsor.1.0.*.nupkg" />
+    <Exec Command="nuget push $(ThisDirectory)Heimdall.Server.1.0.*.nupkg" />
+    <Exec Command="nuget push $(ThisDirectory)Heimdall.Server.Windsor.1.0.*.nupkg" />
 	</Target>
 
 	<Target Name="Deploy">
+    <MigratePackageDependenciesToNuSpec RelativePath="..\" />
     <CallTarget Targets="tasks\Clean" />
 		<CallTarget Targets="tasks\Build" />
     <CallTarget Targets="tasks\Pack" />

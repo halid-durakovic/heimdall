@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Heimdall</id>
-    <version>1.0.0.6</version>
+    <version>1.0.0</version>
     <authors>fir3pho3nixx@gmail.com,alex@alexjamesbrown.com</authors>
     <description>A library for making webapi security super easy</description>
     <tags>FluentWindsor Heimdall WebApi Security HMAC</tags>
