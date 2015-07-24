@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Heimdall</id>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <authors>fir3pho3nixx@gmail.com,alex@alexjamesbrown.com</authors>
     <description>A library for making webapi security super easy</description>
     <tags>FluentWindsor Heimdall WebApi Security HMAC</tags>
@@ -19,6 +19,7 @@
     <dependencies>
       <dependency id="Microsoft.AspNet.WebApi.Client" version="5.2.3" />
       <dependency id="Microsoft.AspNet.WebApi.Core" version="5.2.3" />
+      <dependency id="Newtonsoft.Json" version="7.0.1" />
     </dependencies>
   </metadata>
   <files>
