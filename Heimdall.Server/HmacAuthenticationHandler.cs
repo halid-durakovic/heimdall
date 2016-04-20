@@ -26,6 +26,9 @@ namespace Heimdall.Server
             if (HeimdallConfig.IgnorePath(request))
                 return await base.SendAsync(request, cancellationToken);
 
+            if (HeimdallConfig.IgnoreVerb(request))
+                return await base.SendAsync(request, cancellationToken);
+
             var isAuthenticated = await AuthenticateRequest.IsAuthenticated(request);
             if (!isAuthenticated)
             {
