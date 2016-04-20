@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Cache;
 using System.Net.Http;
 using System.Web;
 
@@ -13,17 +12,19 @@ namespace Heimdall.Server
 
         public static void AllowVerb(string verb)
         {
-            InsecureVerbs.Add(verb?.ToUpper());
+            if (!string.IsNullOrEmpty(verb))
+                InsecureVerbs.Add(verb.ToUpper());
         }
 
         public static void AllowPath(string path)
         {
-            InsecurePaths.Add(path);
+            if (!string.IsNullOrEmpty(path))
+                InsecurePaths.Add(path);
         }
 
         internal static bool IgnoreVerb(HttpRequestMessage message)
         {
-            return InsecureVerbs.Any(x => HttpContext.Current.Request.HttpMethod.ToUpper().ToLower().StartsWith(x));
+            return InsecureVerbs.Any(x => message.Method.ToString().ToUpper().ToLower().StartsWith(x));
         }
 
         internal static bool IgnorePath(HttpRequestMessage message)
