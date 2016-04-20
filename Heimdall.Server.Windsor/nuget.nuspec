@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Heimdall.Server.Windsor</id>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <authors>fir3pho3nixx@gmail.com,alex@alexjamesbrown.com</authors>
     <description>A server library for making webapi security super easy</description>
     <tags>FluentWindsor Heimdall WebApi Security HMAC Server IIS</tags>
@@ -17,8 +17,8 @@
       <reference file="Heimdall.Server.Windsor.dll" />
     </references>
     <dependencies>
-      <dependency id="Heimdall" version="1.0.2" />
-      <dependency id="Heimdall.Server" version="1.0.2" />
+      <dependency id="Heimdall" version="1.0.3" />
+      <dependency id="Heimdall.Server" version="1.0.3" />
       <dependency id="Castle.Core" version="3.3.3" />
       <dependency id="Castle.Windsor" version="3.3.0" />
       <dependency id="FluentWindsor" version="1.0.11" />
