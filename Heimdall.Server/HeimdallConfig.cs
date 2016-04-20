@@ -23,7 +23,7 @@ namespace Heimdall.Server
 
         internal static bool IgnoreVerb(HttpRequestMessage message)
         {
-            return InsecurePaths.Any(x => HttpContext.Current.Request.HttpMethod.ToUpper().ToLower().StartsWith(x));
+            return InsecureVerbs.Any(x => HttpContext.Current.Request.HttpMethod.ToUpper().ToLower().StartsWith(x));
         }
 
         internal static bool IgnorePath(HttpRequestMessage message)
