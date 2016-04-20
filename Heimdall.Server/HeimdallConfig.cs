@@ -1,14 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Web;
 
 namespace Heimdall.Server
 {
     public class HeimdallConfig
     {
-        private static List<string> InsecureVerbs = new List<string>();
-        private static List<string> InsecurePaths = new List<string>();
+        private static readonly List<string> InsecureVerbs = new List<string>();
+        private static readonly List<string> InsecurePaths = new List<string>();
 
         public static void AllowVerb(string verb)
         {
@@ -19,17 +18,19 @@ namespace Heimdall.Server
         public static void AllowPath(string path)
         {
             if (!string.IsNullOrEmpty(path))
-                InsecurePaths.Add(path);
+                InsecurePaths.Add(path.ToLower());
         }
 
         internal static bool IgnoreVerb(HttpRequestMessage message)
         {
-            return InsecureVerbs.Any(x => message.Method.ToString().ToUpper().ToLower().StartsWith(x));
+            var currentVerb = message.Method.ToString();
+            return InsecureVerbs.Any(x => currentVerb.ToUpper().StartsWith(x));
         }
 
         internal static bool IgnorePath(HttpRequestMessage message)
         {
-            return InsecurePaths.Any(x => message.RequestUri.PathAndQuery.ToLower().StartsWith(x));
+            var pathAndQuery = message.RequestUri.PathAndQuery;
+            return InsecurePaths.Any(x => pathAndQuery.ToLower().StartsWith(x));
         }
     }
 }
