@@ -31,25 +31,25 @@ namespace Heimdall.Server
         public async Task<bool> IsAuthenticated(HttpRequestMessage request)
         {
             if ((request.Headers.Authorization == null) || (!request.Headers.Contains(HeaderNames.UsernameHeader)))
-                return await Task.FromResult(false);
+                return false;
 
             var secret = getSecretFromUsername.Secret(request.Headers.GetValues(HeaderNames.UsernameHeader).FirstOrDefault());
 
             if (secret == null)
-                return await Task.FromResult(false);
+                return false;
 
             if ((request.Content != null) && (request.Content.Headers.ContentMD5 != null))
             {
                 var isValidHash = await hashCalculator.IsValidHash(request);
                 if (!isValidHash)
-                    return await Task.FromResult(false);
+                    return false;
             }
 
             var signature = buildRequestSignature.Build(secret, request);
             if (signature != request.Headers.Authorization.Parameter)
-                return await Task.FromResult(false);
+                return false;
 
-            return await Task.FromResult(true);
+            return true;
         }
     }
 }

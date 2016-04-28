@@ -19,6 +19,8 @@ namespace Heimdall.Server.Tests.Framework.Factories
             var authenticateRequest = new AuthenticateRequest(new GetSecretFromUsername());
             config.MessageHandlers.Add(new HmacAuthenticationHandler(authenticateRequest));
 
+            HeimdallConfig.EnableByPassWebApiCorsAndImplementOptions(yesOrNo:true);
+
             var server = new HttpSelfHostServer(config);
             server.OpenAsync().Wait();
 
