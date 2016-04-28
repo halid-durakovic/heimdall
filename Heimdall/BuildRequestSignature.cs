@@ -30,9 +30,7 @@ namespace Heimdall
                 throw new ArgumentNullException("secret");
 
             var messageRepresentation = buildMessageRepresentation.Build(request);
-            Debug.WriteLine("Message Representation -> " + messageRepresentation);
             var hash = calculateSignature.Calculate(secret, messageRepresentation);
-            Debug.WriteLine("Message Hash -> " + hash);
             return hash;
         }
     }
