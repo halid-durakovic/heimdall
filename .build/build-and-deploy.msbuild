@@ -45,11 +45,11 @@
   </Target>
 
 	<Target Name="tasks\Push">
-		<Exec Command="nuget push $(ThisDirectory)Heimdall.1.0.*.nupkg" />
-    <Exec Command="nuget push $(ThisDirectory)Heimdall.Client.1.0.*.nupkg" />
-    <Exec Command="nuget push $(ThisDirectory)Heimdall.Client.Windsor.1.0.*.nupkg" />
-    <Exec Command="nuget push $(ThisDirectory)Heimdall.Server.1.0.*.nupkg" />
-    <Exec Command="nuget push $(ThisDirectory)Heimdall.Server.Windsor.1.0.*.nupkg" />
+		<Exec Command="nuget push $(ThisDirectory)Heimdall.2.0.*.nupkg" />
+    <Exec Command="nuget push $(ThisDirectory)Heimdall.Client.2.0.*.nupkg" />
+    <Exec Command="nuget push $(ThisDirectory)Heimdall.Client.Windsor.2.0.*.nupkg" />
+    <Exec Command="nuget push $(ThisDirectory)Heimdall.Server.2.0.*.nupkg" />
+    <Exec Command="nuget push $(ThisDirectory)Heimdall.Server.Windsor.2.0.*.nupkg" />
 	</Target>
 
 	<Target Name="Deploy">
