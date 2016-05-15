@@ -31,6 +31,8 @@ namespace Example.Server
             return client;
         }
 
+        // If this fails try running the following command prompt with elevated privs
+        // netsh http add urlacl url=http://+:8080/ user=DOMAIN\user
         private static HttpSelfHostServer CreateServer(string url)
         {
             var config = new HttpSelfHostConfiguration("http://localhost:8080");

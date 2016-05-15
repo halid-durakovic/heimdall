@@ -7,6 +7,8 @@ using NUnit.Framework;
 
 namespace Heimdall.Server.Tests
 {
+    // If this fails try running the following command prompt with elevated privs
+    // netsh http add urlacl url=http://+:8080/ user=DOMAIN\user
     [TestFixture]
     public class HmacAuthenticationHandlerTests
     {
