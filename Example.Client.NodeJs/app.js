@@ -15,7 +15,7 @@ var timestamp = new Date().toUTCString();
 var messageRepresentation = [httpMethod, httpPath, contentType, contentMD5, timestamp].join('\n');
 
 var req = {
-    url: 'http://localhost:12345/api/values',
+    url: 'http://localhost:8080/api/values',
     headers: {
         'X-ApiAuth-Date': timestamp,
         'X-ApiAuth-Username': 'username',

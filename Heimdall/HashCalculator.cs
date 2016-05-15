@@ -18,7 +18,7 @@ namespace Heimdall
         {
             var content = await request.Content.ReadAsStringAsync();
             using (var hmacsha256 = new HMACSHA256(Encoding.UTF8.GetBytes(string.Empty)))
-                return hmacsha256.ComputeHash(Encoding.Default.GetBytes(content));
+                return hmacsha256.ComputeHash(Encoding.UTF8.GetBytes(content));
         }
 
         public async Task<bool> IsValidHash(HttpRequestMessage request)
@@ -32,7 +32,7 @@ namespace Heimdall
 
             byte[] hash;
             using (var hmacsha256 = new HMACSHA256(Encoding.UTF8.GetBytes(string.Empty)))
-                hash = hmacsha256.ComputeHash(Encoding.Default.GetBytes(content));
+                hash = hmacsha256.ComputeHash(Encoding.UTF8.GetBytes(content));
 
             return hash.SequenceEqual(hashHeader);
         }
