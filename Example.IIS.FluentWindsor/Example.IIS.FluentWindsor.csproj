@@ -72,13 +72,13 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="FluentWindsor">
-      <HintPath>..\packages\FluentWindsor.2.0.6\lib\4.6.1\Release\FluentWindsor.dll</HintPath>
+      <HintPath>..\packages\FluentWindsor.2.0.7\lib\4.6.1\Release\FluentWindsor.dll</HintPath>
     </Reference>
     <Reference Include="FluentWindsor.Mvc">
-      <HintPath>..\packages\FluentWindsor.Mvc.2.0.6\lib\4.6.1\Release\FluentWindsor.Mvc.dll</HintPath>
+      <HintPath>..\packages\FluentWindsor.Mvc.2.0.7\lib\4.6.1\Release\FluentWindsor.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="FluentWindsor.WebApi">
-      <HintPath>..\packages\FluentWindsor.WebApi.2.0.6\lib\4.6.1\Release\FluentWindsor.WebApi.dll</HintPath>
+      <HintPath>..\packages\FluentWindsor.WebApi.2.0.7\lib\4.6.1\Release\FluentWindsor.WebApi.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
