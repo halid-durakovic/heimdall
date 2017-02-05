@@ -3,9 +3,9 @@
 &nbsp;Heimdall<br /><br />
 =============
 
-| Downloads | Version |
-|-----------|---------|
-| ![NuGet Total](https://img.shields.io/nuget/dt/Heimdall.svg) | ![NuGet Version](https://img.shields.io/nuget/v/Heimdall.svg) |
+| Version |
+|---------|
+| ![NuGet Version](https://img.shields.io/nuget/v/Heimdall.svg) |
 
 Easy to use HMAC Digest Authentication for WebAPI with various client implementations (C#, NodeJS and Browser versions)
 
